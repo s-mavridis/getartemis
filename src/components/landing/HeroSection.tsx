@@ -1,20 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Share2 } from "lucide-react";
+import { Share2, GraduationCap, ShieldCheck, Users } from "lucide-react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
+  heroEmail: string;
+  onHeroEmailChange: (email: string) => void;
 }
 
-export function HeroSection({ onOpenModal }: HeroSectionProps) {
-  const [email, setEmail] = useState("");
-
+export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      onOpenModal();
-    }
+    onOpenModal();
   };
 
   return (
@@ -50,71 +47,80 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
       
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-border/50 text-sm text-foreground/80">
-              Coming Soon
-            </span>
-          </motion.div>
-
           {/* Main headline */}
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-foreground mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-foreground mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Get early access
+            Get Personalized Cancer<br className="hidden sm:block" /> Screening Recommendations
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We're getting close. Sign up to get early access to ArtemisAI and start your personalized cancer screening journey.
+            We identify your risks based on YOUR health data—not generic guidelines—and connect you to the right tests.
           </motion.p>
 
           {/* Email input with button */}
           <motion.form 
             onSubmit={handleSubmit}
-            className="w-full max-w-lg mb-16"
+            className="w-full max-w-lg mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg border border-border/30">
+            <div className="flex flex-col sm:flex-row items-center bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg border border-border/30 gap-2 sm:gap-0">
               <input
                 type="email"
                 placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-3 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
+                value={heroEmail}
+                onChange={(e) => onHeroEmailChange(e.target.value)}
+                className="flex-1 w-full sm:w-auto px-6 py-3 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-center sm:text-left"
               />
               <Button 
                 type="submit"
                 variant="hero"
                 size="lg"
-                className="uppercase tracking-wider text-xs font-semibold"
+                className="w-full sm:w-auto uppercase tracking-wider text-xs font-semibold"
               >
                 Join Waitlist
               </Button>
             </div>
           </motion.form>
 
+          {/* Trust badges */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="flex items-center gap-1.5">
+              <GraduationCap className="w-4 h-4" />
+              <span>Stanford-Founded</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4" />
+              <span>HIPAA Compliant</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Users className="w-4 h-4" />
+              <span>70+ Expert Interviews</span>
+            </div>
+          </motion.div>
+
           {/* Phone mockup with fade effect */}
           <motion.div
             className="relative w-full max-w-xs mx-auto"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             {/* Phone frame - realistic iPhone style */}
             <div className="relative">

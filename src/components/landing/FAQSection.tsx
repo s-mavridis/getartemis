@@ -8,24 +8,24 @@ import {
 
 const faqs = [
   {
-    question: "What is ArtemisAI?",
-    answer: "ArtemisAI is a Stanford-backed personalized cancer screening platform that uses AI to analyze your health data and provide tailored risk assessments and screening recommendations.",
-  },
-  {
-    question: "How does the risk assessment work?",
-    answer: "Our AI analyzes your electronic health records, family history, and lifestyle factors to calculate your personalized cancer risk profile. Every assessment is validated by Stanford-trained oncology specialists.",
+    question: "How is this different from asking ChatGPT about my health?",
+    answer: "ChatGPT doesn't have your medical records. We analyze YOUR actual health data—not generic population statistics. Plus, we connect you directly to screening providers, not just information.",
   },
   {
     question: "Is my health data secure?",
-    answer: "Absolutely. We are fully HIPAA compliant and use end-to-end encryption for all health data. Your information is never shared with third parties or used for marketing purposes.",
+    answer: "Yes. Your data is encrypted end-to-end and we follow all HIPAA regulations. We never share your data with third parties without explicit consent, and you can revoke access anytime.",
   },
   {
-    question: "What types of cancer does ArtemisAI screen for?",
-    answer: "ArtemisAI currently analyzes risk factors for over 15 different cancer types, including breast, colorectal, lung, prostate, and skin cancers, among others.",
+    question: "Will insurance cover the recommended tests?",
+    answer: "Many tests are covered when you have documented risk factors. We help you navigate insurance pre-authorization and can connect you to affordable out-of-pocket options when needed.",
   },
   {
-    question: "When will ArtemisAI be available?",
-    answer: "We're currently in closed beta with early access users. Join our waitlist to be notified when we expand access. We expect to launch publicly in early 2025.",
+    question: "Do I need to have cancer to use this?",
+    answer: "No—we're focused on prevention. This is for healthy people who want to catch cancer early through personalized screening.",
+  },
+  {
+    question: "What happens after I sign up?",
+    answer: "We'll email you within 24 hours with secure instructions to connect your EHR. After you connect, our AI analyzes your data (24-48 hours) and you'll receive your personalized risk assessment and screening recommendations.",
   },
 ];
 
@@ -56,7 +56,7 @@ export function FAQSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Everything you need to know about ArtemisAI and how it works.
+            Everything you need to know about Artemis and how it works.
           </motion.p>
         </motion.div>
 

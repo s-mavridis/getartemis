@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -6,8 +6,6 @@ import { CheckCircle, Loader2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -18,87 +16,72 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getAdSource } from "@/lib/utm";
 
-// Phone validation regex for US numbers
-const phoneRegex = /^(\+1)?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-
-const step1Schema = z.object({
-  email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255),
-  phone: z.string().trim().regex(phoneRegex, { message: "Please enter a valid US phone number" }),
-  ageRange: z.string().min(1, { message: "Please select your age range" }),
-});
-
-const step2Schema = z.object({
+const formSchema = z.object({
+  email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
   ehrConsent: z.boolean().refine((val) => val === true, {
-    message: "You must authorize health record access to continue",
+    message: "Please accept both agreements",
   }),
   termsConsent: z.boolean().refine((val) => val === true, {
-    message: "You must agree to the Terms of Service and Privacy Policy",
+    message: "Please accept both agreements",
   }),
 });
 
-type Step1Data = z.infer<typeof step1Schema>;
-type Step2Data = z.infer<typeof step2Schema>;
+type FormData = z.infer<typeof formSchema>;
 
 interface LeadCaptureModalProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange: (completed: boolean) => void;
+  prefilledEmail?: string;
 }
 
-export function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) {
-  const [step, setStep] = useState(1);
-  const [step1Data, setStep1Data] = useState<Step1Data | null>(null);
+export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: LeadCaptureModalProps) {
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const { toast } = useToast();
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
-  const step1Form = useForm<Step1Data>({
-    resolver: zodResolver(step1Schema),
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      phone: "",
-      ageRange: "",
-    },
-  });
-
-  const step2Form = useForm<Step2Data>({
-    resolver: zodResolver(step2Schema),
-    defaultValues: {
+      email: prefilledEmail,
       ehrConsent: false,
       termsConsent: false,
     },
   });
 
-  const onStep1Submit = (data: Step1Data) => {
-    setStep1Data(data);
-    setStep(2);
-  };
+  // Update email field when prefilledEmail changes or modal opens
+  useEffect(() => {
+    if (open && prefilledEmail) {
+      form.setValue("email", prefilledEmail);
+    }
+  }, [open, prefilledEmail, form]);
 
-  const onStep2Submit = async (data: Step2Data) => {
-    if (!step1Data) return;
+  // Focus email field when modal opens
+  useEffect(() => {
+    if (open && !isSuccess) {
+      setTimeout(() => {
+        emailInputRef.current?.focus();
+      }, 100);
+    }
+  }, [open, isSuccess]);
 
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
 
     try {
       const adSource = getAdSource();
       
       const { error } = await supabase.from("leads").insert({
-        email: step1Data.email,
-        phone: step1Data.phone,
-        age_range: step1Data.ageRange,
+        email: data.email,
         ad_source: adSource,
-        ehr_consent_given: data.ehrConsent,
+        ehr_consent_given: true,
         ehr_consent_timestamp: new Date().toISOString(),
       });
 
@@ -106,7 +89,7 @@ export function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) 
         if (error.code === "23505") {
           toast({
             title: "Already registered",
-            description: "This email is already on our waitlist.",
+            description: "This email is already registered.",
             variant: "destructive",
           });
         } else {
@@ -115,12 +98,14 @@ export function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) 
         return;
       }
 
-      setStep(3);
+      console.log('consent_given');
+      setSubmittedEmail(data.email);
+      setIsSuccess(true);
     } catch (error) {
       console.error("Error submitting lead:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again later.",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -128,202 +113,117 @@ export function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) 
     }
   };
 
-  const handleClose = () => {
-    onOpenChange(false);
+  const handleClose = (completed: boolean = false) => {
+    onOpenChange(completed || isSuccess);
     // Reset after close animation
     setTimeout(() => {
-      setStep(1);
-      step1Form.reset();
-      step2Form.reset();
-      setStep1Data(null);
+      setIsSuccess(false);
+      setSubmittedEmail("");
+      form.reset({
+        email: "",
+        ehrConsent: false,
+        termsConsent: false,
+      });
     }, 200);
   };
 
-  return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md">
-        {step === 1 && (
-          <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-center">
-                Get Your Personalized Risk Assessment
-              </DialogTitle>
-            </DialogHeader>
-            
-            <Form {...step1Form}>
-              <form onSubmit={step1Form.handleSubmit(onStep1Submit)} className="space-y-6 mt-4">
-                <FormField
-                  control={step1Form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="you@example.com" 
-                          type="email"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={step1Form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="(555) 123-4567" 
-                          type="tel"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={step1Form.control}
-                  name="ageRange"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Age Range</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select your age range" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="<30">Under 30</SelectItem>
-                          <SelectItem value="30-39">30-39</SelectItem>
-                          <SelectItem value="40-49">40-49</SelectItem>
-                          <SelectItem value="50-59">50-59</SelectItem>
-                          <SelectItem value="60+">60+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button type="submit" className="w-full" size="lg">
-                  Continue
-                </Button>
-              </form>
-            </Form>
-          </>
-        )}
+  const isFormValid = form.watch("email") && form.watch("ehrConsent") && form.watch("termsConsent");
 
-        {step === 2 && (
+  return (
+    <Dialog open={open} onOpenChange={() => handleClose(false)}>
+      <DialogContent className="sm:max-w-[500px] p-4 sm:p-8 rounded-2xl">
+        {!isSuccess ? (
           <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-center">
-                Authorize Health Record Access
-              </DialogTitle>
-            </DialogHeader>
-            
-            <div className="mt-4 space-y-4 text-sm text-muted-foreground">
-              <p>
-                By clicking 'Authorize Access,' you consent to ArtemisAI securely accessing your electronic health records for the purpose of cancer and chronic disease risk analysis.
-              </p>
-              
-              <div>
-                <p className="font-medium text-foreground mb-2">We will access:</p>
-                <ul className="space-y-1">
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> Past diagnoses and medical conditions
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> Medications and prescriptions
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> Lab results and imaging reports
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> Family history information
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <p className="font-medium text-foreground mb-2">We will NOT:</p>
-                <ul className="space-y-1">
-                  <li className="flex items-center gap-2">
-                    <span className="text-destructive">✗</span> Share your data with third parties
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-destructive">✗</span> Store data longer than necessary
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-destructive">✗</span> Use your data for marketing
-                  </li>
-                </ul>
-              </div>
-              
-              <p className="text-xs">
-                This authorization complies with HIPAA regulations and you can revoke it at any time.
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-foreground">
+                Get Your Personalized Risk Assessment
+              </h2>
+              <p className="text-muted-foreground">
+                We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours.
               </p>
             </div>
             
-            <Form {...step2Form}>
-              <form onSubmit={step2Form.handleSubmit(onStep2Submit)} className="space-y-4 mt-4">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-6">
                 <FormField
-                  control={step2Form.control}
-                  name="ehrConsent"
+                  control={form.control}
+                  name="email"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                    <FormItem>
+                      <FormLabel className="text-sm font-medium">Email address</FormLabel>
                       <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
+                        <Input 
+                          {...field}
+                          ref={emailInputRef}
+                          placeholder="you@example.com" 
+                          type="email"
+                          className="rounded-lg border-border px-4 py-3"
                         />
                       </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm font-normal">
-                          I authorize ArtemisAI to access my electronic health records for risk assessment purposes. I understand I can revoke this authorization at any time.
-                        </FormLabel>
-                        <FormMessage />
-                      </div>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
                 
-                <FormField
-                  control={step2Form.control}
-                  name="termsConsent"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm font-normal">
-                          I agree to the{" "}
-                          <a href="#" className="text-primary hover:underline">
-                            Terms of Service
-                          </a>{" "}
-                          and{" "}
-                          <a href="#" className="text-primary hover:underline">
-                            Privacy Policy
-                          </a>
-                        </FormLabel>
-                        <FormMessage />
-                      </div>
-                    </FormItem>
-                  )}
-                />
+                <div className="space-y-3">
+                  <FormField
+                    control={form.control}
+                    name="ehrConsent"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="h-5 w-5 rounded border-border mt-0.5"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-tight">
+                          <FormLabel className="text-sm font-normal text-foreground leading-snug">
+                            I authorize Artemis to securely access my electronic health records for cancer risk assessment. I understand my data is encrypted and I can revoke access anytime.{" "}
+                            <a href="#" className="text-blue-600 underline hover:text-blue-700">
+                              View Privacy Policy
+                            </a>
+                          </FormLabel>
+                          <FormMessage />
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="termsConsent"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="h-5 w-5 rounded border-border mt-0.5"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-tight">
+                          <FormLabel className="text-sm font-normal text-foreground leading-snug">
+                            I agree to the{" "}
+                            <a href="#" className="text-blue-600 underline hover:text-blue-700">
+                              Terms of Service
+                            </a>
+                          </FormLabel>
+                          <FormMessage />
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 
-                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                <Button 
+                  type="submit" 
+                  className="w-full rounded-full px-8 py-4 font-semibold"
+                  variant="hero"
+                  size="lg"
+                  disabled={isSubmitting || !isFormValid}
+                >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -333,51 +233,35 @@ export function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) 
                     "Authorize Access"
                   )}
                 </Button>
+                
+                <p className="text-xs text-muted-foreground text-center">
+                  We respect your privacy. Your data is never shared.
+                </p>
               </form>
             </Form>
           </>
-        )}
-
-        {step === 3 && (
-          <div className="py-8 text-center space-y-6">
+        ) : (
+          <div className="py-8 text-center space-y-4">
             <CheckCircle className="w-16 h-16 text-green-600 mx-auto" />
             
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">
-                You're on the list! 🎉
+              <h2 className="text-2xl font-bold text-foreground">
+                You're on the list!
               </h2>
-              <p className="text-muted-foreground">
-                Thanks for joining ArtemisAI. Here's what happens next:
+              <p className="text-muted-foreground mt-2">
+                Check your email ({submittedEmail}) for next steps. We'll send EHR connection instructions within 24 hours.
               </p>
             </div>
-            
-            <ul className="text-left space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>We'll email you within 24 hours with secure instructions to connect your EHR</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>Our AI will analyze your health data (typically takes 24-48 hours)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary font-bold">✓</span>
-                <span>You'll receive your personalized risk assessment and screening recommendations</span>
-              </li>
-            </ul>
             
             <p className="text-sm text-muted-foreground">
-              Keep an eye on your inbox:{" "}
-              <span className="text-foreground font-medium">hello@artemisai.health</span>
+              You're one of 523 people getting early access to personalized cancer prevention.
             </p>
             
-            <div className="bg-muted/50 rounded-lg p-4">
-              <p className="text-sm text-muted-foreground">
-                You're one of <span className="font-semibold text-foreground">523</span> people getting early access to personalized cancer prevention.
-              </p>
-            </div>
-            
-            <Button onClick={handleClose} variant="outline" className="w-full" size="lg">
+            <Button 
+              onClick={() => handleClose(true)} 
+              variant="outline" 
+              className="w-full rounded-full px-8 py-3 mt-6"
+            >
               Close
             </Button>
           </div>

@@ -4,26 +4,26 @@ import { Shield, Clock, Users, Target } from "lucide-react";
 const features = [
   {
     icon: Shield,
-    title: "Risk Assessment",
-    description: "Get personalized cancer risk analysis based on your health data and genetic factors.",
+    title: "AI-Powered Risk Analysis",
+    description: "Comprehensive cancer risk assessment based on your genetics, family history, lifestyle, and medical records.",
     visual: "risk"
   },
   {
     icon: Clock,
-    title: "Early Detection",
-    description: "Catch potential issues early with AI-powered screening recommendations.",
+    title: "Proactive Screening",
+    description: "Catch potential issues early with AI-powered recommendations for the right screening tests at the right time.",
     visual: "detection"
   },
   {
     icon: Users,
-    title: "Expert Validation",
-    description: "Every assessment is reviewed by Stanford-trained oncology specialists.",
+    title: "Stanford-Backed Science",
+    description: "Every assessment is built on research validated by 70+ oncologists and screening specialists from leading institutions.",
     visual: "experts"
   },
   {
     icon: Target,
-    title: "Personalized Plans",
-    description: "Receive tailored screening schedules and lifestyle recommendations.",
+    title: "Your Custom Roadmap",
+    description: "Tailored screening schedules and actionable next steps—no more guessing what tests you need or when.",
     visual: "plans"
   }
 ];
@@ -90,7 +90,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Features designed<br />for your success.
+            Everything You Need<br />for Early Detection.
           </motion.h2>
           <motion.p 
             className="text-lg text-muted-foreground max-w-xl mx-auto"
@@ -129,7 +129,7 @@ export function FeaturesSection() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-gray-900">Low Risk</p>
-                          <p className="text-[9px] text-gray-500">ArtemisAI</p>
+                          <p className="text-[9px] text-gray-500">Artemis</p>
                         </div>
                       </div>
                       <div className="bg-white rounded-xl p-3 shadow-sm mt-4">
@@ -171,7 +171,7 @@ export function FeaturesSection() {
                           </div>
                           <div>
                             <p className="text-[10px] font-medium text-gray-800">Health Score</p>
-                            <p className="text-[8px] text-gray-500">ArtemisAI</p>
+                            <p className="text-[8px] text-gray-500">Artemis</p>
                           </div>
                         </div>
                         <div className="grid grid-cols-3 gap-1.5 text-center">
