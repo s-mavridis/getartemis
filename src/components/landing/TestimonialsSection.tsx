@@ -3,53 +3,35 @@ import { useRef } from "react";
 
 const testimonials = [
   {
-    quote: "I always felt anxious about cancer screening, yet ArtemisAI gave me clarity and peace of mind. Truly life-changing!",
-    name: "Sarah Chen",
-    role: "Early Access User",
+    quote: "[QUOTE TO BE ADDED]",
+    name: "[NAME TO BE ADDED]",
+    role: "[TITLE TO BE ADDED]",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "The personalized risk assessment helped me understand my health better than any doctor visit ever has.",
-    name: "Michael Roberts",
-    role: "Beta Tester",
+    quote: "[QUOTE TO BE ADDED]",
+    name: "[NAME TO BE ADDED]",
+    role: "[TITLE TO BE ADDED]",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "Finally, a platform that makes cancer prevention accessible and understandable. The Stanford backing gives me confidence.",
-    name: "Emily Johnson",
-    role: "Healthcare Professional",
+    quote: "[QUOTE TO BE ADDED]",
+    name: "[NAME TO BE ADDED]",
+    role: "[TITLE TO BE ADDED]",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "ArtemisAI's expert validation process sets it apart. Knowing real oncologists review my assessment is invaluable.",
-    name: "David Park",
-    role: "Early Access User",
+    quote: "[QUOTE TO BE ADDED]",
+    name: "[NAME TO BE ADDED]",
+    role: "[TITLE TO BE ADDED]",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "As someone with a family history of cancer, this platform gave me the proactive tools I needed. Highly recommend!",
-    name: "Lisa Martinez",
-    role: "Beta Tester",
+    quote: "[QUOTE TO BE ADDED]",
+    name: "[NAME TO BE ADDED]",
+    role: "[TITLE TO BE ADDED]",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
   },
-  {
-    quote: "The interface is incredibly intuitive. Got my risk assessment in minutes and the recommendations were spot-on.",
-    name: "James Wilson",
-    role: "Early Access User",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I've recommended ArtemisAI to all my patients. It's exactly what preventive healthcare needs.",
-    name: "Dr. Amanda Foster",
-    role: "Oncologist",
-    avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "The peace of mind this platform provides is priceless. Finally feel in control of my health journey.",
-    name: "Robert Kim",
-    role: "Beta Tester",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
-  }
 ];
 
 export function TestimonialsSection() {

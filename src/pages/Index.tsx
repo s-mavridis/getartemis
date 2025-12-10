@@ -4,10 +4,11 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { StepsSection } from "@/components/landing/StepsSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { FinalCTASection } from "@/components/landing/FinalCTASection";
 import { FAQSection } from "@/components/landing/FAQSection";
 import { Footer } from "@/components/landing/Footer";
 import { LeadCaptureModal } from "@/components/landing/LeadCaptureModal";
-import { captureUTMParams } from "@/lib/utm";
+import { captureUTMParams, getAdSource } from "@/lib/utm";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +16,10 @@ const Index = () => {
   useEffect(() => {
     // Capture UTM parameters on page load
     captureUTMParams();
+    
+    // Log page view
+    const adSource = getAdSource();
+    console.log("page_view", { ad_source: adSource, timestamp: new Date().toISOString() });
   }, []);
 
   const handleOpenModal = () => {
@@ -30,6 +35,7 @@ const Index = () => {
         <FeaturesSection />
         <StepsSection />
         <TestimonialsSection />
+        <FinalCTASection onOpenModal={handleOpenModal} />
         <FAQSection />
       </main>
       
