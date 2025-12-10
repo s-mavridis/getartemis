@@ -148,7 +148,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             </div>
             
             {/* Fade overlay at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+            <div className="absolute -bottom-1 left-0 right-0 h-48 bg-gradient-to-t from-background from-20% via-background/95 via-40% to-transparent pointer-events-none" />
           </motion.div>
         </div>
       </div>
