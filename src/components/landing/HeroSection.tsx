@@ -59,11 +59,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Gradient overlay - fade starts lower to keep text visible */}
+      {/* Gradient overlay - dark stays longer so trust badges are visible */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.35) 55%, hsl(38, 25%, 95% / 0.5) 70%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.2) 78%, hsl(38, 25%, 95%) 88%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
