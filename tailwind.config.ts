@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Playfair Display Variable"', 'serif'],
+        display: ['"Instrument Serif"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,32 +61,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        hero: {
-          bg: "hsl(var(--hero-bg))",
-          text: "hsl(var(--hero-text))",
-        },
-        sky: {
-          50: "hsl(var(--sky-50))",
-          100: "hsl(var(--sky-100))",
-          400: "hsl(var(--sky-400))",
-          500: "hsl(var(--sky-500))",
-          600: "hsl(var(--sky-600))",
+        coral: {
+          DEFAULT: "hsl(var(--coral))",
+          light: "hsl(var(--coral-light))",
         },
         cream: {
-          50: "hsl(var(--cream-50))",
-          100: "hsl(var(--cream-100))",
-          200: "hsl(var(--cream-200))",
-        },
-        slate: {
-          50: "hsl(var(--slate-50))",
-          100: "hsl(var(--slate-100))",
-          200: "hsl(var(--slate-200))",
-          400: "hsl(var(--slate-400))",
-          500: "hsl(var(--slate-500))",
-          600: "hsl(var(--slate-600))",
-          700: "hsl(var(--slate-700))",
-          800: "hsl(var(--slate-800))",
-          900: "hsl(var(--slate-900))",
+          DEFAULT: "hsl(var(--cream))",
+          dark: "hsl(var(--cream-dark))",
         },
       },
       borderRadius: {
@@ -96,6 +77,7 @@ export default {
         xl: "1rem",
         "2xl": "1.5rem",
         "3xl": "2rem",
+        "4xl": "2.5rem",
       },
       keyframes: {
         "accordion-down": {
@@ -114,17 +96,12 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "float": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.5s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
-        "float": "float 3s ease-in-out infinite",
       },
     },
   },

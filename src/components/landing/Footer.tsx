@@ -2,71 +2,70 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer className="bg-accent text-white py-16">
+    <footer className="py-16 border-t border-border">
       <div className="container-wide">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12"
+          className="grid grid-cols-1 md:grid-cols-4 gap-12"
         >
-          {/* Left column - Logo and info */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-xl">A</span>
-              </div>
-              <span className="text-xl font-display font-semibold">ArtemisAI</span>
+          {/* Logo column */}
+          <div className="md:col-span-2 space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-display">ArtemisAI</span>
+              <span className="text-secondary text-lg">®</span>
             </div>
-            <p className="text-white/60">Cancer Prevention OS</p>
-            <p className="text-white/40 text-sm">Built in Stanford, CA</p>
+            <p className="text-muted-foreground text-sm max-w-xs">
+              Cancer Prevention OS. Built by Stanford researchers.
+            </p>
             <a 
               href="mailto:hello@artemisai.health" 
-              className="text-white/60 hover:text-primary transition-colors text-sm inline-block"
+              className="text-muted-foreground hover:text-foreground transition-colors text-sm inline-block"
             >
               hello@artemisai.health
             </a>
           </div>
           
-          {/* Middle column - Company */}
+          {/* Company column */}
           <div>
-            <h3 className="font-display font-semibold text-white mb-6">Company</h3>
-            <ul className="space-y-4">
+            <h3 className="font-medium text-foreground mb-4">Company</h3>
+            <ul className="space-y-3">
               <li>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   Our Science
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   Terms of Service
                 </a>
               </li>
             </ul>
           </div>
           
-          {/* Right column - Resources */}
+          {/* Resources column */}
           <div>
-            <h3 className="font-display font-semibold text-white mb-6">Resources</h3>
-            <ul className="space-y-4">
+            <h3 className="font-medium text-foreground mb-4">Resources</h3>
+            <ul className="space-y-3">
               <li>
-                <a href="#faq" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   FAQs
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@artemisai.health" className="text-white/60 hover:text-primary transition-colors text-sm">
+                <a href="mailto:hello@artemisai.health" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   Contact Us
                 </a>
               </li>
@@ -75,9 +74,9 @@ export function Footer() {
         </motion.div>
         
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-8">
-          <p className="text-white/40 text-sm text-center">
-            © 2024 ArtemisAI. All rights reserved. | HIPAA Compliant
+        <div className="border-t border-border mt-12 pt-8">
+          <p className="text-muted-foreground text-sm text-center">
+            © 2024 ArtemisAI. All rights reserved. HIPAA Compliant.
           </p>
         </div>
       </div>
