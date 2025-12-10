@@ -14,148 +14,165 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
   };
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="container-wide grid lg:grid-cols-5 gap-12 lg:gap-8 items-center py-16 lg:py-0">
-        {/* Left content - 60% */}
+    <section className="min-h-screen relative overflow-hidden">
+      {/* Sky blue gradient background */}
+      <div className="absolute inset-0 gradient-hero" />
+      
+      {/* Decorative wave lines */}
+      <div className="absolute inset-0 wave-lines opacity-50" />
+      
+      {/* Flowing wave SVG at bottom */}
+      <svg 
+        className="absolute bottom-0 left-0 right-0 w-full h-auto"
+        viewBox="0 0 1440 200" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path 
+          d="M0,100 C360,150 720,50 1080,100 C1260,125 1380,110 1440,100 L1440,200 L0,200 Z" 
+          fill="rgba(255,255,255,0.1)"
+        />
+        <path 
+          d="M0,120 C360,170 720,70 1080,120 C1260,145 1380,130 1440,120 L1440,200 L0,200 Z" 
+          fill="rgba(255,255,255,0.05)"
+        />
+      </svg>
+      
+      {/* Rounded container effect */}
+      <div className="absolute inset-x-4 top-4 bottom-0 rounded-t-3xl overflow-hidden">
+        <div className="absolute inset-0 gradient-hero" />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 container-wide pt-32 pb-16 min-h-screen flex flex-col justify-center items-center text-center">
         <motion.div 
-          className="lg:col-span-3 space-y-8"
-          initial={{ opacity: 0, y: 20 }}
+          className="max-w-4xl mx-auto space-y-8"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-            Most Cancer Screening Guidelines Weren't Written for You
+          {/* Main headline */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-hero-text leading-tight">
+            Modern Cancer Screening,{" "}
+            <span className="italic">Delivered Personally.</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            If you have a family history, genetic risk, or concerning symptoms but don't qualify for standard screening—you're not alone. We identify your personalized cancer and chronic disease risks, then connect you to the right tests.
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            If you have a family history, genetic risk, or concerning symptoms but don't qualify for standard screening—you're not alone. We identify your personalized cancer risks and connect you to the right tests.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
             <Button 
-              variant="hero" 
+              variant="heroLight" 
               size="lg" 
               onClick={onOpenModal}
-              className="w-full sm:w-auto"
+              className="min-w-[200px]"
             >
-              Get Your Risk Assessment
+              Get Started Free
             </Button>
-            <Button 
-              variant="heroOutline" 
-              size="lg" 
-              onClick={scrollToHowItWorks}
-              className="w-full sm:w-auto"
-            >
-              See How It Works
-            </Button>
-          </div>
+          </motion.div>
           
-          <p className="text-sm text-muted-foreground">
+          {/* Trust badges */}
+          <motion.p 
+            className="text-sm text-white/60 pt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
             Built by Stanford researchers • Validated against 70+ medical experts • HIPAA compliant
-          </p>
+          </motion.p>
         </motion.div>
         
-        {/* Right visual - 40% */}
-        <motion.div 
-          className="lg:col-span-2 relative"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        {/* Phone mockup visual */}
+        <motion.div
+          className="mt-12 md:mt-16 relative"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="aspect-square relative">
-            {/* Abstract medical visualization with SVG */}
-            <svg 
-              viewBox="0 0 400 400" 
-              className="w-full h-full"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="relative mx-auto w-[280px] md:w-[320px]">
+            {/* Phone frame */}
+            <div className="bg-slate-800 rounded-[3rem] p-3 shadow-2xl">
+              <div className="bg-white rounded-[2.5rem] overflow-hidden">
+                {/* Status bar */}
+                <div className="bg-slate-100 px-6 py-3 flex justify-between items-center text-xs">
+                  <span className="font-medium text-slate-600">9:41</span>
+                  <div className="flex gap-1">
+                    <div className="w-4 h-2 bg-slate-400 rounded-sm" />
+                    <div className="w-4 h-2 bg-slate-400 rounded-sm" />
+                    <div className="w-6 h-3 bg-slate-600 rounded-sm" />
+                  </div>
+                </div>
+                
+                {/* App content */}
+                <div className="p-4 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-slate-500">Good Morning 👋</p>
+                      <p className="font-display font-semibold text-slate-800">Your Health</p>
+                    </div>
+                    <div className="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center">
+                      <span className="text-sky-600 font-semibold text-sm">JD</span>
+                    </div>
+                  </div>
+                  
+                  {/* Risk assessment card */}
+                  <div className="bg-gradient-to-br from-sky-400 to-sky-500 rounded-2xl p-4 text-white">
+                    <p className="text-xs opacity-80">Your Risk Profile</p>
+                    <p className="text-2xl font-display font-bold mt-1">Low Risk</p>
+                    <p className="text-xs mt-2 opacity-70">Last updated: Today</p>
+                  </div>
+                  
+                  {/* Quick stats */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-cream-100 rounded-xl p-3">
+                      <p className="text-xs text-slate-500">Screenings</p>
+                      <p className="font-semibold text-slate-800">3 Due</p>
+                    </div>
+                    <div className="bg-cream-100 rounded-xl p-3">
+                      <p className="text-xs text-slate-500">Next Test</p>
+                      <p className="font-semibold text-slate-800">In 2 weeks</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Floating cards around phone */}
+            <motion.div 
+              className="absolute -left-16 top-1/4 bg-white rounded-2xl shadow-xl p-3 hidden md:block"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <defs>
-                <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(166, 91%, 32%)" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="hsl(168, 84%, 26%)" stopOpacity="0.4" />
-                </linearGradient>
-                <linearGradient id="coralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(24, 94%, 53%)" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="hsl(24, 94%, 53%)" stopOpacity="0.2" />
-                </linearGradient>
-                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(224, 58%, 37%)" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="hsl(224, 58%, 37%)" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
-              
-              {/* Background circles */}
-              <circle cx="200" cy="200" r="180" fill="url(#tealGradient)" opacity="0.1" />
-              <circle cx="200" cy="200" r="140" fill="url(#tealGradient)" opacity="0.15" />
-              <circle cx="200" cy="200" r="100" fill="url(#tealGradient)" opacity="0.2" />
-              
-              {/* DNA helix-inspired curves */}
-              <path 
-                d="M100,100 Q200,150 300,100 T500,100" 
-                stroke="url(#tealGradient)" 
-                strokeWidth="3" 
-                fill="none"
-                opacity="0.6"
-              />
-              <path 
-                d="M100,150 Q200,100 300,150 T500,150" 
-                stroke="url(#coralGradient)" 
-                strokeWidth="3" 
-                fill="none"
-                opacity="0.6"
-              />
-              
-              {/* Floating orbs representing data points */}
-              <circle cx="150" cy="120" r="20" fill="url(#tealGradient)">
-                <animate attributeName="cy" values="120;130;120" dur="3s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="250" cy="100" r="15" fill="url(#coralGradient)">
-                <animate attributeName="cy" values="100;90;100" dur="2.5s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="320" cy="150" r="12" fill="url(#blueGradient)">
-                <animate attributeName="cy" values="150;160;150" dur="2s" repeatCount="indefinite" />
-              </circle>
-              
-              {/* Central shield/protection symbol */}
-              <path 
-                d="M200,160 L240,180 L240,230 Q240,270 200,290 Q160,270 160,230 L160,180 Z" 
-                fill="url(#tealGradient)"
-                opacity="0.8"
-              />
-              <path 
-                d="M185,210 L195,220 L220,195" 
-                stroke="white" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                fill="none"
-              />
-              
-              {/* Orbiting dots */}
-              <circle cx="200" cy="200" r="3" fill="hsl(166, 91%, 32%)">
-                <animateTransform 
-                  attributeName="transform" 
-                  type="rotate" 
-                  from="0 200 200" 
-                  to="360 200 200" 
-                  dur="10s" 
-                  repeatCount="indefinite"
-                />
-                <animate attributeName="cx" values="200;320;200;80;200" dur="10s" repeatCount="indefinite" />
-                <animate attributeName="cy" values="80;200;320;200;80" dur="10s" repeatCount="indefinite" />
-              </circle>
-              
-              {/* Network lines */}
-              <line x1="100" y1="300" x2="180" y2="260" stroke="hsl(166, 91%, 32%)" strokeWidth="1" opacity="0.3" />
-              <line x1="180" y1="260" x2="220" y2="290" stroke="hsl(166, 91%, 32%)" strokeWidth="1" opacity="0.3" />
-              <line x1="220" y1="290" x2="300" y2="280" stroke="hsl(166, 91%, 32%)" strokeWidth="1" opacity="0.3" />
-              
-              {/* Small dots at intersections */}
-              <circle cx="100" cy="300" r="4" fill="hsl(24, 94%, 53%)" opacity="0.7" />
-              <circle cx="180" cy="260" r="4" fill="hsl(166, 91%, 32%)" opacity="0.7" />
-              <circle cx="220" cy="290" r="4" fill="hsl(224, 58%, 37%)" opacity="0.7" />
-              <circle cx="300" cy="280" r="4" fill="hsl(24, 94%, 53%)" opacity="0.7" />
-            </svg>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                  <span className="text-green-600 text-sm">✓</span>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs text-slate-500">Status</p>
+                  <p className="text-sm font-semibold text-slate-800">Connected</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="absolute -right-12 top-1/2 bg-white rounded-2xl shadow-xl p-3 hidden md:block"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="text-center">
+                <p className="text-xs text-slate-500">Risk Score</p>
+                <p className="text-xl font-display font-bold text-sky-600">92</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
