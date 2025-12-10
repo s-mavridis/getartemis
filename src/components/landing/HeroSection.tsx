@@ -67,11 +67,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         }}
       />
       
-      {/* Gradient overlay - desktop */}
+      {/* Gradient overlay - desktop (cream transition matches phone fade) */}
       <div 
         className="absolute inset-0 hidden sm:block" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.2) 82%, rgba(239,235,227,0.5) 90%, rgba(239,235,227,1) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.3) 62%, rgba(0,0,0,0.15) 72%, rgba(239,235,227,0.4) 78%, rgba(239,235,227,0.8) 85%, rgba(239,235,227,1) 92%)'
         }}
       />
       
