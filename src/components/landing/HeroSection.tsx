@@ -67,11 +67,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         }}
       />
       
-      {/* Gradient overlay - desktop (longer dark, gradual fade to cream) */}
+      {/* Gradient overlay - desktop (dark overlay fading to transparent) */}
       <div 
         className="absolute inset-0 hidden sm:block" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.3) 72%, rgba(0,0,0,0.15) 80%, rgba(239,235,227,0.5) 86%, rgb(239,235,227) 92%, rgb(239,235,227) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.2) 85%, transparent 100%)'
         }}
       />
       
