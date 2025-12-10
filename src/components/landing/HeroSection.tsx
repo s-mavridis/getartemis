@@ -159,7 +159,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Phone mockup with fade effect - hidden on very small screens */}
           <motion.div
-            className="relative w-full max-w-[220px] sm:max-w-[280px] lg:max-w-xs mx-auto"
+            className="relative w-full max-w-[220px] sm:max-w-[280px] lg:max-w-xs mx-auto hidden sm:block"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
