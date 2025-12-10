@@ -92,7 +92,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             {/* Phone frame - realistic iPhone style */}
             <div className="relative">
               {/* Outer phone body with subtle gradient */}
-              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)]">
+              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px]" style={{ boxShadow: '0 20px 40px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05) inset' }}>
                 {/* Side buttons - volume */}
                 <div className="absolute left-[-2px] top-24 w-[3px] h-8 bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute left-[-2px] top-36 w-[3px] h-12 bg-[#2a2a2a] rounded-l-sm" />
