@@ -25,13 +25,13 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source 
-          src="https://videos.pexels.com/video-files/3571264/3571264-hd_1280_720_30fps.mp4" 
+          src="https://videos.pexels.com/video-files/4536180/4536180-hd_1280_720_25fps.mp4" 
           type="video/mp4" 
         />
       </video>
       
-      {/* Gradient overlay that fades to cream at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-background" />
+      {/* Gradient overlay that fades to cream higher up */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 via-60% to-background to-85%" />
       
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
@@ -212,9 +212,9 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             
             {/* Clean fade overlay - no shadow, just background blend */}
             <div 
-              className="absolute -bottom-2 left-0 right-0 h-40 pointer-events-none"
+              className="absolute -bottom-4 -left-4 -right-4 h-48 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, hsl(38, 25%, 95%) 0%, hsl(38, 25%, 95%) 20%, transparent 100%)'
+                background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 30%, transparent 100%)'
               }}
             />
           </motion.div>
