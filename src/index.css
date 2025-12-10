@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import '@fontsource/open-sauce-one/300.css';
+@import '@fontsource/open-sauce-one/400.css';
+@import '@fontsource/open-sauce-one/500.css';
+@import '@fontsource/open-sauce-one/600.css';
+@import '@fontsource/open-sauce-one/700.css';
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
@@ -111,7 +115,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Open Sauce One', system-ui, sans-serif;
   }
   
   h1, h2, h3, .font-display {
