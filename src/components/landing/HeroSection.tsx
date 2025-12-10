@@ -1,175 +1,222 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
 }
 
 export function HeroSection({ onOpenModal }: HeroSectionProps) {
+  const [email, setEmail] = useState("");
+  
+  // Countdown timer state - set to 21 days from now
+  const [timeLeft, setTimeLeft] = useState({
+    days: 21,
+    hours: 23,
+    minutes: 57,
+    seconds: 51
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { days, hours, minutes, seconds } = prev;
+        
+        if (seconds > 0) {
+          seconds--;
+        } else {
+          seconds = 59;
+          if (minutes > 0) {
+            minutes--;
+          } else {
+            minutes = 59;
+            if (hours > 0) {
+              hours--;
+            } else {
+              hours = 23;
+              if (days > 0) {
+                days--;
+              }
+            }
+          }
+        }
+        
+        return { days, hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      onOpenModal();
+    }
+  };
+
   return (
-    <section className="min-h-screen pt-24 pb-16">
-      <div className="container-wide">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
-          {/* Left content */}
-          <motion.div 
-            className="space-y-8"
+    <section className="relative min-h-screen bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100 overflow-hidden">
+      <div className="container-wide pt-32 pb-16">
+        <div className="flex flex-col items-center text-center">
+          {/* Badge */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
           >
-            {/* Badge */}
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-secondary rounded-full" />
-              <span className="text-sm text-muted-foreground">Stanford-backed healthcare platform</span>
-            </div>
-            
-            {/* Main headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight">
-              Access personalized<br />
-              <span className="italic">cancer screening</span>
-            </h1>
-            
-            {/* Subheadline */}
-            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              ArtemisAI makes trusted care simple, giving you direct access to personalized risk assessments and the right screening tests.
-            </p>
-            
-            {/* CTA with rating */}
-            <div className="flex flex-wrap items-center gap-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-sm text-foreground/80">
+              Coming Soon
+            </span>
+          </motion.div>
+
+          {/* Main headline */}
+          <motion.h1 
+            className="text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Get early access
+          </motion.h1>
+
+          {/* Subheadline */}
+          <motion.p 
+            className="text-lg md:text-xl text-foreground/70 max-w-lg mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            We're getting close. Sign up to get early access to ArtemisAI and start your personalized cancer screening journey.
+          </motion.p>
+
+          {/* Email input with button */}
+          <motion.form 
+            onSubmit={handleSubmit}
+            className="w-full max-w-lg mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="flex items-center bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg">
+              <input
+                type="email"
+                placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-6 py-3 bg-transparent text-foreground placeholder:text-foreground/50 focus:outline-none"
+              />
               <Button 
-                variant="hero" 
-                size="lg" 
-                onClick={onOpenModal}
+                type="submit"
+                variant="hero"
+                size="lg"
+                className="uppercase tracking-wider text-xs font-semibold"
               >
-                Get Your Assessment
+                Join Waitlist
               </Button>
-              
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-secondary text-secondary" />
-                  ))}
-                </div>
-                <span className="text-sm text-muted-foreground">5/5 (2,739)</span>
-              </div>
             </div>
-            
-            {/* Stats */}
-            <div className="flex gap-12 pt-8 border-t border-border">
-              <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-display">15+</span>
-                  <span className="w-2 h-2 bg-secondary rounded-full" />
+          </motion.form>
+
+          {/* Phone mockup */}
+          <motion.div
+            className="relative w-full max-w-sm mx-auto mb-12"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {/* Phone frame */}
+            <div className="relative bg-foreground rounded-[3rem] p-3 shadow-2xl">
+              <div className="bg-card rounded-[2.5rem] overflow-hidden">
+                {/* Status bar */}
+                <div className="flex items-center justify-between px-6 py-3 bg-card">
+                  <span className="text-sm font-medium">9:41</span>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-24 h-6 bg-foreground rounded-full" />
+                  <div className="flex items-center gap-1">
+                    <div className="flex gap-0.5">
+                      <div className="w-1 h-2 bg-foreground rounded-sm" />
+                      <div className="w-1 h-3 bg-foreground rounded-sm" />
+                      <div className="w-1 h-4 bg-foreground rounded-sm" />
+                      <div className="w-1 h-3 bg-foreground/40 rounded-sm" />
+                    </div>
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+                    </svg>
+                    <svg className="w-6 h-4" viewBox="0 0 24 16" fill="currentColor">
+                      <rect x="0" y="2" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <rect x="2" y="4" width="14" height="8" rx="1" fill="currentColor"/>
+                      <rect x="21" y="5" width="2" height="6" rx="1" fill="currentColor"/>
+                    </svg>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">Cancer types analyzed</p>
-              </div>
-              <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-display">70+</span>
-                  <span className="w-2 h-2 bg-green-500 rounded-full" />
+                
+                {/* App content */}
+                <div className="px-5 py-4 space-y-4">
+                  <h3 className="text-xl font-semibold text-foreground">My health</h3>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Risk Assessment</p>
+                  
+                  {/* Task card */}
+                  <div className="bg-muted/50 rounded-2xl p-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="font-medium">Initial Screening</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">Feb 20</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">ArtemisAI Analysis</p>
+                    <span className="inline-flex items-center gap-1 text-xs bg-coral-light text-secondary px-2 py-1 rounded">
+                      <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                      Completed
+                    </span>
+                  </div>
+                  
+                  {/* Another task */}
+                  <div className="bg-muted/30 rounded-2xl p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/30" />
+                        <span className="font-medium text-muted-foreground">Follow-up Review</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">Mar 15</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">Expert validations</p>
-              </div>
-              <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-display">500+</span>
-                  <span className="w-2 h-2 bg-blue-500 rounded-full" />
-                </div>
-                <p className="text-sm text-muted-foreground mt-1">Early access users</p>
               </div>
             </div>
           </motion.div>
-          
-          {/* Right visual - Doctor/Medical image */}
+
+          {/* Countdown timer */}
           <motion.div
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center justify-center gap-4 md:gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
-            <div className="relative aspect-[4/5] rounded-4xl overflow-hidden bg-gradient-to-br from-muted to-background">
-              {/* Abstract medical visualization */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg 
-                  viewBox="0 0 400 500" 
-                  className="w-full h-full p-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Background circles */}
-                  <circle cx="200" cy="250" r="150" fill="hsl(16, 85%, 55%)" opacity="0.1" />
-                  <circle cx="200" cy="250" r="100" fill="hsl(16, 85%, 55%)" opacity="0.15" />
-                  
-                  {/* DNA helix representation */}
-                  <path 
-                    d="M120,100 Q200,150 280,100 Q200,50 120,100" 
-                    stroke="hsl(16, 85%, 55%)" 
-                    strokeWidth="2" 
-                    fill="none"
-                    opacity="0.6"
-                  />
-                  <path 
-                    d="M120,150 Q200,100 280,150 Q200,200 120,150" 
-                    stroke="hsl(16, 85%, 55%)" 
-                    strokeWidth="2" 
-                    fill="none"
-                    opacity="0.6"
-                  />
-                  
-                  {/* Central shield icon */}
-                  <g transform="translate(140, 180)">
-                    <path 
-                      d="M60,20 L100,40 L100,80 Q100,120 60,140 Q20,120 20,80 L20,40 Z" 
-                      fill="hsl(16, 85%, 55%)"
-                      opacity="0.8"
-                    />
-                    <path 
-                      d="M45,75 L55,85 L80,60" 
-                      stroke="white" 
-                      strokeWidth="4" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      fill="none"
-                    />
-                  </g>
-                  
-                  {/* Floating data points */}
-                  <circle cx="100" cy="350" r="8" fill="hsl(16, 85%, 55%)" opacity="0.6">
-                    <animate attributeName="cy" values="350;340;350" dur="3s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="300" cy="380" r="6" fill="hsl(142, 76%, 36%)" opacity="0.6">
-                    <animate attributeName="cy" values="380;370;380" dur="2.5s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="320" cy="150" r="5" fill="hsl(217, 91%, 60%)" opacity="0.6">
-                    <animate attributeName="cy" values="150;160;150" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                  
-                  {/* Network lines */}
-                  <line x1="100" y1="350" x2="180" y2="300" stroke="hsl(16, 85%, 55%)" strokeWidth="1" opacity="0.2" />
-                  <line x1="300" y1="380" x2="220" y2="320" stroke="hsl(16, 85%, 55%)" strokeWidth="1" opacity="0.2" />
-                  <line x1="320" y1="150" x2="260" y2="200" stroke="hsl(16, 85%, 55%)" strokeWidth="1" opacity="0.2" />
-                </svg>
-              </div>
-              
-              {/* Floating card */}
-              <motion.div 
-                className="absolute bottom-8 right-8 bg-card rounded-2xl shadow-lg p-4"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
-                    <svg className="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+            {[
+              { value: timeLeft.days, label: "DAYS" },
+              { value: timeLeft.hours, label: "HOURS" },
+              { value: timeLeft.minutes, label: "MINUTES" },
+              { value: timeLeft.seconds, label: "SECONDS" },
+            ].map((item, index) => (
+              <div key={item.label} className="flex items-center gap-4 md:gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-20 h-20 md:w-24 md:h-24 bg-white/40 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/40">
+                    <span className="text-3xl md:text-4xl font-display text-foreground">
+                      {String(item.value).padStart(2, '0')}
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Risk Status</p>
-                    <p className="text-sm font-medium">Low Risk</p>
-                  </div>
+                  <span className="text-xs text-foreground/60 mt-2 tracking-wider">{item.label}</span>
                 </div>
-              </motion.div>
-            </div>
+                {index < 3 && (
+                  <span className="text-2xl md:text-3xl text-foreground/40 font-light">:</span>
+                )}
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>
