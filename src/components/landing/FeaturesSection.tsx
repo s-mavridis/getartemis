@@ -60,11 +60,11 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       
-      {/* Fade overlay at bottom */}
+      {/* Fade overlay at bottom - covers phone frame completely */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none rounded-b-[2rem]"
+        className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 30%, transparent 100%)'
+          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 50%, transparent 100%)'
         }}
       />
     </div>
