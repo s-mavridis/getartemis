@@ -67,11 +67,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         }}
       />
       
-      <div className="relative container-wide pt-32 pb-16">
+      <div className="relative container-wide px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-white mb-6 drop-shadow-lg"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-white mb-4 sm:mb-6 drop-shadow-lg px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -81,7 +81,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md"
+            className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mb-6 sm:mb-10 drop-shadow-md px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -92,24 +92,24 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
           {/* Email input with button */}
           <motion.form 
             onSubmit={handleSubmit}
-            className="w-full max-w-lg mb-4"
+            className="w-full max-w-lg mb-4 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="flex flex-col sm:flex-row items-center bg-white/95 backdrop-blur-sm rounded-full p-2 shadow-lg gap-2 sm:gap-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-full p-2 shadow-lg gap-2 sm:gap-0">
               <input
                 type="email"
                 placeholder="Your email address"
                 value={heroEmail}
                 onChange={(e) => onHeroEmailChange(e.target.value)}
-                className="flex-1 w-full sm:w-auto px-6 py-3 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-center sm:text-left"
+                className="flex-1 w-full px-4 sm:px-6 py-3 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-center sm:text-left rounded-xl sm:rounded-none"
               />
               <Button 
                 type="submit"
                 variant="hero"
                 size="lg"
-                className="w-full sm:w-auto uppercase tracking-wider text-xs font-semibold"
+                className="w-full sm:w-auto uppercase tracking-wider text-xs font-semibold rounded-xl sm:rounded-full"
               >
                 Join Waitlist
               </Button>
@@ -118,18 +118,20 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Trust badges */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/90 mb-16 drop-shadow-md"
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-white/90 mb-8 sm:mb-16 drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <div className="flex items-center gap-1.5">
-              <GraduationCap className="w-4 h-4" />
-              <span>Stanford-Founded</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4" />
-              <span>HIPAA Compliant</span>
+            <div className="flex items-center gap-3 sm:gap-6">
+              <div className="flex items-center gap-1.5">
+                <GraduationCap className="w-4 h-4" />
+                <span>Stanford-Founded</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4" />
+                <span>HIPAA Compliant</span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               {/* Expert avatars */}
@@ -137,19 +139,19 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 <img 
                   src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face" 
                   alt="Expert" 
-                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                  className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white object-cover"
                 />
                 <img 
                   src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face" 
                   alt="Expert" 
-                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                  className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white object-cover"
                 />
                 <img 
                   src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=80&h=80&fit=crop&crop=face" 
                   alt="Expert" 
-                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                  className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white object-cover"
                 />
-                <div className="w-6 h-6 rounded-full border-2 border-white bg-foreground text-card flex items-center justify-center text-[10px] font-semibold">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white bg-foreground text-card flex items-center justify-center text-[9px] sm:text-[10px] font-semibold">
                   +97
                 </div>
               </div>
@@ -159,7 +161,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Phone mockup with fade effect */}
           <motion.div
-            className="relative w-full max-w-xs mx-auto"
+            className="relative w-full max-w-[260px] sm:max-w-xs mx-auto scale-90 sm:scale-100"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
