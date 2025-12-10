@@ -81,7 +81,7 @@ export function StepsSection() {
               {/* Content card */}
               <div className="flex-1 bg-muted rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10">
                 {/* Visual area */}
-                <div className="h-56 sm:h-64 lg:h-72 mb-6 sm:mb-8 flex items-center justify-center">
+                <div className="h-64 sm:h-72 lg:h-80 mb-6 sm:mb-8 flex items-end justify-center pb-4 sm:pb-6">
                   {step.visual === "signup" && (
                     <div className="relative">
                       {/* Realistic iPhone */}
