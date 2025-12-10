@@ -28,37 +28,20 @@ export function Header({ onOpenModal }: HeaderProps) {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="text-xl font-display">ArtemisAI</span>
-            <span className="text-secondary text-lg">®</span>
+            <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">A</span>
+            </div>
+            <span className={`text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-foreground'}`}>
+              ArtemisAI
+            </span>
           </div>
-          
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a 
-              href="#how-it-works" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About
-            </a>
-            <a 
-              href="#services" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Services
-            </a>
-            <a 
-              href="#faq" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              FAQs
-            </a>
-          </nav>
           
           {/* CTA Button */}
           <Button 
-            variant="hero" 
+            variant={scrolled ? "hero" : "heroLight"}
             size="default" 
             onClick={onOpenModal}
+            className="uppercase tracking-wider text-xs font-semibold"
           >
             Get Started
           </Button>
