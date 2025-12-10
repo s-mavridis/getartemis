@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import "@fontsource-variable/playfair-display";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,42 +7,38 @@
 
 @layer base {
   :root {
-    /* Primary - Sky blue (calming, modern healthcare) */
-    --primary: 199 89% 60%;
+    /* Primary - Dark/Black for buttons */
+    --primary: 0 0% 10%;
     --primary-foreground: 0 0% 100%;
     
-    /* Hero blue - deeper sky blue for hero */
-    --hero-bg: 199 65% 55%;
-    --hero-text: 47 87% 94%;
-    
-    /* Secondary - Warm coral accent */
-    --secondary: 24 94% 53%;
+    /* Secondary - Coral/Orange accent */
+    --secondary: 16 85% 55%;
     --secondary-foreground: 0 0% 100%;
     
-    /* Accent - Deep navy */
-    --accent: 217 33% 17%;
+    /* Accent - Coral for icons */
+    --accent: 16 85% 55%;
     --accent-foreground: 0 0% 100%;
     
-    /* Background and surfaces */
-    --background: 0 0% 100%;
-    --foreground: 217 33% 17%;
+    /* Background - Warm off-white/cream */
+    --background: 45 20% 96%;
+    --foreground: 0 0% 10%;
     
-    /* Cards and elevated surfaces - warm cream */
-    --card: 40 33% 96%;
-    --card-foreground: 217 33% 17%;
+    /* Cards - White */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
     
     /* Muted surfaces */
-    --muted: 40 20% 94%;
-    --muted-foreground: 217 19% 45%;
+    --muted: 45 10% 92%;
+    --muted-foreground: 0 0% 45%;
     
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 217 33% 17%;
+    --popover-foreground: 0 0% 10%;
     
     /* Border and inputs */
-    --border: 40 15% 88%;
-    --input: 40 15% 88%;
-    --ring: 199 89% 60%;
+    --border: 45 10% 88%;
+    --input: 45 10% 88%;
+    --ring: 16 85% 55%;
     
     /* Destructive */
     --destructive: 0 84% 60%;
@@ -52,25 +48,11 @@
     --radius: 0.75rem;
     
     /* Custom color tokens */
-    --sky-50: 199 89% 97%;
-    --sky-100: 199 89% 92%;
-    --sky-400: 199 89% 60%;
-    --sky-500: 199 85% 50%;
-    --sky-600: 199 85% 45%;
+    --coral: 16 85% 55%;
+    --coral-light: 16 85% 95%;
     
-    --cream-50: 47 87% 98%;
-    --cream-100: 47 75% 94%;
-    --cream-200: 40 33% 90%;
-    
-    --slate-50: 210 40% 98%;
-    --slate-100: 210 40% 96%;
-    --slate-200: 214 32% 91%;
-    --slate-400: 215 20% 65%;
-    --slate-500: 215 16% 47%;
-    --slate-600: 215 19% 35%;
-    --slate-700: 215 25% 27%;
-    --slate-800: 217 33% 17%;
-    --slate-900: 222 47% 11%;
+    --cream: 45 20% 96%;
+    --cream-dark: 45 15% 92%;
     
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
@@ -84,27 +66,25 @@
   }
 
   .dark {
-    --primary: 199 89% 65%;
-    --primary-foreground: 0 0% 100%;
-    --hero-bg: 199 65% 40%;
-    --hero-text: 47 87% 94%;
-    --secondary: 24 94% 53%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 16 85% 55%;
     --secondary-foreground: 0 0% 100%;
-    --accent: 217 33% 85%;
-    --accent-foreground: 217 33% 17%;
-    --background: 222 47% 8%;
-    --foreground: 210 40% 98%;
-    --card: 222 40% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --border: 217 33% 20%;
-    --input: 217 33% 17%;
-    --ring: 199 89% 65%;
+    --accent: 16 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 16 85% 55%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 95%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -127,61 +107,28 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   h1, h2, h3, .font-display {
-    font-family: 'Playfair Display Variable', serif;
+    font-family: 'Instrument Serif', serif;
   }
 }
 
 @layer utilities {
   .section-spacing {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
   
   .container-narrow {
-    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-4xl mx-auto px-5 sm:px-6 lg:px-8;
   }
   
   .container-wide {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-5 sm:px-6 lg:px-8;
   }
   
   .text-balance {
     text-wrap: balance;
-  }
-  
-  .gradient-hero {
-    background: linear-gradient(180deg, hsl(var(--hero-bg)) 0%, hsl(199, 75%, 50%) 100%);
-  }
-  
-  .gradient-subtle {
-    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
-  }
-  
-  .hero-wave {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.08' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-  }
-  
-  .wave-lines {
-    background-image: 
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 40px,
-        rgba(255,255,255,0.03) 40px,
-        rgba(255,255,255,0.03) 41px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 40px,
-        rgba(255,255,255,0.02) 40px,
-        rgba(255,255,255,0.02) 41px
-      );
   }
 }

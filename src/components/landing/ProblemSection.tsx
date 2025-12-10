@@ -1,49 +1,54 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "2%", label: "of cancer types", description: "have official screening guidelines" },
-  { value: "13-18%", label: "adherence", description: "for lung cancer screening—even high-risk" },
-  { value: "69%", label: "skip screening", description: "of eligible adults avoid colorectal tests" },
+  { value: "2%", label: "Cancer types", suffix: "with screening" },
+  { value: "13%", label: "Lung screening", suffix: "adherence" },
+  { value: "69%", label: "Skip colorectal", suffix: "screening" },
 ];
 
 export function ProblemSection() {
   return (
-    <section className="section-spacing bg-card">
+    <section id="services" className="section-spacing bg-card">
       <div className="container-wide">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center max-w-3xl mx-auto mb-16"
         >
-          <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">The Problem</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground">
-            The Screening Gap
+          <h2 className="text-4xl md:text-5xl font-display leading-tight">
+            The screening gap is <span className="italic">real</span>
           </h2>
+          <p className="text-muted-foreground mt-6 text-lg">
+            Current guidelines are one-size-fits-all. They're designed for average-risk populations, which means they systematically exclude people like you.
+          </p>
         </motion.div>
         
+        {/* Stats row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {stats.map((stat, index) => (
             <motion.div
-              key={stat.value}
+              key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="bg-background rounded-3xl p-8 h-full">
-                <div className="text-5xl md:text-6xl font-display font-bold text-primary mb-2">
+              <div className="bg-background rounded-3xl p-8">
+                <div className="text-6xl md:text-7xl font-display text-foreground mb-2">
                   {stat.value}
                 </div>
-                <p className="text-sm font-medium text-foreground mb-1">{stat.label}</p>
-                <p className="text-sm text-muted-foreground">{stat.description}</p>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">{stat.suffix}</p>
               </div>
             </motion.div>
           ))}
         </div>
         
+        {/* Excluded groups */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,28 +57,27 @@ export function ProblemSection() {
           className="max-w-3xl mx-auto"
         >
           <div className="bg-background rounded-3xl p-8 md:p-12">
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Current screening guidelines are one-size-fits-all. They systematically exclude:
+            <p className="text-lg text-muted-foreground mb-8 text-center">
+              Standard guidelines exclude:
             </p>
             
-            <ul className="space-y-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                "People with family histories of cancer",
-                "Never-smokers with occupational exposures",
-                "Those with genetic predispositions (BRCA, Lynch syndrome)",
-                "Individuals with pre-cancerous conditions",
-                "Anyone concerned about cancers without screening guidelines",
+                "Family histories of cancer",
+                "Genetic predispositions",
+                "Occupational exposures",
+                "Pre-cancerous conditions",
+                "98% of cancer types",
+                "Early symptom carriers",
               ].map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="w-2 h-2 bg-primary rounded-full" />
-                  </span>
-                  <span className="text-foreground">{item}</span>
-                </li>
+                <div key={index} className="flex items-center gap-3 p-4 bg-card rounded-2xl">
+                  <span className="w-2 h-2 bg-secondary rounded-full flex-shrink-0" />
+                  <span className="text-sm">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
             
-            <p className="text-xl font-display font-semibold text-foreground">
+            <p className="text-xl font-display text-center mt-8">
               We fix this.
             </p>
           </div>
