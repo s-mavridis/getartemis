@@ -56,18 +56,18 @@ export function TestimonialsSection() {
   const constraintsRef = useRef(null);
 
   return (
-    <section className="py-24 md:py-32 bg-muted overflow-hidden">
-      <div className="container-wide">
+    <section className="py-12 sm:py-16 lg:py-24 bg-muted overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-display mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -76,7 +76,7 @@ export function TestimonialsSection() {
             What our beta<br />clients are saying
           </motion.h2>
           <motion.p 
-            className="text-lg text-muted-foreground max-w-xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -90,39 +90,39 @@ export function TestimonialsSection() {
       {/* Draggable testimonials carousel */}
       <div ref={constraintsRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
         <motion.div
-          className="flex gap-6 pl-6"
+          className="flex gap-4 sm:gap-6 pl-4 sm:pl-6"
           drag="x"
-          dragConstraints={{ left: -((testimonials.length - 2) * 520), right: 0 }}
+          dragConstraints={{ left: -((testimonials.length - 1) * 320), right: 0 }}
           dragElastic={0.1}
           dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
         >
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={`${testimonial.name}-${index}`}
-              className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm select-none"
+              className="flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm select-none"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex gap-6">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
                   <img 
                     src={testimonial.avatar} 
                     alt={testimonial.name}
-                    className="w-20 h-28 rounded-2xl object-cover"
+                    className="w-12 h-12 sm:w-16 sm:h-20 lg:w-20 lg:h-28 rounded-full sm:rounded-2xl object-cover"
                     loading="lazy"
                   />
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col justify-between">
-                  <p className="text-lg font-medium leading-relaxed mb-6">
+                <div className="flex flex-col justify-between flex-1">
+                  <p className="text-sm sm:text-base lg:text-lg font-medium leading-relaxed mb-4 sm:mb-6">
                     "{testimonial.quote}"
                   </p>
                   <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-semibold text-sm sm:text-base">{testimonial.name}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export function TestimonialsSection() {
         </motion.div>
         
         {/* Drag hint */}
-        <p className="text-center text-sm text-muted-foreground mt-6">
+        <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4 sm:mt-6 px-4">
           ← Drag to explore more →
         </p>
       </div>

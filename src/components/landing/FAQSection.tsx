@@ -31,17 +31,17 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="py-24 md:py-32 bg-background" id="faq">
-      <div className="container-narrow">
+    <section className="py-12 sm:py-16 lg:py-24 bg-background" id="faq">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-display mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -50,7 +50,7 @@ export function FAQSection() {
             Frequently asked<br />questions
           </motion.h2>
           <motion.p 
-            className="text-lg text-muted-foreground max-w-xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -60,8 +60,8 @@ export function FAQSection() {
           </motion.p>
         </motion.div>
 
-        <div className="space-y-4">
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
+          <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -72,12 +72,12 @@ export function FAQSection() {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="bg-muted rounded-2xl px-6 border-none"
+                  className="bg-muted rounded-xl sm:rounded-2xl px-4 sm:px-6 border-none"
                 >
-                  <AccordionTrigger className="text-left text-lg font-medium hover:no-underline py-6">
+                  <AccordionTrigger className="text-left text-base sm:text-lg font-medium hover:no-underline py-4 sm:py-6 [&>svg]:w-5 [&>svg]:h-5">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-6">
+                  <AccordionContent className="text-sm sm:text-base text-muted-foreground pb-4 sm:pb-6">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
