@@ -6,22 +6,25 @@ const trustItems = [
     icon: GraduationCap,
     title: "Stanford-Founded",
     description: "Built by researchers and physicians from Stanford Medicine and Stanford GSB. Our founders previously scaled diagnostics at McKinsey and led cancer biology research at Cambridge.",
+    image: "🎓",
   },
   {
     icon: FlaskConical,
     title: "Expert-Validated",
     description: "70+ interviews with oncologists, liquid biopsy scientists, and screening providers at GRAIL, Exact Sciences, Freenome, and leading cancer centers.",
+    image: "🔬",
   },
   {
     icon: Lock,
     title: "HIPAA Compliant",
     description: "Your health data is encrypted end-to-end and never shared without explicit consent. We follow all HIPAA regulations and industry best practices.",
+    image: "🔒",
   },
 ];
 
 export function TrustSection() {
   return (
-    <section className="section-spacing">
+    <section className="section-spacing bg-card">
       <div className="container-wide">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,12 +33,13 @@ export function TrustSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+          <p className="text-sm font-medium text-primary uppercase tracking-wider mb-4">Why Trust Us</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground">
             Backed by Science, Built for You
           </h2>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {trustItems.map((item, index) => (
             <motion.div
               key={item.title}
@@ -43,17 +47,17 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+              <div className="bg-background rounded-3xl p-8 h-full hover:shadow-lg transition-shadow duration-300">
+                <div className="text-4xl mb-6">{item.image}</div>
+                <h3 className="text-xl font-display font-semibold text-foreground mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                {item.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {item.description}
-              </p>
             </motion.div>
           ))}
         </div>
