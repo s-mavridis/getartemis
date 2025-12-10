@@ -116,7 +116,7 @@ export function FeaturesSection() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               {/* Visual area */}
-              <div className="h-56 sm:h-60 lg:h-64 mb-4 sm:mb-6 flex items-end justify-center">
+              <div className="h-72 sm:h-80 lg:h-96 mb-4 sm:mb-6 flex items-end justify-center pt-12 sm:pt-16">
                 {feature.visual === "risk" && (
                   <RealisticPhone>
                     <div className="space-y-2 sm:space-y-3">
