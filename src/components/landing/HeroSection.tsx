@@ -17,8 +17,11 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100 overflow-hidden">
-      <div className="container-wide pt-32 pb-16">
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Warm gradient background that fades into cream */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(30,30%,90%)] via-[hsl(38,25%,93%)] to-background" />
+      
+      <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
           <motion.div
@@ -27,7 +30,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-sm text-foreground/80">
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-border/50 text-sm text-foreground/80">
               Coming Soon
             </span>
           </motion.div>
@@ -44,7 +47,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg md:text-xl text-foreground/70 max-w-lg mb-10"
+            className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -60,13 +63,13 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="flex items-center bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg">
+            <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg border border-border/30">
               <input
                 type="email"
                 placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-3 bg-transparent text-foreground placeholder:text-foreground/50 focus:outline-none"
+                className="flex-1 px-6 py-3 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
               />
               <Button 
                 type="submit"
@@ -79,7 +82,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             </div>
           </motion.form>
 
-          {/* Phone mockup */}
+          {/* Phone mockup with fade effect */}
           <motion.div
             className="relative w-full max-w-sm mx-auto"
             initial={{ opacity: 0, y: 40 }}
@@ -87,68 +90,65 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             {/* Phone frame */}
-            <div className="relative bg-foreground rounded-[3rem] p-3 shadow-2xl">
+            <div className="relative bg-[#1a1a1a] rounded-[3rem] p-3 shadow-2xl">
               <div className="bg-card rounded-[2.5rem] overflow-hidden">
                 {/* Status bar */}
-                <div className="flex items-center justify-between px-6 py-3 bg-card">
-                  <span className="text-sm font-medium">9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 w-24 h-6 bg-foreground rounded-full" />
+                <div className="flex items-center justify-between px-6 py-3 bg-card relative">
+                  <span className="text-sm font-semibold text-foreground">9:41</span>
+                  <div className="absolute left-1/2 -translate-x-1/2 w-28 h-7 bg-[#1a1a1a] rounded-full" />
                   <div className="flex items-center gap-1">
-                    <div className="flex gap-0.5">
-                      <div className="w-1 h-2 bg-foreground rounded-sm" />
-                      <div className="w-1 h-3 bg-foreground rounded-sm" />
-                      <div className="w-1 h-4 bg-foreground rounded-sm" />
-                      <div className="w-1 h-3 bg-foreground/40 rounded-sm" />
-                    </div>
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
                     </svg>
-                    <svg className="w-6 h-4" viewBox="0 0 24 16" fill="currentColor">
-                      <rect x="0" y="2" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1" fill="none"/>
-                      <rect x="2" y="4" width="14" height="8" rx="1" fill="currentColor"/>
-                      <rect x="21" y="5" width="2" height="6" rx="1" fill="currentColor"/>
+                    <svg className="w-6 h-4" viewBox="0 0 24 14" fill="currentColor">
+                      <rect x="0" y="0" width="22" height="14" rx="3" stroke="currentColor" strokeWidth="1" fill="none"/>
+                      <rect x="2" y="2" width="16" height="10" rx="1.5" fill="currentColor"/>
+                      <rect x="23" y="4" width="1" height="6" rx="0.5" fill="currentColor"/>
                     </svg>
                   </div>
                 </div>
                 
                 {/* App content */}
-                <div className="px-5 py-4 space-y-4">
-                  <h3 className="text-xl font-semibold text-foreground">My health</h3>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Risk Assessment</p>
+                <div className="px-5 py-4 space-y-4 min-h-[320px]">
+                  <h3 className="text-2xl font-semibold text-foreground">My health</h3>
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest font-medium">Risk Assessment</p>
                   
                   {/* Task card */}
-                  <div className="bg-muted/50 rounded-2xl p-4 space-y-3">
+                  <div className="bg-muted/60 rounded-2xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                          <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        <span className="font-medium">Initial Screening</span>
+                        <span className="font-semibold text-foreground">Initial Screening</span>
                       </div>
-                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">Feb 20</span>
+                      <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-lg font-medium">Feb 20</span>
                     </div>
                     <p className="text-sm text-muted-foreground">ArtemisAI Analysis</p>
-                    <span className="inline-flex items-center gap-1 text-xs bg-coral-light text-secondary px-2 py-1 rounded">
-                      <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                    <span className="inline-flex items-center gap-1.5 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-lg font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                       Completed
                     </span>
                   </div>
                   
                   {/* Another task */}
-                  <div className="bg-muted/30 rounded-2xl p-4">
+                  <div className="bg-muted/40 rounded-2xl p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/30" />
+                        <div className="w-6 h-6 rounded-full border-2 border-muted-foreground/30" />
                         <span className="font-medium text-muted-foreground">Follow-up Review</span>
                       </div>
-                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">Mar 15</span>
+                      <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-lg font-medium">Mar 15</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            
+            {/* Fade overlay at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
           </motion.div>
         </div>
       </div>
