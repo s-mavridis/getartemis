@@ -37,17 +37,29 @@ export function TestimonialsSection() {
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display mb-6">
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-display mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             What our beta<br />clients are saying
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-muted-foreground max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             ArtemisAI is transforming the way people approach cancer prevention. Here's what some of our users have to say about their experience.
-          </p>
+          </motion.p>
         </motion.div>
       </div>
 
