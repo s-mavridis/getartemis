@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Share2, GraduationCap, ShieldCheck, Users } from "lucide-react";
+import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -16,12 +16,12 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Warm gradient background that fades into cream */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(30,30%,90%)] via-[hsl(38,25%,93%)] to-background" />
+      {/* Warm gradient background that fades into cream - darker start for noticeable fade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(30,35%,82%)] via-[hsl(35,28%,88%)] to-background" />
       
       {/* Subtle animated background shapes */}
       <motion.div
-        className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-[hsl(30,40%,88%)] opacity-40 blur-3xl"
+        className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-[hsl(30,40%,80%)] opacity-40 blur-3xl"
         animate={{ 
           y: [0, 30, 0],
           scale: [1, 1.1, 1],
@@ -109,8 +109,28 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
               <ShieldCheck className="w-4 h-4" />
               <span>HIPAA Compliant</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Users className="w-4 h-4" />
+            <div className="flex items-center gap-2">
+              {/* Expert avatars */}
+              <div className="flex -space-x-2">
+                <img 
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face" 
+                  alt="Expert" 
+                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face" 
+                  alt="Expert" 
+                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=80&h=80&fit=crop&crop=face" 
+                  alt="Expert" 
+                  className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                />
+                <div className="w-6 h-6 rounded-full border-2 border-white bg-foreground text-card flex items-center justify-center text-[10px] font-semibold">
+                  +97
+                </div>
+              </div>
               <span>Validated by 100+ Experts</span>
             </div>
           </motion.div>
