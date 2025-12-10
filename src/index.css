@@ -3,7 +3,7 @@
 @import '@fontsource/open-sauce-one/500.css';
 @import '@fontsource/open-sauce-one/600.css';
 @import '@fontsource/open-sauce-one/700.css';
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+@import '@fontsource/open-sauce-one/800.css';
 
 @tailwind base;
 @tailwind components;
@@ -119,7 +119,8 @@
   }
   
   h1, h2, h3, .font-display {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Open Sauce One', system-ui, sans-serif;
+    font-weight: 700;
   }
 }
 
