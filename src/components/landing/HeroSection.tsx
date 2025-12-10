@@ -54,7 +54,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Know your<br />cancer risk
+            Know your cancer risk
           </motion.h1>
 
           {/* Subheadline */}
@@ -111,7 +111,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             </div>
             <div className="flex items-center gap-1.5">
               <Users className="w-4 h-4" />
-              <span>70+ Expert Interviews</span>
+              <span>Validated by 100+ Experts</span>
             </div>
           </motion.div>
 
