@@ -81,7 +81,7 @@ export function StepsSection() {
               {/* Content card */}
               <div className="flex-1 bg-muted rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10">
                 {/* Visual area */}
-                <div className="min-h-[320px] sm:min-h-[360px] mb-6 flex items-center justify-center py-6">
+                <div className="relative mb-8 flex items-start justify-center" style={{ height: '380px' }}>
                   {step.visual === "signup" && (
                     <div className="relative">
                       {/* Realistic iPhone */}
@@ -154,7 +154,7 @@ export function StepsSection() {
                   )}
                   
                   {step.visual === "connect" && (
-                    <div className="relative w-full max-w-[280px] sm:max-w-[300px]" style={{ height: '290px' }}>
+                    <div className="relative w-full max-w-[280px] sm:max-w-[300px]" style={{ height: '360px' }}>
                       {/* Background card - Progress */}
                       <div className="absolute top-0 left-3 right-3 bg-card/60 rounded-2xl shadow-sm p-4">
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">ANALYSIS PROGRESS</p>
@@ -165,7 +165,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Middle card - Data points */}
-                      <div className="absolute top-[85px] left-1.5 right-1.5 bg-card/80 rounded-2xl shadow-md p-4">
+                      <div className="absolute top-[100px] left-1.5 right-1.5 bg-card/80 rounded-2xl shadow-md p-4">
                         <div className="flex items-center gap-2">
                           <span className="text-base">🧬</span>
                           <span className="text-xs">Genetic markers analyzed</span>
@@ -178,7 +178,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Front card - Main */}
-                      <div className="absolute top-[150px] left-0 right-0 bg-card rounded-2xl shadow-xl p-5">
+                      <div className="absolute top-[180px] left-0 right-0 bg-card rounded-2xl shadow-xl p-5">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-coral flex items-center justify-center">
                             <span className="text-white text-lg">✧</span>
@@ -203,7 +203,7 @@ export function StepsSection() {
                   )}
                   
                   {step.visual === "assessment" && (
-                    <div className="relative w-full max-w-[280px] sm:max-w-[300px]" style={{ height: '290px' }}>
+                    <div className="relative w-full max-w-[280px] sm:max-w-[300px]" style={{ height: '360px' }}>
                       {/* Background card - Provider */}
                       <div className="absolute top-0 left-3 right-3 bg-card/60 rounded-2xl shadow-sm p-4">
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">PROVIDER MATCH</p>
@@ -219,7 +219,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Middle card - Screening */}
-                      <div className="absolute top-[95px] left-1.5 right-1.5 bg-card/80 rounded-2xl shadow-md p-4">
+                      <div className="absolute top-[110px] left-1.5 right-1.5 bg-card/80 rounded-2xl shadow-md p-4">
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">NEXT SCREENING</p>
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
@@ -233,7 +233,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Front card - Recommendations */}
-                      <div className="absolute top-[185px] left-0 right-0 bg-card rounded-2xl shadow-xl p-5">
+                      <div className="absolute top-[210px] left-0 right-0 bg-card rounded-2xl shadow-xl p-5">
                         <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">YOUR RECOMMENDATIONS</p>
                         <div className="space-y-2">
                           <div className="flex items-center gap-2">
