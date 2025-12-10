@@ -84,71 +84,88 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
 
           {/* Phone mockup with fade effect */}
           <motion.div
-            className="relative w-full max-w-sm mx-auto"
+            className="relative w-full max-w-xs mx-auto"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {/* Phone frame */}
-            <div className="relative bg-[#1a1a1a] rounded-[3rem] p-3 shadow-2xl">
-              <div className="bg-card rounded-[2.5rem] overflow-hidden">
-                {/* Status bar */}
-                <div className="flex items-center justify-between px-6 py-3 bg-card relative">
-                  <span className="text-sm font-semibold text-foreground">9:41</span>
-                  <div className="absolute left-1/2 -translate-x-1/2 w-28 h-7 bg-[#1a1a1a] rounded-full" />
-                  <div className="flex items-center gap-1">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
-                    </svg>
-                    <svg className="w-6 h-4" viewBox="0 0 24 14" fill="currentColor">
-                      <rect x="0" y="0" width="22" height="14" rx="3" stroke="currentColor" strokeWidth="1" fill="none"/>
-                      <rect x="2" y="2" width="16" height="10" rx="1.5" fill="currentColor"/>
-                      <rect x="23" y="4" width="1" height="6" rx="0.5" fill="currentColor"/>
-                    </svg>
-                  </div>
-                </div>
+            {/* Phone frame - realistic iPhone style */}
+            <div className="relative">
+              {/* Outer phone body with subtle gradient */}
+              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.1)_inset]">
+                {/* Side buttons - volume */}
+                <div className="absolute left-[-2px] top-24 w-[3px] h-8 bg-[#2a2a2a] rounded-l-sm" />
+                <div className="absolute left-[-2px] top-36 w-[3px] h-12 bg-[#2a2a2a] rounded-l-sm" />
+                <div className="absolute left-[-2px] top-52 w-[3px] h-12 bg-[#2a2a2a] rounded-l-sm" />
+                {/* Power button */}
+                <div className="absolute right-[-2px] top-32 w-[3px] h-16 bg-[#2a2a2a] rounded-r-sm" />
                 
-                {/* App content */}
-                <div className="px-5 py-4 space-y-4 min-h-[320px]">
-                  <h3 className="text-2xl font-semibold text-foreground">My health</h3>
-                  <p className="text-xs text-muted-foreground uppercase tracking-widest font-medium">Risk Assessment</p>
-                  
-                  {/* Task card */}
-                  <div className="bg-muted/60 rounded-2xl p-4 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                          <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                {/* Screen bezel */}
+                <div className="bg-black rounded-[2.2rem] p-[2px] overflow-hidden">
+                  {/* Screen content */}
+                  <div className="bg-[#faf9f7] rounded-[2.1rem] overflow-hidden">
+                    {/* Dynamic Island */}
+                    <div className="relative flex items-center justify-center pt-3 pb-2 bg-[#faf9f7]">
+                      <div className="w-[90px] h-[28px] bg-black rounded-full flex items-center justify-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-[#1a1a1a] ring-1 ring-[#2a2a2a]" />
+                      </div>
+                    </div>
+                    
+                    {/* App content */}
+                    <div className="px-5 pb-8 pt-2 space-y-4 min-h-[340px] bg-[#faf9f7]">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-semibold text-[#1a1a1a]">My Health</h3>
+                        <div className="w-8 h-8 rounded-full bg-[#e8e4df] flex items-center justify-center">
+                          <svg className="w-4 h-4 text-[#6b6b6b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                           </svg>
                         </div>
-                        <span className="font-semibold text-foreground">Initial Screening</span>
                       </div>
-                      <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-lg font-medium">Feb 20</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">ArtemisAI Analysis</p>
-                    <span className="inline-flex items-center gap-1.5 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-lg font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                      Completed
-                    </span>
-                  </div>
-                  
-                  {/* Another task */}
-                  <div className="bg-muted/40 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full border-2 border-muted-foreground/30" />
-                        <span className="font-medium text-muted-foreground">Follow-up Review</span>
+                      
+                      <p className="text-[10px] text-[#8a8a8a] uppercase tracking-[0.15em] font-medium">Risk Assessment</p>
+                      
+                      {/* Completed task card */}
+                      <div className="bg-white rounded-2xl p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#f0ede8]">
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 mt-0.5 rounded-full bg-[#22c55e] flex items-center justify-center flex-shrink-0">
+                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-semibold text-[#1a1a1a] text-sm">Initial Screening</span>
+                              <span className="text-[10px] text-[#8a8a8a] bg-[#f5f3f0] px-2 py-1 rounded-md font-medium flex-shrink-0">Feb 20</span>
+                            </div>
+                            <p className="text-xs text-[#6b6b6b] mt-1">ArtemisAI Analysis</p>
+                            <span className="inline-flex items-center gap-1.5 text-[10px] bg-[#dcfce7] text-[#166534] px-2 py-0.5 rounded-md font-medium mt-2">
+                              <span className="w-1 h-1 rounded-full bg-[#22c55e]" />
+                              Completed
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-lg font-medium">Mar 15</span>
+                      
+                      {/* Pending task */}
+                      <div className="bg-white/60 rounded-2xl p-4 border border-[#f0ede8]/50">
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 mt-0.5 rounded-full border-2 border-[#d4d0c8] flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-medium text-[#6b6b6b] text-sm">Follow-up Review</span>
+                              <span className="text-[10px] text-[#8a8a8a] bg-[#f5f3f0] px-2 py-1 rounded-md font-medium flex-shrink-0">Mar 15</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Fade overlay at bottom */}
-            <div className="absolute -bottom-1 left-0 right-0 h-48 bg-gradient-to-t from-background from-20% via-background/95 via-40% to-transparent pointer-events-none" />
+            {/* Fade overlay - extends below phone */}
+            <div className="absolute -bottom-4 -left-8 -right-8 h-56 bg-gradient-to-t from-background from-30% via-background/90 via-50% to-transparent pointer-events-none" />
           </motion.div>
         </div>
       </div>
