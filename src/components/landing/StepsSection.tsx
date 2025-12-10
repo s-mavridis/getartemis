@@ -23,7 +23,7 @@ const steps = [
 
 export function StepsSection() {
   return (
-    <section className="py-24 md:py-32 bg-background" id="how-it-works">
+    <section className="pt-8 md:pt-12 pb-24 md:pb-32 bg-background" id="how-it-works">
       <div className="container-wide">
         {/* Header */}
         <motion.div
