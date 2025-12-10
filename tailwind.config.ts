@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['"Open Sauce One"', 'system-ui', 'sans-serif'],
+        display: ['"Open Sauce One"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
