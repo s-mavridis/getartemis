@@ -244,11 +244,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
               </div>
             </div>
             
-            {/* Clean fade overlay - smoother gradient */}
+            {/* Clean fade overlay - matches video transition to cream */}
             <div 
-              className="absolute -bottom-8 -left-8 -right-8 h-64 pointer-events-none"
+              className="absolute -bottom-4 -left-6 -right-6 h-48 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 20%, hsl(var(--background) / 0.95) 35%, hsl(var(--background) / 0.7) 50%, hsl(var(--background) / 0.3) 70%, transparent 100%)'
+                background: 'linear-gradient(to top, hsl(38, 25%, 95%) 0%, hsl(38, 25%, 95%) 30%, hsl(38, 25%, 95% / 0.85) 50%, hsl(38, 25%, 95% / 0.4) 70%, transparent 100%)'
               }}
             />
           </motion.div>
