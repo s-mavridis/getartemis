@@ -27,6 +27,9 @@ const testimonials = [
   }
 ];
 
+// Duplicate for seamless loop
+const duplicatedTestimonials = [...testimonials, ...testimonials];
+
 export function TestimonialsSection() {
   return (
     <section className="py-24 md:py-32 bg-muted overflow-hidden">
@@ -48,23 +51,25 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Testimonials carousel */}
+      {/* Auto-scrolling testimonials carousel */}
       <div className="relative">
         <motion.div
-          className="flex gap-6 px-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          className="flex gap-6"
+          animate={{
+            x: [0, -50 * testimonials.length + "%"],
+          }}
+          transition={{
+            x: {
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
         >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
+          {duplicatedTestimonials.map((testimonial, index) => (
+            <div
+              key={`${testimonial.name}-${index}`}
               className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="flex gap-6">
                 {/* Avatar */}
@@ -85,7 +90,7 @@ export function TestimonialsSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
