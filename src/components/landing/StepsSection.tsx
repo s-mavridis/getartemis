@@ -154,9 +154,9 @@ export function StepsSection() {
                   )}
                   
                   {step.visual === "connect" && (
-                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[280px] sm:h-[320px]">
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[320px] sm:h-[360px] mb-4">
                       {/* Background card - Progress */}
-                      <div className="absolute top-0 left-4 sm:left-6 right-4 sm:right-6 bg-card/60 rounded-2xl shadow-md p-4 sm:p-5">
+                      <div className="absolute top-0 left-6 sm:left-8 right-6 sm:right-8 bg-card/50 rounded-2xl shadow-sm p-4 sm:p-5">
                         <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">ANALYSIS PROGRESS</p>
                         <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                           <div className="w-2/3 h-full bg-gradient-to-r from-teal-400 to-teal-600 rounded-full" />
@@ -165,7 +165,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Middle card - Data points */}
-                      <div className="absolute top-16 sm:top-20 left-2 sm:left-3 right-2 sm:right-3 bg-card/80 rounded-2xl shadow-lg p-4 sm:p-5">
+                      <div className="absolute top-24 sm:top-28 left-3 sm:left-4 right-3 sm:right-4 bg-card/80 rounded-2xl shadow-md p-4 sm:p-5">
                         <div className="flex items-center gap-2 sm:gap-3">
                           <span className="text-base sm:text-lg">🧬</span>
                           <span className="text-xs sm:text-sm">Genetic markers analyzed</span>
@@ -178,7 +178,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Front card - Main */}
-                      <div className="absolute top-32 sm:top-40 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
+                      <div className="absolute top-44 sm:top-52 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
                         <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
                           <div className="w-10 sm:w-14 h-10 sm:h-14 rounded-full bg-gradient-to-br from-secondary to-coral flex items-center justify-center">
                             <span className="text-white text-lg sm:text-xl">✧</span>
@@ -203,9 +203,9 @@ export function StepsSection() {
                   )}
                   
                   {step.visual === "assessment" && (
-                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[280px] sm:h-[320px]">
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[320px] sm:h-[360px] mb-4">
                       {/* Background card - Provider */}
-                      <div className="absolute top-0 left-4 sm:left-6 right-4 sm:right-6 bg-card/60 rounded-2xl shadow-md p-4 sm:p-5">
+                      <div className="absolute top-0 left-6 sm:left-8 right-6 sm:right-8 bg-card/50 rounded-2xl shadow-sm p-4 sm:p-5">
                         <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">PROVIDER MATCH</p>
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
@@ -219,7 +219,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Middle card - Screening */}
-                      <div className="absolute top-16 sm:top-20 left-2 sm:left-3 right-2 sm:right-3 bg-card/80 rounded-2xl shadow-lg p-4 sm:p-5">
+                      <div className="absolute top-24 sm:top-28 left-3 sm:left-4 right-3 sm:right-4 bg-card/80 rounded-2xl shadow-md p-4 sm:p-5">
                         <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">NEXT SCREENING</p>
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
@@ -233,7 +233,7 @@ export function StepsSection() {
                       </div>
                       
                       {/* Front card - Recommendations */}
-                      <div className="absolute top-32 sm:top-40 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
+                      <div className="absolute top-48 sm:top-56 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
                         <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2.5 sm:mb-3">YOUR RECOMMENDATIONS</p>
                         <div className="space-y-2 sm:space-y-3">
                           <div className="flex items-center gap-2 sm:gap-3">
