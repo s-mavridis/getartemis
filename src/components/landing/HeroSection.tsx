@@ -252,11 +252,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
               </div>
             </div>
             
-            {/* Clean fade overlay - covers phone frame completely */}
+            {/* Clean fade overlay - tighter bounds, fades to match dark overlay */}
             <div 
-              className="absolute -bottom-1 -left-4 -right-4 h-40 pointer-events-none"
+              className="absolute -bottom-1 left-0 right-0 h-32 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, hsl(38, 25%, 95%) 0%, hsl(38, 25%, 95%) 50%, transparent 100%)'
+                background: 'linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)'
               }}
             />
           </motion.div>
