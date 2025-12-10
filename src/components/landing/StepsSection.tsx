@@ -81,7 +81,7 @@ export function StepsSection() {
               {/* Content card */}
               <div className="flex-1 bg-muted rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10">
                 {/* Visual area */}
-                <div className="h-64 sm:h-72 lg:h-80 mb-6 sm:mb-8 flex items-end justify-center pb-4 sm:pb-6">
+                <div className="h-56 sm:h-60 lg:h-64 mb-4 sm:mb-6 flex items-end justify-center">
                   {step.visual === "signup" && (
                     <div className="relative">
                       {/* Realistic iPhone */}
@@ -137,9 +137,9 @@ export function StepsSection() {
                       
                       {/* Fade overlay - covers phone frame completely */}
                       <div 
-                        className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
+                        className="absolute -bottom-1 -left-1 -right-1 h-28 pointer-events-none"
                         style={{
-                          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 50%, transparent 100%)'
+                          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 40%, transparent 100%)'
                         }}
                       />
                       

@@ -62,9 +62,9 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
       
       {/* Fade overlay at bottom - covers phone frame completely */}
       <div 
-        className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
+        className="absolute -bottom-1 -left-1 -right-1 h-28 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 50%, transparent 100%)'
+          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 40%, transparent 100%)'
         }}
       />
     </div>
@@ -116,7 +116,7 @@ export function FeaturesSection() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               {/* Visual area */}
-              <div className="h-64 sm:h-72 lg:h-80 mb-6 sm:mb-8 flex items-end justify-center pb-4 sm:pb-6">
+              <div className="h-56 sm:h-60 lg:h-64 mb-4 sm:mb-6 flex items-end justify-center">
                 {feature.visual === "risk" && (
                   <RealisticPhone>
                     <div className="space-y-2 sm:space-y-3">
