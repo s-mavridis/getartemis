@@ -26,7 +26,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source 
-          src="https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4" 
+          src="https://videos.pexels.com/video-files/2040075/2040075-hd_1920_1080_24fps.mp4" 
           type="video/mp4" 
         />
       </video>
