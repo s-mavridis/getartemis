@@ -59,11 +59,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Smoother gradient overlay that fades to cream - more opaque */}
+      {/* Smoother gradient overlay - extended transition to cream */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.35) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.15) 55%, hsl(38, 25%, 95% / 0.5) 65%, hsl(38, 25%, 95% / 0.8) 75%, hsl(38, 25%, 95%) 85%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
