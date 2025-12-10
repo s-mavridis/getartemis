@@ -78,19 +78,14 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-32 pb-8 sm:pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
-          <motion.div 
-            className="font-display leading-tight tracking-tight text-center mb-4 sm:mb-6 drop-shadow-lg max-w-5xl mx-auto"
+          <motion.h1 
+            className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/90 mb-1 sm:mb-2">
-              Know your
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white">
-              cancer risk
-            </h1>
-          </motion.div>
+            Know your cancer risk
+          </motion.h1>
 
           {/* Subheadline */}
           <motion.p 
