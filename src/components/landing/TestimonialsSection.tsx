@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -31,6 +32,26 @@ const testimonials = [
 const duplicatedTestimonials = [...testimonials, ...testimonials];
 
 export function TestimonialsSection() {
+  const [isPaused, setIsPaused] = useState(false);
+  const controls = useAnimationControls();
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    controls.stop();
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+    controls.start({
+      x: [null, "-50%"],
+      transition: {
+        duration: 30,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    });
+  };
+
   return (
     <section className="py-24 md:py-32 bg-muted overflow-hidden">
       <div className="container-wide">
@@ -40,7 +61,7 @@ export function TestimonialsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7 }}
         >
           <motion.h2 
             className="text-4xl md:text-5xl lg:text-6xl font-display mb-6"
@@ -63,25 +84,35 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Auto-scrolling testimonials carousel */}
-      <div className="relative">
+      {/* Auto-scrolling testimonials carousel with hover pause */}
+      <div 
+        className="relative cursor-grab active:cursor-grabbing"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <motion.div
-          className="flex gap-6"
-          animate={{
-            x: [0, -50 * testimonials.length + "%"],
-          }}
-          transition={{
-            x: {
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            },
+          className="flex gap-6 pl-6"
+          animate={controls}
+          initial={{ x: 0 }}
+          onViewportEnter={() => {
+            if (!isPaused) {
+              controls.start({
+                x: "-50%",
+                transition: {
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "linear",
+                },
+              });
+            }
           }}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={`${testimonial.name}-${index}`}
-              className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm"
+              className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm transition-shadow duration-300 hover:shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             >
               <div className="flex gap-6">
                 {/* Avatar */}
@@ -102,9 +133,16 @@ export function TestimonialsSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
+        
+        {/* Pause indicator */}
+        {isPaused && (
+          <div className="absolute top-4 right-4 bg-foreground/80 text-card px-3 py-1 rounded-full text-xs font-medium">
+            Paused
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -8,6 +8,17 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenModal }: HeroSectionProps) {
   const [email, setEmail] = useState("");
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   
   // Countdown timer state - set to 21 days from now
   const [timeLeft, setTimeLeft] = useState({
@@ -56,8 +67,28 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100 overflow-hidden">
-      <div className="container-wide pt-32 pb-16">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
+      {/* Parallax background */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100"
+        style={{ y: backgroundY }}
+      />
+      
+      {/* Floating background elements */}
+      <motion.div 
+        className="absolute top-20 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl"
+        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "50%"]) }}
+      />
+      <motion.div 
+        className="absolute bottom-40 right-10 w-96 h-96 bg-sky-400/20 rounded-full blur-3xl"
+        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
+      />
+      
+      {/* Content */}
+      <motion.div 
+        className="relative container-wide pt-32 pb-16"
+        style={{ y: contentY, opacity }}
+      >
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
           <motion.div
@@ -118,12 +149,13 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             </div>
           </motion.form>
 
-          {/* Phone mockup */}
+          {/* Phone mockup with parallax */}
           <motion.div
             className="relative w-full max-w-sm mx-auto mb-12"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]) }}
           >
             {/* Phone frame */}
             <div className="relative bg-foreground rounded-[3rem] p-3 shadow-2xl">
@@ -219,7 +251,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
