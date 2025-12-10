@@ -32,7 +32,7 @@ export function Header({ onOpenModal }: HeaderProps) {
             <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center">
               <Share2 className="w-4 h-4 text-white" />
             </div>
-            <span className={`text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-foreground'}`}>
+            <span className={`text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-white drop-shadow-md'}`}>
               Artemis
             </span>
           </div>
