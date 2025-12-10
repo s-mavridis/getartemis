@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
+import heroBg from "@/assets/hero-bg.png";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -16,40 +17,20 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Warm gradient background that fades into cream - darker start for noticeable fade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(30,35%,82%)] via-[hsl(35,28%,88%)] to-background" />
+      {/* Hero background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
       
-      {/* Subtle animated background shapes */}
-      <motion.div
-        className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-[hsl(30,40%,80%)] opacity-40 blur-3xl"
-        animate={{ 
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-40 right-[15%] w-48 h-48 rounded-full bg-[hsl(35,35%,85%)] opacity-30 blur-3xl"
-        animate={{ 
-          y: [0, -20, 0],
-          scale: [1, 1.15, 1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
-      <motion.div
-        className="absolute top-[60%] left-[20%] w-32 h-32 rounded-full bg-[hsl(25,30%,82%)] opacity-25 blur-2xl"
-        animate={{ 
-          y: [0, 15, 0],
-          x: [0, 10, 0],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
+      {/* Gradient overlay that fades to cream at bottom */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background" />
       
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-foreground mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1.1] tracking-tight text-white mb-6 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -59,7 +40,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10"
+            className="text-lg md:text-xl text-white/90 max-w-2xl mb-10 drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -75,7 +56,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="flex flex-col sm:flex-row items-center bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg border border-border/30 gap-2 sm:gap-0">
+            <div className="flex flex-col sm:flex-row items-center bg-white/95 backdrop-blur-sm rounded-full p-2 shadow-lg gap-2 sm:gap-0">
               <input
                 type="email"
                 placeholder="Your email address"
@@ -96,7 +77,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Trust badges */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-muted-foreground mb-16"
+            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/90 mb-16 drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
