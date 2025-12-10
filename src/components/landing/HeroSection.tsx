@@ -59,7 +59,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Gradient overlay - mobile (fade starts later) */}
+      {/* Gradient overlay - mobile (fade starts later for trust badges) */}
       <div 
         className="absolute inset-0 sm:hidden" 
         style={{
@@ -67,11 +67,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         }}
       />
       
-      {/* Gradient overlay - desktop (dark overlay fading to transparent) */}
+      {/* Gradient overlay - desktop */}
       <div 
         className="absolute inset-0 hidden sm:block" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.2) 85%, transparent 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.1) 80%, transparent 90%)'
         }}
       />
       
@@ -252,11 +252,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
               </div>
             </div>
             
-            {/* Clean fade overlay - tighter bounds, fades to match dark overlay */}
+            {/* Clean fade overlay - cream fade matching page background */}
             <div 
-              className="absolute -bottom-1 left-0 right-0 h-32 pointer-events-none"
+              className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)'
+                background: 'linear-gradient(to top, hsl(38, 25%, 95%) 0%, hsl(38, 25%, 95%) 50%, transparent 100%)'
               }}
             />
           </motion.div>
