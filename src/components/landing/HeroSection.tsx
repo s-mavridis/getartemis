@@ -59,11 +59,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Gradient overlay - smoother fade to cream */}
+      {/* Gradient overlay - fade starts lower to keep text visible */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.2) 40%, hsl(38, 25%, 95% / 0.6) 55%, hsl(38, 25%, 95%) 65%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.35) 55%, hsl(38, 25%, 95% / 0.5) 70%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
