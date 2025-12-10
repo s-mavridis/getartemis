@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { Share2 } from "lucide-react";
 
 interface HeaderProps {
   onOpenModal: () => void;
@@ -29,10 +30,10 @@ export function Header({ onOpenModal }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+              <Share2 className="w-4 h-4 text-white" />
             </div>
             <span className={`text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-foreground'}`}>
-              ArtemisAI
+              Artemis
             </span>
           </div>
           
