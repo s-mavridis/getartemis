@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -8,56 +8,6 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenModal }: HeroSectionProps) {
   const [email, setEmail] = useState("");
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  // Parallax effect
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  
-  // Countdown timer state - set to 21 days from now
-  const [timeLeft, setTimeLeft] = useState({
-    days: 21,
-    hours: 23,
-    minutes: 57,
-    seconds: 51
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        let { days, hours, minutes, seconds } = prev;
-        
-        if (seconds > 0) {
-          seconds--;
-        } else {
-          seconds = 59;
-          if (minutes > 0) {
-            minutes--;
-          } else {
-            minutes = 59;
-            if (hours > 0) {
-              hours--;
-            } else {
-              hours = 23;
-              if (days > 0) {
-                days--;
-              }
-            }
-          }
-        }
-        
-        return { days, hours, minutes, seconds };
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,28 +17,8 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      {/* Parallax background */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100"
-        style={{ y: backgroundY }}
-      />
-      
-      {/* Floating background elements */}
-      <motion.div 
-        className="absolute top-20 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl"
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "50%"]) }}
-      />
-      <motion.div 
-        className="absolute bottom-40 right-10 w-96 h-96 bg-sky-400/20 rounded-full blur-3xl"
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
-      />
-      
-      {/* Content */}
-      <motion.div 
-        className="relative container-wide pt-32 pb-16"
-        style={{ y: contentY, opacity }}
-      >
+    <section className="relative min-h-screen bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100 overflow-hidden">
+      <div className="container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
           <motion.div
@@ -149,13 +79,12 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             </div>
           </motion.form>
 
-          {/* Phone mockup with parallax */}
+          {/* Phone mockup */}
           <motion.div
-            className="relative w-full max-w-sm mx-auto mb-12"
+            className="relative w-full max-w-sm mx-auto"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]) }}
           >
             {/* Phone frame */}
             <div className="relative bg-foreground rounded-[3rem] p-3 shadow-2xl">
@@ -221,37 +150,8 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
               </div>
             </div>
           </motion.div>
-
-          {/* Countdown timer */}
-          <motion.div
-            className="flex items-center justify-center gap-4 md:gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            {[
-              { value: timeLeft.days, label: "DAYS" },
-              { value: timeLeft.hours, label: "HOURS" },
-              { value: timeLeft.minutes, label: "MINUTES" },
-              { value: timeLeft.seconds, label: "SECONDS" },
-            ].map((item, index) => (
-              <div key={item.label} className="flex items-center gap-4 md:gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 md:w-24 md:h-24 bg-white/40 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/40">
-                    <span className="text-3xl md:text-4xl font-display text-foreground">
-                      {String(item.value).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <span className="text-xs text-foreground/60 mt-2 tracking-wider">{item.label}</span>
-                </div>
-                {index < 3 && (
-                  <span className="text-2xl md:text-3xl text-foreground/40 font-light">:</span>
-                )}
-              </div>
-            ))}
-          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

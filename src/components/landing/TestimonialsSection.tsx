@@ -1,5 +1,5 @@
-import { motion, useAnimationControls } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const testimonials = [
   {
@@ -25,32 +25,35 @@ const testimonials = [
     name: "David Park",
     role: "Early Access User",
     avatar: "DP"
+  },
+  {
+    quote: "As someone with a family history of cancer, this platform gave me the proactive tools I needed. Highly recommend!",
+    name: "Lisa Martinez",
+    role: "Beta Tester",
+    avatar: "LM"
+  },
+  {
+    quote: "The interface is incredibly intuitive. Got my risk assessment in minutes and the recommendations were spot-on.",
+    name: "James Wilson",
+    role: "Early Access User",
+    avatar: "JW"
+  },
+  {
+    quote: "I've recommended ArtemisAI to all my patients. It's exactly what preventive healthcare needs.",
+    name: "Dr. Amanda Foster",
+    role: "Oncologist",
+    avatar: "AF"
+  },
+  {
+    quote: "The peace of mind this platform provides is priceless. Finally feel in control of my health journey.",
+    name: "Robert Kim",
+    role: "Beta Tester",
+    avatar: "RK"
   }
 ];
 
-// Duplicate for seamless loop
-const duplicatedTestimonials = [...testimonials, ...testimonials];
-
 export function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-  const controls = useAnimationControls();
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-    controls.stop();
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-    controls.start({
-      x: [null, "-50%"],
-      transition: {
-        duration: 30,
-        repeat: Infinity,
-        ease: "linear",
-      },
-    });
-  };
+  const constraintsRef = useRef(null);
 
   return (
     <section className="py-24 md:py-32 bg-muted overflow-hidden">
@@ -84,34 +87,21 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Auto-scrolling testimonials carousel with hover pause */}
-      <div 
-        className="relative cursor-grab active:cursor-grabbing"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      {/* Draggable testimonials carousel */}
+      <div ref={constraintsRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
         <motion.div
           className="flex gap-6 pl-6"
-          animate={controls}
-          initial={{ x: 0 }}
-          onViewportEnter={() => {
-            if (!isPaused) {
-              controls.start({
-                x: "-50%",
-                transition: {
-                  duration: 30,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
-              });
-            }
-          }}
+          drag="x"
+          dragConstraints={{ left: -((testimonials.length - 2) * 520), right: 0 }}
+          dragElastic={0.1}
+          dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
         >
-          {duplicatedTestimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <motion.div
               key={`${testimonial.name}-${index}`}
-              className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm transition-shadow duration-300 hover:shadow-lg"
+              className="flex-shrink-0 w-[400px] md:w-[500px] bg-card rounded-3xl p-8 shadow-sm select-none"
               whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
               <div className="flex gap-6">
@@ -137,12 +127,10 @@ export function TestimonialsSection() {
           ))}
         </motion.div>
         
-        {/* Pause indicator */}
-        {isPaused && (
-          <div className="absolute top-4 right-4 bg-foreground/80 text-card px-3 py-1 rounded-full text-xs font-medium">
-            Paused
-          </div>
-        )}
+        {/* Drag hint */}
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          ← Drag to explore more →
+        </p>
       </div>
     </section>
   );
