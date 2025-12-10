@@ -92,7 +92,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             {/* Phone frame - realistic iPhone style */}
             <div className="relative">
               {/* Outer phone body with subtle gradient */}
-              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.1)_inset]">
+              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)]">
                 {/* Side buttons - volume */}
                 <div className="absolute left-[-2px] top-24 w-[3px] h-8 bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute left-[-2px] top-36 w-[3px] h-12 bg-[#2a2a2a] rounded-l-sm" />
@@ -112,34 +112,34 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
                     </div>
                     
                     {/* App content */}
-                    <div className="px-5 pb-8 pt-2 space-y-4 min-h-[340px] bg-[#faf9f7]">
+                    <div className="px-5 pb-8 pt-2 space-y-5 min-h-[340px] bg-[#faf9f7]">
                       <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold text-[#1a1a1a]">My Health</h3>
-                        <div className="w-8 h-8 rounded-full bg-[#e8e4df] flex items-center justify-center">
-                          <svg className="w-4 h-4 text-[#6b6b6b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        <h3 className="text-xl font-display italic text-[#1a1a1a]">My Health</h3>
+                        <div className="w-9 h-9 rounded-full bg-[#f0ede8] flex items-center justify-center">
+                          <svg className="w-4 h-4 text-[#7a7a7a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                           </svg>
                         </div>
                       </div>
                       
-                      <p className="text-[10px] text-[#8a8a8a] uppercase tracking-[0.15em] font-medium">Risk Assessment</p>
+                      <p className="text-[11px] text-[#999] uppercase tracking-[0.2em] font-medium">Risk Assessment</p>
                       
                       {/* Completed task card */}
-                      <div className="bg-white rounded-2xl p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-[#f0ede8]">
-                        <div className="flex items-start gap-3">
-                          <div className="w-5 h-5 mt-0.5 rounded-full bg-[#22c55e] flex items-center justify-center flex-shrink-0">
-                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <div className="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+                        <div className="flex items-center gap-3.5">
+                          <div className="w-7 h-7 rounded-full bg-[#4ade80] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(74,222,128,0.4)]">
+                            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="font-semibold text-[#1a1a1a] text-sm">Initial Screening</span>
-                              <span className="text-[10px] text-[#8a8a8a] bg-[#f5f3f0] px-2 py-1 rounded-md font-medium flex-shrink-0">Feb 20</span>
+                              <span className="font-semibold text-[#1a1a1a] text-[15px]">Initial Screening</span>
+                              <span className="text-[11px] text-[#999] bg-[#f5f3f0] px-2.5 py-1 rounded-lg font-medium flex-shrink-0">Feb 20</span>
                             </div>
-                            <p className="text-xs text-[#6b6b6b] mt-1">ArtemisAI Analysis</p>
-                            <span className="inline-flex items-center gap-1.5 text-[10px] bg-[#dcfce7] text-[#166534] px-2 py-0.5 rounded-md font-medium mt-2">
-                              <span className="w-1 h-1 rounded-full bg-[#22c55e]" />
+                            <p className="text-[13px] text-[#888] mt-0.5">ArtemisAI Analysis</p>
+                            <span className="inline-flex items-center gap-1.5 text-[11px] bg-[#dcfce7] text-[#15803d] px-2.5 py-1 rounded-lg font-semibold mt-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
                               Completed
                             </span>
                           </div>
@@ -147,13 +147,13 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
                       </div>
                       
                       {/* Pending task */}
-                      <div className="bg-white/60 rounded-2xl p-4 border border-[#f0ede8]/50">
-                        <div className="flex items-start gap-3">
-                          <div className="w-5 h-5 mt-0.5 rounded-full border-2 border-[#d4d0c8] flex-shrink-0" />
+                      <div className="bg-white/70 rounded-2xl p-4">
+                        <div className="flex items-center gap-3.5">
+                          <div className="w-7 h-7 rounded-full border-2 border-[#e0dcd5] flex-shrink-0" />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="font-medium text-[#6b6b6b] text-sm">Follow-up Review</span>
-                              <span className="text-[10px] text-[#8a8a8a] bg-[#f5f3f0] px-2 py-1 rounded-md font-medium flex-shrink-0">Mar 15</span>
+                              <span className="font-medium text-[#999] text-[15px]">Follow-up Review</span>
+                              <span className="text-[11px] text-[#aaa] bg-[#f5f3f0] px-2.5 py-1 rounded-lg font-medium flex-shrink-0">Mar 15</span>
                             </div>
                           </div>
                         </div>
@@ -164,8 +164,13 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
               </div>
             </div>
             
-            {/* Fade overlay - extends below phone */}
-            <div className="absolute -bottom-4 -left-8 -right-8 h-56 bg-gradient-to-t from-background from-30% via-background/90 via-50% to-transparent pointer-events-none" />
+            {/* Clean fade overlay - no shadow, just background blend */}
+            <div 
+              className="absolute -bottom-2 left-0 right-0 h-40 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to top, hsl(38, 25%, 95%) 0%, hsl(38, 25%, 95%) 20%, transparent 100%)'
+              }}
+            />
           </motion.div>
         </div>
       </div>
