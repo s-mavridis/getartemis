@@ -19,12 +19,12 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
     const handleTimeUpdate = () => {
       const timeLeft = video.duration - video.currentTime;
-      // Fade out during the last 1 second
-      if (timeLeft < 1) {
-        setVideoOpacity(timeLeft);
-      } else if (video.currentTime < 1) {
-        // Fade in during the first 1 second
-        setVideoOpacity(video.currentTime);
+      // Fade out during the last 2 seconds
+      if (timeLeft < 2) {
+        setVideoOpacity(timeLeft / 2);
+      } else if (video.currentTime < 2) {
+        // Fade in during the first 2 seconds
+        setVideoOpacity(video.currentTime / 2);
       } else {
         setVideoOpacity(1);
       }
@@ -33,6 +33,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
     video.addEventListener('timeupdate', handleTimeUpdate);
     return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, []);
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +63,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.25) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.35) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
