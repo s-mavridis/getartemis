@@ -35,17 +35,29 @@ export function FeaturesSection() {
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display mb-6">
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-display mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Features designed<br />for your success.
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-muted-foreground max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Explore the features designed to keep you healthy and on track.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Features grid */}
@@ -53,11 +65,12 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="group bg-muted rounded-3xl p-8 md:p-10"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-muted rounded-3xl p-8 md:p-10 hover:shadow-lg transition-shadow duration-300"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               {/* Visual area */}
               <div className="h-64 mb-8 flex items-center justify-center">
