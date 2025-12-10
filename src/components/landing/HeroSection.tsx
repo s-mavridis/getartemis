@@ -22,17 +22,22 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        poster="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80"
       >
         <source 
-          src="https://cdn.coverr.co/videos/coverr-woman-walking-on-a-forest-path-4543/1080p.mp4" 
+          src="https://static.videezy.com/system/resources/previews/000/044/030/original/210714_01_Outdoors-Mountains_4k_006.mp4" 
           type="video/mp4" 
         />
       </video>
       
-      {/* Gradient overlay that fades to cream higher up */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 via-60% to-background to-85%" />
+      {/* Smoother gradient overlay that fades to cream */}
+      <div 
+        className="absolute inset-0" 
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
+        }}
+      />
       
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
