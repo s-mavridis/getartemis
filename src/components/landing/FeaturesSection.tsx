@@ -73,7 +73,7 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
 
 export function FeaturesSection() {
   return (
-    <section className="py-24 md:py-32 bg-background" id="services">
+    <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-background" id="services">
       <div className="container-wide">
         {/* Header */}
         <motion.div
