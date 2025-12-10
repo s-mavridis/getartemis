@@ -41,7 +41,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[70vh] sm:min-h-screen overflow-hidden">
       {/* Hero background video */}
       <video
         ref={videoRef}
@@ -59,15 +59,15 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Gradient overlay - fades video to cream background */}
+      {/* Gradient overlay - smoother fade to cream */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.25) 50%, hsl(38, 25%, 95%) 70%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.2) 40%, hsl(38, 25%, 95% / 0.6) 55%, hsl(38, 25%, 95%) 65%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-32 pb-12 sm:pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-32 pb-8 sm:pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
