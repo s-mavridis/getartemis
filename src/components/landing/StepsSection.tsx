@@ -84,46 +84,64 @@ export function StepsSection() {
                 <div className="h-72 mb-8 flex items-center justify-center">
                   {step.visual === "signup" && (
                     <div className="relative">
-                      <div className="bg-foreground rounded-[2.5rem] p-3 shadow-2xl max-w-[220px]">
-                        <div className="bg-card rounded-[2rem] overflow-hidden">
-                          <div className="px-4 py-3 flex items-center justify-between">
-                            <span className="text-xs font-medium">9:41</span>
-                            <div className="w-16 h-5 bg-foreground rounded-full" />
-                            <div className="flex items-center gap-1 text-xs">
-                              <span>📶</span>
-                              <span>🔋</span>
+                      {/* Realistic iPhone */}
+                      <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2rem] p-[6px]">
+                        {/* Side buttons */}
+                        <div className="absolute left-[-2px] top-16 w-[2px] h-5 bg-[#2a2a2a] rounded-l-sm" />
+                        <div className="absolute left-[-2px] top-24 w-[2px] h-8 bg-[#2a2a2a] rounded-l-sm" />
+                        <div className="absolute right-[-2px] top-20 w-[2px] h-10 bg-[#2a2a2a] rounded-r-sm" />
+                        
+                        {/* Inner bezel */}
+                        <div className="bg-black rounded-[1.6rem] p-[2px]">
+                          {/* Screen */}
+                          <div className="relative bg-gradient-to-b from-[#f8f7f4] to-[#f5f4f1] rounded-[1.5rem] overflow-hidden w-[160px] h-[300px]">
+                            {/* Dynamic Island */}
+                            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-full z-10 flex items-center justify-center gap-1">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a] ring-1 ring-[#2a2a2a]" />
                             </div>
-                          </div>
-                          <div className="px-4 py-4">
-                            <p className="text-xs text-muted-foreground mb-1">Thu, 20 February</p>
-                            <p className="font-medium mb-4">Good morning 🔥</p>
-                            <div className="bg-muted/50 rounded-xl p-3 mb-3">
-                              <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                  <span className="text-secondary text-sm">✧</span>
-                                </div>
-                                <div>
-                                  <p className="text-xs font-medium">ArtemisAI</p>
-                                  <p className="text-[10px] text-muted-foreground">Health Platform</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="space-y-2">
-                              <div className="flex items-center justify-between text-xs">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
-                                    <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
+                            
+                            {/* Screen content */}
+                            <div className="pt-10 px-3 pb-4 h-full">
+                              <div className="space-y-3">
+                                <p className="text-[10px] text-gray-500">Thu, 20 February</p>
+                                <p className="text-sm font-semibold text-gray-900">Good morning 🔥</p>
+                                <div className="bg-white rounded-xl p-3 shadow-sm">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
+                                      <span className="text-white text-xs">✧</span>
+                                    </div>
+                                    <div>
+                                      <p className="text-[10px] font-medium text-gray-800">ArtemisAI</p>
+                                      <p className="text-[8px] text-gray-500">Health Platform</p>
+                                    </div>
                                   </div>
-                                  <span>Initial Screening</span>
                                 </div>
-                                <span className="text-muted-foreground">Feb 20</span>
+                                <div className="bg-white rounded-xl p-2.5 shadow-sm">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+                                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    </div>
+                                    <span className="text-[10px] text-gray-700">Initial Screening</span>
+                                  </div>
+                                </div>
                               </div>
                             </div>
+                            
+                            {/* Home indicator */}
+                            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-24 h-1 bg-black/20 rounded-full" />
                           </div>
                         </div>
                       </div>
+                      
+                      {/* Fade overlay */}
+                      <div 
+                        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none rounded-b-[2rem]"
+                        style={{
+                          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 30%, transparent 100%)'
+                        }}
+                      />
                       
                       {/* Floating badges */}
                       <div className="absolute -right-16 top-1/4 bg-foreground text-card px-4 py-2 rounded-full text-sm font-medium shadow-lg">
