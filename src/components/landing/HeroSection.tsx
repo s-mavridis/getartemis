@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -9,6 +10,30 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoOpacity, setVideoOpacity] = useState(1);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      const timeLeft = video.duration - video.currentTime;
+      // Fade out during the last 1 second
+      if (timeLeft < 1) {
+        setVideoOpacity(timeLeft);
+      } else if (video.currentTime < 1) {
+        // Fade in during the first 1 second
+        setVideoOpacity(video.currentTime);
+      } else {
+        setVideoOpacity(1);
+      }
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onOpenModal();
@@ -18,12 +43,14 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
     <section className="relative min-h-screen overflow-hidden">
       {/* Hero background video */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+        style={{ opacity: videoOpacity }}
       >
         <source 
           src="https://videos.pexels.com/video-files/3127278/3127278-hd_1920_1080_24fps.mp4" 
@@ -31,11 +58,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Smoother gradient overlay that fades to cream */}
+      {/* Smoother gradient overlay that fades to cream - more opaque */}
       <div 
         className="absolute inset-0" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.25) 55%, hsl(38, 25%, 95%) 80%, hsl(38, 25%, 95%) 100%)'
         }}
       />
       
