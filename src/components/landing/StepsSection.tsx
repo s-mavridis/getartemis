@@ -154,52 +154,104 @@ export function StepsSection() {
                   )}
                   
                   {step.visual === "connect" && (
-                    <div className="bg-card rounded-2xl shadow-lg p-4 sm:p-6 w-full max-w-[240px] sm:max-w-[280px]">
-                      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                        <div className="w-10 sm:w-14 h-10 sm:h-14 rounded-full bg-gradient-to-br from-secondary to-coral overflow-hidden">
-                          <div className="w-full h-full bg-gradient-to-br from-secondary/80 to-coral/80" />
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[280px] sm:h-[320px]">
+                      {/* Background card - Progress */}
+                      <div className="absolute top-0 left-4 sm:left-6 right-4 sm:right-6 bg-card/60 rounded-2xl shadow-md p-4 sm:p-5">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">ANALYSIS PROGRESS</p>
+                        <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                          <div className="w-2/3 h-full bg-gradient-to-r from-teal-400 to-teal-600 rounded-full" />
                         </div>
-                        <div>
-                          <p className="font-semibold text-sm sm:text-base">Analyzing...</p>
-                          <p className="text-xs sm:text-sm text-muted-foreground">Your health data</p>
+                        <p className="text-xs text-muted-foreground mt-1.5">67% complete</p>
+                      </div>
+                      
+                      {/* Middle card - Data points */}
+                      <div className="absolute top-16 sm:top-20 left-2 sm:left-3 right-2 sm:right-3 bg-card/80 rounded-2xl shadow-lg p-4 sm:p-5">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-base sm:text-lg">🧬</span>
+                          <span className="text-xs sm:text-sm">Genetic markers analyzed</span>
+                          <div className="ml-auto w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+                            <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
                         </div>
                       </div>
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-muted/50 rounded-xl">
-                          <span className="text-base sm:text-lg">🧬</span>
-                          <span className="text-xs sm:text-sm">Genetic markers</span>
+                      
+                      {/* Front card - Main */}
+                      <div className="absolute top-32 sm:top-40 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
+                        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+                          <div className="w-10 sm:w-14 h-10 sm:h-14 rounded-full bg-gradient-to-br from-secondary to-coral flex items-center justify-center">
+                            <span className="text-white text-lg sm:text-xl">✧</span>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-sm sm:text-base">Analyzing...</p>
+                            <p className="text-xs sm:text-sm text-muted-foreground">Your health data</p>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-muted/50 rounded-xl">
-                          <span className="text-base sm:text-lg">📋</span>
-                          <span className="text-xs sm:text-sm">Medical history</span>
-                        </div>
-                        <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-muted/50 rounded-xl">
-                          <span className="text-base sm:text-lg">🏃</span>
-                          <span className="text-xs sm:text-sm">Lifestyle factors</span>
+                        <div className="space-y-2 sm:space-y-2.5">
+                          <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 bg-muted/50 rounded-xl">
+                            <span className="text-sm sm:text-base">📋</span>
+                            <span className="text-xs sm:text-sm">Medical history</span>
+                          </div>
+                          <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 bg-muted/50 rounded-xl">
+                            <span className="text-sm sm:text-base">🏃</span>
+                            <span className="text-xs sm:text-sm">Lifestyle factors</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                   
                   {step.visual === "assessment" && (
-                    <div className="bg-card rounded-2xl shadow-lg p-4 sm:p-6 w-full max-w-[240px] sm:max-w-[280px]">
-                      <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2.5 sm:mb-3">YOUR RECOMMENDATIONS</p>
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                          <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
-                            <svg className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[280px] sm:h-[320px]">
+                      {/* Background card - Provider */}
+                      <div className="absolute top-0 left-4 sm:left-6 right-4 sm:right-6 bg-card/60 rounded-2xl shadow-md p-4 sm:p-5">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">PROVIDER MATCH</p>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <span className="text-white text-sm">👨‍⚕️</span>
                           </div>
-                          <span className="font-medium text-sm sm:text-base">Risk Assessment Complete</span>
+                          <div>
+                            <p className="font-medium text-sm">Dr. Sarah Chen</p>
+                            <p className="text-xs text-muted-foreground">Oncologist • Stanford</p>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 sm:gap-3">
-                          <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
-                          <span className="text-muted-foreground text-sm sm:text-base">Schedule Screening</span>
+                      </div>
+                      
+                      {/* Middle card - Screening */}
+                      <div className="absolute top-16 sm:top-20 left-2 sm:left-3 right-2 sm:right-3 bg-card/80 rounded-2xl shadow-lg p-4 sm:p-5">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2">NEXT SCREENING</p>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+                            <span className="text-lg">📅</span>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm">Colonoscopy</p>
+                            <p className="text-xs text-muted-foreground">Scheduled: March 15</p>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 sm:gap-3">
-                          <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
-                          <span className="text-muted-foreground text-sm sm:text-base">Connect to Provider</span>
+                      </div>
+                      
+                      {/* Front card - Recommendations */}
+                      <div className="absolute top-32 sm:top-40 left-0 right-0 bg-card rounded-2xl shadow-xl p-4 sm:p-6">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-2.5 sm:mb-3">YOUR RECOMMENDATIONS</p>
+                        <div className="space-y-2 sm:space-y-3">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span className="font-medium text-sm sm:text-base">Risk Assessment Complete</span>
+                          </div>
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
+                            <span className="text-muted-foreground text-sm sm:text-base">Schedule Screening</span>
+                          </div>
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-4 sm:w-5 h-4 sm:h-5 rounded-full border-2 border-muted-foreground/30 flex-shrink-0" />
+                            <span className="text-muted-foreground text-sm sm:text-base">Connect to Provider</span>
+                          </div>
                         </div>
                       </div>
                     </div>
