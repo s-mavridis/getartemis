@@ -23,9 +23,10 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
+        poster="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80"
       >
         <source 
-          src="https://videos.pexels.com/video-files/4536180/4536180-hd_1280_720_25fps.mp4" 
+          src="https://cdn.coverr.co/videos/coverr-woman-walking-on-a-forest-path-4543/1080p.mp4" 
           type="video/mp4" 
         />
       </video>
