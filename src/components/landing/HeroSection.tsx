@@ -63,7 +63,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       <div 
         className="absolute inset-0 sm:hidden" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.2) 75%, rgba(247,246,243,0.6) 82%, rgba(247,246,243,1) 90%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.4) 85%, rgba(0,0,0,0.2) 92%, rgb(247,246,243) 98%, rgb(247,246,243) 100%)'
         }}
       />
       
