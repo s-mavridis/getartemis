@@ -28,6 +28,49 @@ const features = [
   }
 ];
 
+// Reusable realistic iPhone component
+function RealisticPhone({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative">
+      {/* Outer phone body with subtle gradient */}
+      <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2rem] p-[6px]">
+        {/* Side buttons - volume */}
+        <div className="absolute left-[-2px] top-16 w-[2px] h-5 bg-[#2a2a2a] rounded-l-sm" />
+        <div className="absolute left-[-2px] top-24 w-[2px] h-8 bg-[#2a2a2a] rounded-l-sm" />
+        {/* Side button - power */}
+        <div className="absolute right-[-2px] top-20 w-[2px] h-10 bg-[#2a2a2a] rounded-r-sm" />
+        
+        {/* Inner bezel */}
+        <div className="bg-black rounded-[1.6rem] p-[2px]">
+          {/* Screen */}
+          <div className="relative bg-gradient-to-b from-[#f8f7f4] to-[#f5f4f1] rounded-[1.5rem] overflow-hidden w-[160px] h-[300px]">
+            {/* Dynamic Island / Notch */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-full z-10 flex items-center justify-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a] ring-1 ring-[#2a2a2a]" />
+            </div>
+            
+            {/* Screen content */}
+            <div className="pt-10 px-3 pb-4 h-full">
+              {children}
+            </div>
+            
+            {/* Home indicator */}
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-24 h-1 bg-black/20 rounded-full" />
+          </div>
+        </div>
+      </div>
+      
+      {/* Fade overlay at bottom */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none rounded-b-[2rem]"
+        style={{
+          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, transparent 100%)'
+        }}
+      />
+    </div>
+  );
+}
+
 export function FeaturesSection() {
   return (
     <section className="py-24 md:py-32 bg-background" id="services">
@@ -73,119 +116,169 @@ export function FeaturesSection() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               {/* Visual area */}
-              <div className="h-64 mb-8 flex items-center justify-center">
+              <div className="h-72 mb-8 flex items-center justify-center">
                 {feature.visual === "risk" && (
-                  <div className="relative">
-                    <div className="bg-card rounded-2xl shadow-lg p-4 transform -rotate-2">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <RealisticPhone>
+                    <div className="space-y-3">
+                      <p className="text-[10px] text-gray-500">Risk Analysis</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shadow-lg">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        <span className="text-sm font-medium">Risk Analysis</span>
-                        <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">Low</span>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">Low Risk</p>
+                          <p className="text-[9px] text-gray-500">ArtemisAI</p>
+                        </div>
                       </div>
-                      <p className="text-xs text-muted-foreground">ArtemisAI Assessment</p>
-                    </div>
-                    <div className="bg-card rounded-2xl shadow-lg p-4 transform rotate-1 translate-x-4 -translate-y-2 absolute top-4 left-4 -z-10 opacity-60">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500" />
-                        <span className="text-sm font-medium">Screening Status</span>
+                      <div className="bg-white rounded-xl p-3 shadow-sm mt-4">
+                        <p className="text-[10px] font-medium text-gray-700 mb-2">Assessment Summary</p>
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[9px] text-gray-500">Genetic</span>
+                            <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div className="w-1/4 h-full bg-green-400 rounded-full" />
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-[9px] text-gray-500">Lifestyle</span>
+                            <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div className="w-2/3 h-full bg-green-400 rounded-full" />
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-[9px] text-gray-500">History</span>
+                            <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div className="w-1/3 h-full bg-green-400 rounded-full" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-xs text-muted-foreground">Up to date</p>
                     </div>
-                  </div>
+                  </RealisticPhone>
                 )}
                 
                 {feature.visual === "detection" && (
-                  <div className="bg-foreground rounded-[2rem] p-2 shadow-xl max-w-[200px]">
-                    <div className="bg-card rounded-[1.5rem] p-4">
-                      <div className="text-xs text-muted-foreground mb-1">Thu, 20 February</div>
-                      <p className="font-medium mb-4">Good morning 👋</p>
-                      <div className="bg-muted/50 rounded-xl p-3 mb-3">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="w-8 h-8 bg-secondary/10 rounded-lg flex items-center justify-center">
-                            <span className="text-secondary">✧</span>
+                  <RealisticPhone>
+                    <div className="space-y-3">
+                      <p className="text-[10px] text-gray-500">Thu, 20 February</p>
+                      <p className="text-sm font-semibold text-gray-900">Good morning 👋</p>
+                      <div className="bg-white rounded-xl p-3 shadow-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-xs">✧</span>
                           </div>
                           <div>
-                            <p className="text-xs font-medium">Health Score</p>
-                            <p className="text-xs text-muted-foreground">ArtemisAI</p>
+                            <p className="text-[10px] font-medium text-gray-800">Health Score</p>
+                            <p className="text-[8px] text-gray-500">ArtemisAI</p>
                           </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-2 text-center">
-                          <div>
-                            <p className="text-sm font-semibold">92</p>
-                            <p className="text-[10px] text-muted-foreground">Score</p>
+                        <div className="grid grid-cols-3 gap-1.5 text-center">
+                          <div className="bg-gray-50 rounded-lg p-1.5">
+                            <p className="text-sm font-bold text-gray-900">92</p>
+                            <p className="text-[8px] text-gray-500">Score</p>
                           </div>
-                          <div>
-                            <p className="text-sm font-semibold">0</p>
-                            <p className="text-[10px] text-muted-foreground">Alerts</p>
+                          <div className="bg-gray-50 rounded-lg p-1.5">
+                            <p className="text-sm font-bold text-green-600">0</p>
+                            <p className="text-[8px] text-gray-500">Alerts</p>
                           </div>
-                          <div>
-                            <p className="text-sm font-semibold">4</p>
-                            <p className="text-[10px] text-muted-foreground">Tasks</p>
+                          <div className="bg-gray-50 rounded-lg p-1.5">
+                            <p className="text-sm font-bold text-gray-900">4</p>
+                            <p className="text-[8px] text-gray-500">Tasks</p>
                           </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-xl p-2.5 shadow-sm">
+                        <p className="text-[9px] font-medium text-gray-700 mb-1.5">Next Screening</p>
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span className="text-[10px]">📅</span>
+                          </div>
+                          <p className="text-[9px] text-gray-600">March 15, 2025</p>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </RealisticPhone>
                 )}
                 
                 {feature.visual === "experts" && (
-                  <div className="bg-foreground rounded-[2rem] p-2 shadow-xl max-w-[200px]">
-                    <div className="bg-card rounded-[1.5rem] p-4">
-                      <p className="font-medium mb-4">My health</p>
-                      <div className="flex items-center justify-between mb-4">
+                  <RealisticPhone>
+                    <div className="space-y-3">
+                      <p className="text-sm font-semibold text-gray-900">My Health Team</p>
+                      <div className="flex items-center justify-between">
                         <div className="flex -space-x-2">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-coral border-2 border-card" />
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 border-2 border-card" />
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 border-2 border-card" />
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 border-2 border-[#f8f7f4]" />
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 border-2 border-[#f8f7f4]" />
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 border-2 border-[#f8f7f4]" />
                         </div>
-                        <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center">
-                          <span className="text-card text-lg">🏆</span>
+                        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                          <span className="text-sm">🏆</span>
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-sm">
+                      <div className="bg-white rounded-xl p-3 shadow-sm space-y-2">
+                        <div className="flex items-center gap-2">
                           <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
                             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
                           </div>
-                          <span>Expert Reviewed</span>
+                          <span className="text-[10px] text-gray-700">Expert Reviewed</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
+                            <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <span className="text-[10px] text-gray-700">Stanford Verified</span>
                         </div>
                       </div>
+                      <div className="bg-white rounded-xl p-2.5 shadow-sm">
+                        <p className="text-[9px] font-medium text-gray-700 mb-1">Latest Review</p>
+                        <p className="text-[8px] text-gray-500">Dr. Chen • 2 days ago</p>
+                      </div>
                     </div>
-                  </div>
+                  </RealisticPhone>
                 )}
                 
                 {feature.visual === "plans" && (
-                  <div className="bg-card rounded-2xl shadow-lg p-5 max-w-[220px]">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center">
-                        <span className="text-xl">🎯</span>
+                  <RealisticPhone>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center">
+                          <span className="text-sm">🎯</span>
+                        </div>
+                        <div>
+                          <p className="text-[9px] text-gray-500">Goals</p>
+                          <p className="text-sm font-semibold text-gray-900">Your Plan</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground">Goals</p>
-                        <p className="font-medium">Your Plan</p>
+                      <div className="bg-white rounded-xl p-3 shadow-sm">
+                        <div className="grid grid-cols-3 gap-1.5 text-center">
+                          <div className="bg-gray-50 rounded-lg p-2">
+                            <p className="text-xs font-bold text-gray-900">10<span className="text-[8px] text-gray-400">/20</span></p>
+                            <p className="text-[8px] text-gray-500">Tasks</p>
+                          </div>
+                          <div className="bg-gray-50 rounded-lg p-2">
+                            <p className="text-xs font-bold text-gray-900">10h<span className="text-[8px] text-gray-400">/20</span></p>
+                            <p className="text-[8px] text-gray-500">Time</p>
+                          </div>
+                          <div className="bg-gray-50 rounded-lg p-2">
+                            <p className="text-xs font-bold text-gray-900">5<span className="text-[8px] text-gray-400">/10</span></p>
+                            <p className="text-[8px] text-gray-500">Goals</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-xl p-2.5 shadow-sm">
+                        <p className="text-[9px] font-medium text-gray-700 mb-2">Progress</p>
+                        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <div className="w-1/2 h-full bg-gradient-to-r from-teal-400 to-teal-600 rounded-full" />
+                        </div>
+                        <p className="text-[8px] text-gray-500 mt-1">50% complete</p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-3 text-center">
-                      <div className="bg-muted/50 rounded-xl p-2">
-                        <p className="text-lg font-semibold">10<span className="text-xs text-muted-foreground">/20</span></p>
-                        <p className="text-[10px] text-muted-foreground">Tasks</p>
-                      </div>
-                      <div className="bg-muted/50 rounded-xl p-2">
-                        <p className="text-lg font-semibold">10h<span className="text-xs text-muted-foreground">/20h</span></p>
-                        <p className="text-[10px] text-muted-foreground">Time</p>
-                      </div>
-                      <div className="bg-muted/50 rounded-xl p-2">
-                        <p className="text-lg font-semibold">5<span className="text-xs text-muted-foreground">/10</span></p>
-                        <p className="text-[10px] text-muted-foreground">Goals</p>
-                      </div>
-                    </div>
-                  </div>
+                  </RealisticPhone>
                 )}
               </div>
 
