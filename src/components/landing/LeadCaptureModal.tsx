@@ -131,20 +131,20 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
 
   return (
     <Dialog open={open} onOpenChange={() => handleClose(false)}>
-      <DialogContent className="sm:max-w-[500px] p-4 sm:p-8 rounded-2xl">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] p-4 sm:p-6 lg:p-8 rounded-2xl mx-auto">
         {!isSuccess ? (
           <>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold text-foreground">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">
                 Get Your Personalized Risk Assessment
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours.
               </p>
             </div>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
                 <FormField
                   control={form.control}
                   name="email"
@@ -157,7 +157,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                           ref={emailInputRef}
                           placeholder="you@example.com" 
                           type="email"
-                          className="rounded-lg border-border px-4 py-3"
+                          className="rounded-lg border-border px-4 py-3 h-12 text-base"
                         />
                       </FormControl>
                       <FormMessage />
@@ -178,8 +178,8 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                             className="h-5 w-5 rounded border-border mt-0.5"
                           />
                         </FormControl>
-                        <div className="space-y-1 leading-tight">
-                          <FormLabel className="text-sm font-normal text-foreground leading-snug">
+                        <div className="space-y-1 leading-tight py-1">
+                          <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
                             I authorize Artemis to securely access my electronic health records for cancer risk assessment. I understand my data is encrypted and I can revoke access anytime.{" "}
                             <a href="#" className="text-blue-600 underline hover:text-blue-700">
                               View Privacy Policy
@@ -203,8 +203,8 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                             className="h-5 w-5 rounded border-border mt-0.5"
                           />
                         </FormControl>
-                        <div className="space-y-1 leading-tight">
-                          <FormLabel className="text-sm font-normal text-foreground leading-snug">
+                        <div className="space-y-1 leading-tight py-1">
+                          <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
                             I agree to the{" "}
                             <a href="#" className="text-blue-600 underline hover:text-blue-700">
                               Terms of Service
@@ -219,7 +219,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                 
                 <Button 
                   type="submit" 
-                  className="w-full rounded-full px-8 py-4 font-semibold"
+                  className="w-full rounded-full px-8 h-12 text-sm sm:text-base font-semibold"
                   variant="hero"
                   size="lg"
                   disabled={isSubmitting || !isFormValid}
@@ -241,26 +241,26 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
             </Form>
           </>
         ) : (
-          <div className="py-8 text-center space-y-4">
-            <CheckCircle className="w-16 h-16 text-green-600 mx-auto" />
+          <div className="py-6 sm:py-8 text-center space-y-4">
+            <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-600 mx-auto" />
             
             <div>
-              <h2 className="text-2xl font-bold text-foreground">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">
                 You're on the list!
               </h2>
-              <p className="text-muted-foreground mt-2">
+              <p className="text-sm sm:text-base text-muted-foreground mt-2">
                 Check your email ({submittedEmail}) for next steps. We'll send EHR connection instructions within 24 hours.
               </p>
             </div>
             
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               You're one of 523 people getting early access to personalized cancer prevention.
             </p>
             
             <Button 
               onClick={() => handleClose(true)} 
               variant="outline" 
-              className="w-full rounded-full px-8 py-3 mt-6"
+              className="w-full rounded-full px-8 h-12 mt-6"
             >
               Close
             </Button>

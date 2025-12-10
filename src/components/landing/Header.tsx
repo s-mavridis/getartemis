@@ -21,18 +21,18 @@ export function Header({ onOpenModal }: HeaderProps) {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-background/95 backdrop-blur-md py-4" 
-          : "bg-transparent py-5"
+          ? "bg-background/95 backdrop-blur-md py-3 sm:py-4" 
+          : "bg-transparent py-4 sm:py-5"
       }`}
     >
-      <div className="container-wide">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center">
               <Share2 className="w-4 h-4 text-white" />
             </div>
-            <span className={`text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-white drop-shadow-md'}`}>
+            <span className={`text-lg sm:text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-white drop-shadow-md'}`}>
               Artemis
             </span>
           </div>
@@ -42,7 +42,7 @@ export function Header({ onOpenModal }: HeaderProps) {
             variant={scrolled ? "hero" : "heroLight"}
             size="default" 
             onClick={onOpenModal}
-            className="uppercase tracking-wider text-xs font-semibold"
+            className="uppercase tracking-wider text-xs font-semibold px-4 sm:px-6 h-10 sm:h-11"
           >
             Get Started
           </Button>
