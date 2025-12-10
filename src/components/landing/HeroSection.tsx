@@ -21,6 +21,32 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
       {/* Warm gradient background that fades into cream */}
       <div className="absolute inset-0 bg-gradient-to-b from-[hsl(30,30%,90%)] via-[hsl(38,25%,93%)] to-background" />
       
+      {/* Subtle animated background shapes */}
+      <motion.div
+        className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-[hsl(30,40%,88%)] opacity-40 blur-3xl"
+        animate={{ 
+          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-40 right-[15%] w-48 h-48 rounded-full bg-[hsl(35,35%,85%)] opacity-30 blur-3xl"
+        animate={{ 
+          y: [0, -20, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.div
+        className="absolute top-[60%] left-[20%] w-32 h-32 rounded-full bg-[hsl(25,30%,82%)] opacity-25 blur-2xl"
+        animate={{ 
+          y: [0, 15, 0],
+          x: [0, 10, 0],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
@@ -92,7 +118,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
             {/* Phone frame - realistic iPhone style */}
             <div className="relative">
               {/* Outer phone body with subtle gradient */}
-              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px]" style={{ boxShadow: '0 20px 40px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05) inset' }}>
+              <div className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] rounded-[2.8rem] p-[10px]">
                 {/* Side buttons - volume */}
                 <div className="absolute left-[-2px] top-24 w-[3px] h-8 bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute left-[-2px] top-36 w-[3px] h-12 bg-[#2a2a2a] rounded-l-sm" />
