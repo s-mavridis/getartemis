@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -17,14 +16,22 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Hero background image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      {/* Hero background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source 
+          src="https://videos.pexels.com/video-files/3571264/3571264-hd_1280_720_30fps.mp4" 
+          type="video/mp4" 
+        />
+      </video>
       
       {/* Gradient overlay that fades to cream at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-background" />
       
       <div className="relative container-wide pt-32 pb-16">
         <div className="flex flex-col items-center text-center">
