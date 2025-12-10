@@ -157,9 +157,9 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
                       <p className="text-[11px] text-[#999] uppercase tracking-[0.2em] font-medium">Risk Assessment</p>
                       
                       {/* Completed task card */}
-                      <div className="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
-                        <div className="flex items-center gap-3.5">
-                          <div className="w-7 h-7 rounded-full bg-[#4ade80] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(74,222,128,0.4)]">
+                      <div className="bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] text-left">
+                        <div className="flex items-start gap-3.5">
+                          <div className="w-7 h-7 rounded-full bg-[#4ade80] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(74,222,128,0.4)] mt-0.5">
                             <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
@@ -169,7 +169,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
                               <span className="font-semibold text-[#1a1a1a] text-[15px]">Initial Screening</span>
                               <span className="text-[11px] text-[#999] bg-[#f5f3f0] px-2.5 py-1 rounded-lg font-medium flex-shrink-0">Feb 20</span>
                             </div>
-                            <p className="text-[13px] text-[#888] mt-0.5">ArtemisAI Analysis</p>
+                            <p className="text-[13px] text-[#888] mt-0.5">Artemis Analysis</p>
                             <span className="inline-flex items-center gap-1.5 text-[11px] bg-[#dcfce7] text-[#15803d] px-2.5 py-1 rounded-lg font-semibold mt-2">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
                               Completed
@@ -179,7 +179,7 @@ export function HeroSection({ onOpenModal }: HeroSectionProps) {
                       </div>
                       
                       {/* Pending task */}
-                      <div className="bg-white/70 rounded-2xl p-4">
+                      <div className="bg-white/70 rounded-2xl p-4 text-left">
                         <div className="flex items-center gap-3.5">
                           <div className="w-7 h-7 rounded-full border-2 border-[#e0dcd5] flex-shrink-0" />
                           <div className="flex-1 min-w-0">
