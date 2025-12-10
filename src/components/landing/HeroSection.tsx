@@ -84,7 +84,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Know your<br className="sm:hidden" /> cancer risk
+            Know <span className="text-coral font-bold">YOUR</span><br className="sm:hidden" /> cancer risk
           </motion.h1>
 
           {/* Subheadline */}
