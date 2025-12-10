@@ -3,20 +3,20 @@ import { motion } from "framer-motion";
 const steps = [
   {
     number: 1,
-    title: "Sign Up for Access",
-    description: "Join our waitlist to get early access to ArtemisAI's personalized screening platform.",
+    title: "Share Your Records",
+    description: "Securely connect your electronic health records for comprehensive analysis.",
     visual: "signup"
   },
   {
     number: 2,
-    title: "Connect Your Records",
-    description: "Securely link your electronic health records for comprehensive analysis.",
+    title: "AI Analysis",
+    description: "We identify your personalized cancer and chronic disease risks using advanced algorithms.",
     visual: "connect"
   },
   {
     number: 3,
-    title: "Get Your Assessment",
-    description: "Receive personalized risk insights and screening recommendations.",
+    title: "Get Recommendations",
+    description: "Receive specific screening tests, provider connections, and your custom prevention plan.",
     visual: "assessment"
   }
 ];
@@ -103,15 +103,15 @@ export function StepsSection() {
                             {/* Screen content */}
                             <div className="pt-10 px-3 pb-4 h-full">
                               <div className="space-y-3">
-                                <p className="text-[10px] text-gray-500">Thu, 20 February</p>
-                                <p className="text-sm font-semibold text-gray-900">Good morning 🔥</p>
+                                <p className="text-[10px] text-gray-500">Connect Records</p>
+                                <p className="text-sm font-semibold text-gray-900">Share securely 🔒</p>
                                 <div className="bg-white rounded-xl p-3 shadow-sm">
                                   <div className="flex items-center gap-2 mb-3">
                                     <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
                                       <span className="text-white text-xs">✧</span>
                                     </div>
                                     <div>
-                                      <p className="text-[10px] font-medium text-gray-800">ArtemisAI</p>
+                                      <p className="text-[10px] font-medium text-gray-800">Artemis</p>
                                       <p className="text-[8px] text-gray-500">Health Platform</p>
                                     </div>
                                   </div>
@@ -123,7 +123,7 @@ export function StepsSection() {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                       </svg>
                                     </div>
-                                    <span className="text-[10px] text-gray-700">Initial Screening</span>
+                                    <span className="text-[10px] text-gray-700">HIPAA Secured</span>
                                   </div>
                                 </div>
                               </div>
@@ -160,18 +160,22 @@ export function StepsSection() {
                           <div className="w-full h-full bg-gradient-to-br from-secondary/80 to-coral/80" />
                         </div>
                         <div>
-                          <p className="font-semibold">Jane Smith</p>
-                          <p className="text-sm text-muted-foreground">janesmith@gmail.com</p>
+                          <p className="font-semibold">Analyzing...</p>
+                          <p className="text-sm text-muted-foreground">Your health data</p>
                         </div>
                       </div>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl">
-                          <span className="text-lg">👥</span>
-                          <span className="text-sm">Connect health records</span>
+                          <span className="text-lg">🧬</span>
+                          <span className="text-sm">Genetic markers</span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl">
-                          <span className="text-lg">📁</span>
-                          <span className="text-sm">Link your provider</span>
+                          <span className="text-lg">📋</span>
+                          <span className="text-sm">Medical history</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl">
+                          <span className="text-lg">🏃</span>
+                          <span className="text-sm">Lifestyle factors</span>
                         </div>
                       </div>
                     </div>
@@ -179,7 +183,7 @@ export function StepsSection() {
                   
                   {step.visual === "assessment" && (
                     <div className="bg-card rounded-2xl shadow-lg p-6 max-w-[280px]">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">TOP PRIORITY</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">YOUR RECOMMENDATIONS</p>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
                           <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
@@ -195,7 +199,7 @@ export function StepsSection() {
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/30" />
-                          <span className="text-muted-foreground">Review Results</span>
+                          <span className="text-muted-foreground">Connect to Provider</span>
                         </div>
                       </div>
                     </div>
