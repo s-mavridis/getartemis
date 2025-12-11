@@ -29,7 +29,7 @@ const steps = [
 
 export function StepsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-slate-900" id="how-it-works">
+    <section className="py-12 sm:py-16 lg:py-24 bg-dark-section" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -150,10 +150,10 @@ export function StepsSection() {
                       />
                       
                       {/* Floating badges - hidden on mobile */}
-                      <div className="hidden sm:block absolute -right-16 top-1/4 bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                      <div className="hidden sm:block absolute -right-16 top-1/4 bg-dark-section text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                         App Store
                       </div>
-                      <div className="hidden sm:block absolute -left-16 top-1/2 bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                      <div className="hidden sm:block absolute -left-16 top-1/2 bg-dark-section text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                         Play Store
                       </div>
                     </div>
