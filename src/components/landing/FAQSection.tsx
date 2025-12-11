@@ -31,7 +31,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-slate-900" id="faq">
+    <section className="py-12 sm:py-16 lg:py-24 bg-dark-section" id="faq">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-10 sm:mb-16"

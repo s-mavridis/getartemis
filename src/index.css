@@ -58,6 +58,9 @@
     --cream: 45 20% 96%;
     --cream-dark: 45 15% 92%;
     
+    /* Dark section background - #455554 */
+    --dark-section: 177 10% 30%;
+    
     /* Hero gradient colors */
     --hero-top: 30 30% 92%;
     --hero-bottom: 45 20% 96%;
