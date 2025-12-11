@@ -60,11 +60,11 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       
-      {/* Fade overlay at bottom - covers phone frame completely */}
+      {/* Fade overlay at bottom - white to match card background */}
       <div 
         className="absolute -bottom-1 -left-1 -right-1 h-28 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, rgb(15, 23, 42) 0%, rgb(15, 23, 42) 40%, transparent 100%)'
+          background: 'linear-gradient(to top, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 40%, transparent 100%)'
         }}
       />
     </div>
@@ -217,35 +217,58 @@ export function FeaturesSection() {
                     <div className="space-y-2 sm:space-y-3">
                       <div className="flex items-center gap-2">
                         <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-lg bg-amber-100 flex items-center justify-center">
-                          <span className="text-xs sm:text-sm">🎯</span>
+                          <span className="text-xs sm:text-sm">📋</span>
                         </div>
                         <div>
-                          <p className="text-[8px] sm:text-[9px] text-gray-500">Goals</p>
-                          <p className="text-xs sm:text-sm font-semibold text-gray-900">Your Plan</p>
+                          <p className="text-[8px] sm:text-[9px] text-gray-500">Screening Plan</p>
+                          <p className="text-xs sm:text-sm font-semibold text-gray-900">Your Roadmap</p>
                         </div>
                       </div>
-                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm">
-                        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 text-center">
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">10<span className="text-[7px] sm:text-[8px] text-gray-400">/20</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Tasks</p>
+                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm space-y-2">
+                        {/* Step 1 - Completed */}
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                            <svg className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">10h<span className="text-[7px] sm:text-[8px] text-gray-400">/20</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Time</p>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">5<span className="text-[7px] sm:text-[8px] text-gray-400">/10</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Goals</p>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[8px] sm:text-[9px] font-medium text-gray-800 truncate">Blood Panel</p>
+                            <p className="text-[7px] sm:text-[8px] text-gray-400">Completed</p>
                           </div>
                         </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 sm:p-2.5 shadow-sm">
-                        <p className="text-[8px] sm:text-[9px] font-medium text-gray-700 mb-1.5 sm:mb-2">Progress</p>
-                        <div className="w-full h-1.5 sm:h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div className="w-1/2 h-full bg-gradient-to-r from-teal-400 to-teal-600 rounded-full" />
+                        {/* Step 2 - Completed */}
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                            <svg className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[8px] sm:text-[9px] font-medium text-gray-800 truncate">MRI Scan</p>
+                            <p className="text-[7px] sm:text-[8px] text-gray-400">Completed</p>
+                          </div>
                         </div>
-                        <p className="text-[7px] sm:text-[8px] text-gray-500 mt-0.5 sm:mt-1">50% complete</p>
+                        {/* Step 3 - Current */}
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
+                            <span className="text-[8px] sm:text-[9px] text-white font-bold">3</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[8px] sm:text-[9px] font-medium text-gray-800 truncate">Colonoscopy</p>
+                            <p className="text-[7px] sm:text-[8px] text-orange-500">Scheduled</p>
+                          </div>
+                        </div>
+                        {/* Step 4 - Pending */}
+                        <div className="flex items-center gap-2 opacity-50">
+                          <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full border-2 border-gray-300 flex items-center justify-center flex-shrink-0">
+                            <span className="text-[8px] sm:text-[9px] text-gray-400 font-medium">4</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[8px] sm:text-[9px] font-medium text-gray-500 truncate">Follow-up</p>
+                            <p className="text-[7px] sm:text-[8px] text-gray-400">Upcoming</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </RealisticPhone>
