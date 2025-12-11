@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
 const testimonials = [
   {
@@ -53,7 +53,65 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const constraintsRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const x = useMotionValue(0);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-scroll animation for desktop
+  useEffect(() => {
+    if (isMobile) return;
+
+    const cardWidth = 460; // lg:w-[440px] + gap
+    const totalWidth = testimonials.length * cardWidth;
+    
+    let controls: ReturnType<typeof animate> | null = null;
+    
+    const startAnimation = () => {
+      const currentX = x.get();
+      const remainingDistance = -totalWidth - currentX;
+      const duration = Math.abs(remainingDistance) / 50; // Speed: 50px per second
+      
+      controls = animate(x, -totalWidth, {
+        duration,
+        ease: "linear",
+        onComplete: () => {
+          x.set(0);
+          if (!isHovered) startAnimation();
+        }
+      });
+    };
+
+    if (!isHovered) {
+      startAnimation();
+    }
+
+    return () => {
+      controls?.stop();
+    };
+  }, [isHovered, isMobile, x]);
+
+  // Handle horizontal scroll on desktop (wheel event)
+  const handleWheel = (e: React.WheelEvent) => {
+    if (isMobile) return;
+    
+    // Allow horizontal scrolling with mouse wheel
+    const delta = e.deltaY || e.deltaX;
+    const newX = x.get() - delta;
+    const cardWidth = 460;
+    const totalWidth = testimonials.length * cardWidth;
+    const clampedX = Math.max(-totalWidth + window.innerWidth, Math.min(0, newX));
+    x.set(clampedX);
+  };
 
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-muted overflow-hidden">
@@ -87,8 +145,8 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* Draggable testimonials carousel */}
-      <div ref={constraintsRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
+      {/* Mobile: Draggable carousel */}
+      <div className="lg:hidden overflow-hidden cursor-grab active:cursor-grabbing">
         <motion.div
           className="flex gap-4 sm:gap-6 pl-4 sm:pl-6"
           drag="x"
@@ -97,36 +155,7 @@ export function TestimonialsSection() {
           dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
         >
           {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={`${testimonial.name}-${index}`}
-              className="flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm select-none"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                {/* Avatar */}
-                <div className="flex-shrink-0">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 sm:w-16 sm:h-20 lg:w-20 lg:h-28 rounded-full sm:rounded-2xl object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-col justify-between flex-1">
-                  <p className="text-sm sm:text-base lg:text-lg font-medium leading-relaxed mb-4 sm:mb-6">
-                    "{testimonial.quote}"
-                  </p>
-                  <div>
-                    <p className="font-semibold text-sm sm:text-base">{testimonial.name}</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <TestimonialCard key={`mobile-${testimonial.name}-${index}`} testimonial={testimonial} />
           ))}
         </motion.div>
         
@@ -135,6 +164,64 @@ export function TestimonialsSection() {
           ← Drag to explore more →
         </p>
       </div>
+
+      {/* Desktop: Auto-scrolling with hover-to-pause and scroll control */}
+      <div 
+        ref={containerRef}
+        className="hidden lg:block overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onWheel={handleWheel}
+      >
+        <motion.div
+          ref={scrollRef}
+          className="flex gap-6 pl-6"
+          style={{ x }}
+        >
+          {/* Duplicate testimonials for seamless loop */}
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <TestimonialCard key={`desktop-${testimonial.name}-${index}`} testimonial={testimonial} />
+          ))}
+        </motion.div>
+        
+        {/* Scroll hint */}
+        <p className="text-center text-sm text-muted-foreground mt-6 px-4">
+          Hover to pause • Scroll to navigate
+        </p>
+      </div>
     </section>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+  return (
+    <motion.div
+      className="flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm select-none"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        {/* Avatar */}
+        <div className="flex-shrink-0">
+          <img 
+            src={testimonial.avatar} 
+            alt={testimonial.name}
+            className="w-12 h-12 sm:w-16 sm:h-20 lg:w-20 lg:h-28 rounded-full sm:rounded-2xl object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-col justify-between flex-1">
+          <p className="text-sm sm:text-base lg:text-lg font-medium leading-relaxed mb-4 sm:mb-6">
+            "{testimonial.quote}"
+          </p>
+          <div>
+            <p className="font-semibold text-sm sm:text-base">{testimonial.name}</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

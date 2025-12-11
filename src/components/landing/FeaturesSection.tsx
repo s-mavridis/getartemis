@@ -104,7 +104,7 @@ export function FeaturesSection() {
         </motion.div>
 
         {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -116,7 +116,7 @@ export function FeaturesSection() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               {/* Visual area */}
-              <div className="h-72 sm:h-80 lg:h-96 mb-4 sm:mb-6 flex items-end justify-center pt-12 sm:pt-16">
+              <div className="h-72 sm:h-80 lg:h-64 mb-4 sm:mb-6 flex items-end justify-center pt-12 sm:pt-16 lg:pt-8">
                 {feature.visual === "risk" && (
                   <RealisticPhone>
                     <div className="space-y-2 sm:space-y-3">
@@ -207,7 +207,7 @@ export function FeaturesSection() {
                     <img 
                       src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face" 
                       alt="Stanford physician" 
-                      className="rounded-xl h-48 sm:h-56 w-48 sm:w-56 object-cover mb-4 shadow-lg"
+                      className="rounded-xl h-48 sm:h-56 lg:h-40 w-48 sm:w-56 lg:w-40 object-cover mb-4 shadow-lg"
                     />
                   </div>
                 )}
