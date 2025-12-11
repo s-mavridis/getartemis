@@ -93,7 +93,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       <div 
         className="absolute inset-0 sm:hidden" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.4) 85%, rgba(245,241,235,0.7) 92%, rgb(245,241,235) 98%, rgb(245,241,235) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.4) 85%, rgba(247,246,242,0.7) 92%, rgb(247,246,242) 98%, rgb(247,246,242) 100%)'
         }}
       />
       
@@ -101,7 +101,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       <div 
         className="absolute inset-0 hidden sm:block" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0.25) 52%, rgba(0,0,0,0.3) 60%, rgba(245,241,235,0.4) 66%, rgba(245,241,235,0.8) 74%, rgb(245,241,235) 82%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0.25) 52%, rgba(0,0,0,0.3) 60%, rgba(247,246,242,0.4) 66%, rgba(247,246,242,0.8) 74%, rgb(247,246,242) 82%)'
         }}
       />
       
@@ -287,7 +287,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             <div 
               className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, rgb(245,241,235) 0%, rgb(245,241,235) 50%, transparent 100%)'
+                background: 'linear-gradient(to top, rgb(247,246,242) 0%, rgb(247,246,242) 50%, transparent 100%)'
               }}
             />
           </motion.div>
