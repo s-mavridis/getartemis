@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { getAdSource } from "@/lib/utm";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -12,6 +14,7 @@ interface HeroSectionProps {
 export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoOpacity, setVideoOpacity] = useState(1);
+  const [hasSubmittedEmail, setHasSubmittedEmail] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -34,6 +37,33 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
     return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, []);
 
+  // Save email on blur (email_only = true)
+  const handleEmailBlur = async () => {
+    if (!heroEmail || hasSubmittedEmail) return;
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(heroEmail)) return;
+
+    try {
+      const adSource = getAdSource();
+      
+      // Upsert with email_only = true (will be updated to false when modal is completed)
+      await supabase.from("leads").upsert(
+        {
+          email: heroEmail,
+          ad_source: adSource,
+          email_only: true,
+        },
+        { onConflict: 'email' }
+      );
+      
+      setHasSubmittedEmail(true);
+      console.log('hero_email_captured', { email_only: true });
+    } catch (error) {
+      console.error("Error capturing email:", error);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,7 +124,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We identify your risks based on YOUR health data—not generic guidelines—and connect you to the right tests.
+            We identify your risks based on YOUR health data—not generic guidelines—and connect you to ALL available screening options.
           </motion.p>
 
           {/* Email input with button */}
@@ -111,6 +141,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 placeholder="Your email address"
                 value={heroEmail}
                 onChange={(e) => onHeroEmailChange(e.target.value)}
+                onBlur={handleEmailBlur}
                 className="flex-1 w-full px-4 sm:px-6 py-3 h-12 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base text-center sm:text-left rounded-xl sm:rounded-none"
               />
               <Button 
