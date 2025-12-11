@@ -3,12 +3,12 @@ import { Droplet, Scan, Microscope } from "lucide-react";
 
 const stats = [
   {
-    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?w=800&h=600&fit=crop",
     number: "86%",
     label: "of cancers are found accidentally"
   },
   {
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
     number: "2%",
     label: "of cancer types have screening protocols in the US"
   },
@@ -36,7 +36,7 @@ const screeningModalities = [
     icon: Microscope,
     title: "Established Standards",
     description: "Proven screening methods recommended by medical guidelines",
-    examples: ["Colonoscopy", "Mammography", "Pap Smear", "PSA Test"]
+    examples: ["Colonoscopy", "Mammography", "Pap Smear", "PSA Test", "Low-Dose CT"]
   }
 ];
 
