@@ -1,30 +1,34 @@
 import { motion } from "framer-motion";
-import { Shield, Clock, Users, Target } from "lucide-react";
+import { Shield, Clock, GraduationCap, ClipboardCheck } from "lucide-react";
 
 const features = [
   {
     icon: Shield,
     title: "AI-Powered Risk Analysis",
     description: "Comprehensive cancer risk assessment based on your genetics, family history, lifestyle, and medical records.",
-    visual: "risk"
+    visual: "risk",
+    showPhone: true
   },
   {
     icon: Clock,
     title: "Proactive Screening",
-    description: "Catch potential issues early with AI-powered recommendations for the right screening tests at the right time.",
-    visual: "detection"
+    description: "Access to ALL cancer screening technologies—blood tests, whole body MRI, low-dose CT, and more. We're test-agnostic, you're not locked into one option.",
+    visual: "detection",
+    showPhone: true
   },
   {
-    icon: Users,
+    icon: GraduationCap,
     title: "Stanford-Backed Science",
     description: "Every assessment is built on research validated by 70+ oncologists and screening specialists from leading institutions.",
-    visual: "experts"
+    visual: "experts",
+    showPhone: false
   },
   {
-    icon: Target,
+    icon: ClipboardCheck,
     title: "Your Custom Roadmap",
-    description: "Tailored screening schedules and actionable next steps—no more guessing what tests you need or when.",
-    visual: "plans"
+    description: "Tailored screening schedules including out-of-pocket options when insurance doesn't cover. Plus direct access to Stanford physicians who guide you through every step.",
+    visual: "plans",
+    showPhone: false
   }
 ];
 
@@ -203,82 +207,31 @@ export function FeaturesSection() {
                 )}
                 
                 {feature.visual === "experts" && (
-                  <RealisticPhone>
-                    <div className="space-y-2 sm:space-y-3">
-                      <p className="text-xs sm:text-sm font-semibold text-gray-900">My Health Team</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex -space-x-2">
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 border-2 border-[#f8f7f4]" />
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 border-2 border-[#f8f7f4]" />
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 border-2 border-[#f8f7f4]" />
-                        </div>
-                        <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-amber-100 flex items-center justify-center">
-                          <span className="text-xs sm:text-sm">🏆</span>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm space-y-1.5 sm:space-y-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-green-500 flex items-center justify-center">
-                            <svg className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-[9px] sm:text-[10px] text-gray-700">Expert Reviewed</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-blue-500 flex items-center justify-center">
-                            <svg className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-[9px] sm:text-[10px] text-gray-700">Stanford Verified</span>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 sm:p-2.5 shadow-sm">
-                        <p className="text-[8px] sm:text-[9px] font-medium text-gray-700 mb-0.5 sm:mb-1">Latest Review</p>
-                        <p className="text-[7px] sm:text-[8px] text-gray-500">Dr. Chen • 2 days ago</p>
-                      </div>
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <GraduationCap className="w-16 h-16 text-[hsl(16,85%,55%)] mb-6" />
+                    <div className="text-center space-y-2">
+                      <p className="text-sm font-semibold text-foreground">70+ Oncologists</p>
+                      <p className="text-xs text-muted-foreground">Stanford • Mayo • MD Anderson</p>
                     </div>
-                  </RealisticPhone>
+                    {/* Placeholder for photo */}
+                    <div className="h-24 w-full max-w-[200px] bg-muted-foreground/10 rounded-lg mt-6 flex items-center justify-center">
+                      <p className="text-xs text-muted-foreground italic">[Stanford physician photo to be added]</p>
+                    </div>
+                  </div>
                 )}
                 
                 {feature.visual === "plans" && (
-                  <RealisticPhone>
-                    <div className="space-y-2 sm:space-y-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-lg bg-amber-100 flex items-center justify-center">
-                          <span className="text-xs sm:text-sm">🎯</span>
-                        </div>
-                        <div>
-                          <p className="text-[8px] sm:text-[9px] text-gray-500">Goals</p>
-                          <p className="text-xs sm:text-sm font-semibold text-gray-900">Your Plan</p>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm">
-                        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 text-center">
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">10<span className="text-[7px] sm:text-[8px] text-gray-400">/20</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Tasks</p>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">10h<span className="text-[7px] sm:text-[8px] text-gray-400">/20</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Time</p>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-1.5 sm:p-2">
-                            <p className="text-[10px] sm:text-xs font-bold text-gray-900">5<span className="text-[7px] sm:text-[8px] text-gray-400">/10</span></p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Goals</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 sm:p-2.5 shadow-sm">
-                        <p className="text-[8px] sm:text-[9px] font-medium text-gray-700 mb-1.5 sm:mb-2">Progress</p>
-                        <div className="w-full h-1.5 sm:h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div className="w-1/2 h-full bg-gradient-to-r from-teal-400 to-teal-600 rounded-full" />
-                        </div>
-                        <p className="text-[7px] sm:text-[8px] text-gray-500 mt-0.5 sm:mt-1">50% complete</p>
-                      </div>
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <ClipboardCheck className="w-16 h-16 text-[hsl(16,85%,55%)] mb-6" />
+                    <div className="text-center space-y-2">
+                      <p className="text-sm font-semibold text-foreground">Personalized Plan</p>
+                      <p className="text-xs text-muted-foreground">Insurance + Out-of-Pocket Options</p>
                     </div>
-                  </RealisticPhone>
+                    {/* Placeholder for photo */}
+                    <div className="h-24 w-full max-w-[200px] bg-muted-foreground/10 rounded-lg mt-6 flex items-center justify-center">
+                      <p className="text-xs text-muted-foreground italic">[Stanford physician photo to be added]</p>
+                    </div>
+                  </div>
                 )}
               </div>
 

@@ -1,0 +1,1 @@
+ALTER TABLE public.leads ADD COLUMN email_only boolean DEFAULT false;

@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Share2, GraduationCap, ShieldCheck } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import { Share2, GraduationCap, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { useRef, useCallback } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { getAdSource } from "@/lib/utm";
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -10,30 +12,33 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoOpacity, setVideoOpacity] = useState(1);
+  const hasTrackedEmail = useRef(false);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+  // Save email to Supabase when user leaves the input (email_only = true)
+  const handleEmailBlur = useCallback(async () => {
+    if (!heroEmail || hasTrackedEmail.current) return;
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(heroEmail)) return;
 
-    const handleTimeUpdate = () => {
-      const timeLeft = video.duration - video.currentTime;
-      // Fade out during the last 2 seconds
-      if (timeLeft < 2) {
-        setVideoOpacity(timeLeft / 2);
-      } else if (video.currentTime < 2) {
-        // Fade in during the first 2 seconds
-        setVideoOpacity(video.currentTime / 2);
-      } else {
-        setVideoOpacity(1);
-      }
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
-  }, []);
-
+    hasTrackedEmail.current = true;
+    
+    try {
+      const adSource = getAdSource();
+      await supabase.from("leads").upsert(
+        {
+          email: heroEmail,
+          ad_source: adSource,
+          email_only: true,
+        },
+        { onConflict: 'email' }
+      );
+      console.log('hero_email_captured', { email_only: true });
+    } catch (error) {
+      console.error("Error capturing email:", error);
+    }
+  }, [heroEmail]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,36 +47,17 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
   return (
     <section className="relative min-h-[70vh] sm:min-h-screen overflow-hidden">
-      {/* Hero background video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-        style={{ opacity: videoOpacity }}
-      >
-        <source 
-          src="https://videos.pexels.com/video-files/3127278/3127278-hd_1920_1080_24fps.mp4" 
-          type="video/mp4" 
-        />
-      </video>
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black" />
       
-      {/* Gradient overlay - mobile (fade starts later for trust badges) */}
-      <div 
-        className="absolute inset-0 sm:hidden" 
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.4) 85%, rgba(0,0,0,0.2) 92%, rgb(247,246,243) 98%, rgb(247,246,243) 100%)'
-        }}
-      />
+      {/* Subtle noise texture */}
+      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }} />
       
-      {/* Gradient overlay - desktop (cream matches page background hsl(45, 20%, 96%)) */}
+      {/* Bottom fade to cream */}
       <div 
-        className="absolute inset-0 hidden sm:block" 
+        className="absolute inset-x-0 bottom-0 h-32 sm:h-48"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0.25) 52%, rgba(0,0,0,0.1) 60%, rgba(247,246,243,0.6) 66%, rgba(247,246,243,0.9) 74%, rgba(247,246,243,1) 82%)'
+          background: 'linear-gradient(to top, rgb(247,246,243) 0%, transparent 100%)'
         }}
       />
       
@@ -79,7 +65,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6 drop-shadow-lg"
+            className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -89,12 +75,12 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Subheadline */}
           <motion.p 
-            className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-6 sm:mb-10 drop-shadow-md leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-6 sm:mb-10 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We identify your risks based on YOUR health data—not generic guidelines—and connect you to the right tests.
+            We identify your risks based on YOUR health data—not generic guidelines—and connect you to ALL available screening options, not just one test.
           </motion.p>
 
           {/* Email input with button */}
@@ -111,6 +97,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 placeholder="Your email address"
                 value={heroEmail}
                 onChange={(e) => onHeroEmailChange(e.target.value)}
+                onBlur={handleEmailBlur}
                 className="flex-1 w-full px-4 sm:px-6 py-3 h-12 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base text-center sm:text-left rounded-xl sm:rounded-none"
               />
               <Button 
@@ -126,7 +113,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
 
           {/* Trust badges */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 sm:gap-x-6 text-xs sm:text-sm text-white/90 mb-8 sm:mb-12 lg:mb-16 drop-shadow-md"
+            className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 sm:gap-x-6 text-xs sm:text-sm text-white/90 mb-8 sm:mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -162,6 +149,10 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 </div>
               </div>
               <span>Validated by 100+ Experts</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4" />
+              <span>ALL screening options</span>
             </div>
           </motion.div>
 
