@@ -111,7 +111,7 @@ export function StepsSection() {
       </div>
 
       {/* Desktop Layout - Sticky left, scrolling right */}
-      <div className="hidden lg:block relative" style={{ minHeight: `${steps.length * 100}vh` }}>
+      <div className="hidden lg:block relative" style={{ minHeight: `${steps.length * 70}vh` }}>
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex">
             {/* Sticky left side */}

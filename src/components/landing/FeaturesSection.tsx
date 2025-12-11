@@ -160,54 +160,21 @@ export function FeaturesSection() {
                 )}
                 
                 {feature.visual === "detection" && (
-                  <RealisticPhone>
-                    <div className="space-y-2 sm:space-y-3">
-                      <p className="text-[9px] sm:text-[10px] text-gray-500">Thu, 20 February</p>
-                      <p className="text-xs sm:text-sm font-semibold text-gray-900">Good morning 👋</p>
-                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm">
-                        <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
-                          <div className="w-6 sm:w-7 h-6 sm:h-7 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-                            <span className="text-white text-[10px] sm:text-xs">✧</span>
-                          </div>
-                          <div>
-                            <p className="text-[9px] sm:text-[10px] font-medium text-gray-800">Health Score</p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Artemis</p>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 text-center">
-                          <div className="bg-gray-50 rounded-lg p-1 sm:p-1.5">
-                            <p className="text-xs sm:text-sm font-bold text-gray-900">92</p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Score</p>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-1 sm:p-1.5">
-                            <p className="text-xs sm:text-sm font-bold text-green-600">0</p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Alerts</p>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-1 sm:p-1.5">
-                            <p className="text-xs sm:text-sm font-bold text-gray-900">4</p>
-                            <p className="text-[7px] sm:text-[8px] text-gray-500">Tasks</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 sm:p-2.5 shadow-sm">
-                        <p className="text-[8px] sm:text-[9px] font-medium text-gray-700 mb-1 sm:mb-1.5">Next Screening</p>
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 sm:w-5 h-4 sm:h-5 bg-blue-100 rounded-full flex items-center justify-center">
-                            <span className="text-[8px] sm:text-[10px]">📅</span>
-                          </div>
-                          <p className="text-[8px] sm:text-[9px] text-gray-600">March 15, 2025</p>
-                        </div>
-                      </div>
-                    </div>
-                  </RealisticPhone>
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <img 
+                      src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=500&h=600&fit=crop" 
+                      alt="Blood test for cancer screening" 
+                      className="rounded-xl h-48 sm:h-56 lg:h-52 w-auto object-cover shadow-lg"
+                    />
+                  </div>
                 )}
                 
                 {feature.visual === "experts" && (
                   <div className="flex flex-col items-center justify-center h-full">
                     <img 
-                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face" 
+                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=600&fit=crop&crop=face" 
                       alt="Stanford physician" 
-                      className="rounded-xl h-48 sm:h-56 lg:h-40 w-48 sm:w-56 lg:w-40 object-cover mb-4 shadow-lg"
+                      className="rounded-xl h-48 sm:h-56 lg:h-52 w-auto object-cover shadow-lg"
                     />
                   </div>
                 )}
