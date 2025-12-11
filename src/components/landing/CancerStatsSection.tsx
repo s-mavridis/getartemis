@@ -60,11 +60,12 @@ export function CancerStatsSection() {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.number}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+              className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <img 
                 src={stat.image} 
@@ -92,11 +93,12 @@ export function CancerStatsSection() {
           {screeningModalities.map((modality, index) => (
             <motion.div
               key={modality.title}
-              className="bg-white rounded-xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+              className="bg-white rounded-2xl sm:rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <modality.icon className="w-10 h-10 text-orange-500 mb-4" />
               <h4 className="text-xl font-bold mb-3">{modality.title}</h4>
