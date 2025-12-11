@@ -89,19 +89,19 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         />
       </video>
       
-      {/* Gradient overlay - mobile (fade starts later for trust badges) */}
+      {/* Gradient overlay - mobile (fades to dark slate-950) */}
       <div 
         className="absolute inset-0 sm:hidden" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.4) 85%, rgba(0,0,0,0.2) 92%, rgb(247,246,243) 98%, rgb(247,246,243) 100%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.6) 85%, rgba(2,6,23,0.9) 92%, rgb(2,6,23) 98%, rgb(2,6,23) 100%)'
         }}
       />
       
-      {/* Gradient overlay - desktop (cream matches page background hsl(45, 20%, 96%)) */}
+      {/* Gradient overlay - desktop (fades to dark slate-950) */}
       <div 
         className="absolute inset-0 hidden sm:block" 
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0.25) 52%, rgba(0,0,0,0.1) 60%, rgba(247,246,243,0.6) 66%, rgba(247,246,243,0.9) 74%, rgba(247,246,243,1) 82%)'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0.25) 52%, rgba(0,0,0,0.3) 60%, rgba(2,6,23,0.6) 66%, rgba(2,6,23,0.9) 74%, rgb(2,6,23) 82%)'
         }}
       />
       
@@ -283,11 +283,11 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
               </div>
             </div>
             
-            {/* Clean fade overlay - matches page background */}
+            {/* Clean fade overlay - matches dark page background (slate-950) */}
             <div 
               className="absolute -bottom-1 -left-1 -right-1 h-40 pointer-events-none"
               style={{
-                background: 'linear-gradient(to top, rgb(247,246,243) 0%, rgb(247,246,243) 50%, transparent 100%)'
+                background: 'linear-gradient(to top, rgb(2,6,23) 0%, rgb(2,6,23) 50%, transparent 100%)'
               }}
             />
           </motion.div>

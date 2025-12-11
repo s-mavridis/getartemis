@@ -9,8 +9,8 @@ const stats = [
   },
   {
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop",
-    number: "5",
-    label: "cancer types have screening in the US"
+    number: "2%",
+    label: "of cancer types have screening protocols in the US"
   },
   {
     image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop",
