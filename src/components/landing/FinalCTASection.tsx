@@ -7,10 +7,10 @@ interface FinalCTASectionProps {
 
 export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-white">
+    <section className="py-12 sm:py-16 lg:py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="bg-dark-section rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-center"
+          className="bg-foreground rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
