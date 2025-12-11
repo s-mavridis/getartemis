@@ -14,7 +14,6 @@ interface HeroSectionProps {
 export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoOpacity, setVideoOpacity] = useState(1);
-  const [hasSubmittedEmail, setHasSubmittedEmail] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -37,13 +36,13 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
     return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, []);
 
-  // Save email on blur (email_only = true)
-  const handleEmailBlur = async () => {
-    if (!heroEmail || hasSubmittedEmail) return;
+  // Save email when clicking Join Waitlist (before opening modal)
+  const saveEmailOnly = async (email: string) => {
+    if (!email) return;
     
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(heroEmail)) return;
+    if (!emailRegex.test(email)) return;
 
     try {
       const adSource = getAdSource();
@@ -51,22 +50,24 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
       // Upsert with email_only = true (will be updated to false when modal is completed)
       await supabase.from("leads").upsert(
         {
-          email: heroEmail,
+          email: email,
           ad_source: adSource,
           email_only: true,
         },
         { onConflict: 'email' }
       );
       
-      setHasSubmittedEmail(true);
       console.log('hero_email_captured', { email_only: true });
     } catch (error) {
       console.error("Error capturing email:", error);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Save email immediately when user clicks Join Waitlist
+    await saveEmailOnly(heroEmail);
+    // Then open the modal
     onOpenModal();
   };
 
@@ -142,7 +143,6 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 placeholder="Your email address"
                 value={heroEmail}
                 onChange={(e) => onHeroEmailChange(e.target.value)}
-                onBlur={handleEmailBlur}
                 className="flex-1 w-full px-4 sm:px-6 py-3 h-12 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base text-center sm:text-left rounded-xl sm:rounded-none"
               />
               <Button 
