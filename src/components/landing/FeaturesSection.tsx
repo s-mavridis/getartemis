@@ -164,7 +164,7 @@ export function FeaturesSection() {
                     <img 
                       src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=500&h=800&fit=crop" 
                       alt="Blood test for cancer screening" 
-                      className="rounded-xl h-48 sm:h-56 lg:h-[380px] w-auto object-cover shadow-lg"
+                      className="rounded-xl h-64 sm:h-72 lg:h-[380px] w-auto object-cover shadow-lg"
                     />
                   </div>
                 )}
@@ -174,7 +174,7 @@ export function FeaturesSection() {
                     <img 
                       src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=800&fit=crop&crop=face" 
                       alt="Stanford physician" 
-                      className="rounded-xl h-48 sm:h-56 lg:h-[380px] w-auto object-cover shadow-lg"
+                      className="rounded-xl h-64 sm:h-72 lg:h-[380px] w-auto object-cover shadow-lg"
                     />
                   </div>
                 )}
