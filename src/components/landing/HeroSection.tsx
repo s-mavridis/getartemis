@@ -115,7 +115,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk,</span>
-            <span className="text-3xl sm:text-4xl lg:text-5xl block mt-1">get screened</span>
+            <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">get screened</span>
           </motion.h1>
 
           {/* Subheadline */}
