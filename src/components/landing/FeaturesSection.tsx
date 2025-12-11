@@ -11,7 +11,7 @@ const features = [
   {
     icon: Clock,
     title: "Proactive Screening",
-    description: "Catch potential issues early with AI-powered recommendations for the right screening tests at the right time.",
+    description: "Access ALL cancer screening technologies—blood tests, whole body MRI, colonoscopy, and more. We're test-agnostic and show you every option.",
     visual: "detection"
   },
   {
@@ -23,7 +23,7 @@ const features = [
   {
     icon: Target,
     title: "Your Custom Roadmap",
-    description: "Tailored screening schedules and actionable next steps—no more guessing what tests you need or when.",
+    description: "Tailored screening schedules including out-of-pocket options when insurance doesn't cover. Plus direct connection to Stanford physicians.",
     visual: "plans"
   }
 ];
@@ -64,7 +64,7 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
       <div 
         className="absolute -bottom-1 -left-1 -right-1 h-28 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, hsl(var(--muted)) 0%, hsl(var(--muted)) 40%, transparent 100%)'
+          background: 'linear-gradient(to top, rgb(15, 23, 42) 0%, rgb(15, 23, 42) 40%, transparent 100%)'
         }}
       />
     </div>
@@ -73,7 +73,7 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
 
 export function FeaturesSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-background" id="services">
+    <section className="py-12 sm:py-16 lg:py-24 bg-slate-900" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -84,7 +84,7 @@ export function FeaturesSection() {
           transition={{ duration: 0.7 }}
         >
           <motion.h2 
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display mb-4 sm:mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display text-white mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,7 +93,7 @@ export function FeaturesSection() {
             Everything You Need<br className="hidden sm:block" /><span className="sm:hidden"> </span>for Early Detection.
           </motion.h2>
           <motion.p 
-            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
+            className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -108,7 +108,7 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="group bg-muted rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 hover:shadow-lg transition-shadow duration-300"
+              className="group bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -203,43 +203,13 @@ export function FeaturesSection() {
                 )}
                 
                 {feature.visual === "experts" && (
-                  <RealisticPhone>
-                    <div className="space-y-2 sm:space-y-3">
-                      <p className="text-xs sm:text-sm font-semibold text-gray-900">My Health Team</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex -space-x-2">
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 border-2 border-[#f8f7f4]" />
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-sky-400 to-blue-500 border-2 border-[#f8f7f4]" />
-                          <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 border-2 border-[#f8f7f4]" />
-                        </div>
-                        <div className="w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-amber-100 flex items-center justify-center">
-                          <span className="text-xs sm:text-sm">🏆</span>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm space-y-1.5 sm:space-y-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-green-500 flex items-center justify-center">
-                            <svg className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-[9px] sm:text-[10px] text-gray-700">Expert Reviewed</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-blue-500 flex items-center justify-center">
-                            <svg className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-[9px] sm:text-[10px] text-gray-700">Stanford Verified</span>
-                        </div>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 sm:p-2.5 shadow-sm">
-                        <p className="text-[8px] sm:text-[9px] font-medium text-gray-700 mb-0.5 sm:mb-1">Latest Review</p>
-                        <p className="text-[7px] sm:text-[8px] text-gray-500">Dr. Chen • 2 days ago</p>
-                      </div>
-                    </div>
-                  </RealisticPhone>
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <img 
+                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face" 
+                      alt="Stanford physician" 
+                      className="rounded-xl h-48 sm:h-56 w-48 sm:w-56 object-cover mb-4 shadow-lg"
+                    />
+                  </div>
                 )}
                 
                 {feature.visual === "plans" && (

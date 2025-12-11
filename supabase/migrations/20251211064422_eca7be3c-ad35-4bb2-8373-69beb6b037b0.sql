@@ -1,0 +1,1 @@
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS email_only boolean DEFAULT false;
