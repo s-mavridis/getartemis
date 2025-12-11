@@ -3,12 +3,12 @@ import { Droplet, Scan, Microscope } from "lucide-react";
 
 const stats = [
   {
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=800&h=600&fit=crop",
     number: "86%",
     label: "of cancers are found accidentally"
   },
   {
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop",
     number: "2%",
     label: "of cancer types have screening protocols in the US"
   },
@@ -60,7 +60,7 @@ export function CancerStatsSection() {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.number}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl"
+              className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -92,7 +92,7 @@ export function CancerStatsSection() {
           {screeningModalities.map((modality, index) => (
             <motion.div
               key={modality.title}
-              className="bg-white rounded-xl p-6"
+              className="bg-white rounded-xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
