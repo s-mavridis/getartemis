@@ -23,17 +23,17 @@ export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Don't Wait for Symptoms
+            Join 500+ People Getting Early Access
           </motion.h2>
           
           <motion.p 
-            className="text-sm sm:text-base text-muted-foreground mt-2 max-w-xl mx-auto"
+            className="text-sm sm:text-base text-muted-foreground mt-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            86% of cancers are found by accident. Join 500+ people taking control with personalized screening.
+            Take control of your cancer prevention journey today.
           </motion.p>
           
           <motion.div

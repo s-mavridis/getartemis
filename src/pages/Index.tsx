@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
-import { CancerStatsSection } from "@/components/landing/CancerStatsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { StepsSection } from "@/components/landing/StepsSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
@@ -51,7 +50,6 @@ const Index = () => {
           heroEmail={heroEmail}
           onHeroEmailChange={handleHeroEmailChange}
         />
-        <CancerStatsSection />
         <FeaturesSection />
         <StepsSection />
         <TestimonialsSection />

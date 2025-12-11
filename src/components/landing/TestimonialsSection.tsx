@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 const testimonials = [
   {
-    quote: "I always felt anxious about cancer screening, yet Artemis gave me clarity and peace of mind. Truly life-changing!",
+    quote: "I always felt anxious about cancer screening, yet ArtemisAI gave me clarity and peace of mind. Truly life-changing!",
     name: "Sarah Chen",
     role: "Early Access User",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
@@ -21,7 +21,7 @@ const testimonials = [
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "Artemis's expert validation process sets it apart. Knowing real oncologists review my assessment is invaluable.",
+    quote: "ArtemisAI's expert validation process sets it apart. Knowing real oncologists review my assessment is invaluable.",
     name: "David Park",
     role: "Early Access User",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
@@ -39,7 +39,7 @@ const testimonials = [
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
   },
   {
-    quote: "I've recommended Artemis to all my patients. It's exactly what preventive healthcare needs.",
+    quote: "I've recommended ArtemisAI to all my patients. It's exactly what preventive healthcare needs.",
     name: "Dr. Amanda Foster",
     role: "Oncologist",
     avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
@@ -66,9 +66,6 @@ export function TestimonialsSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
-          {/* Beta user note */}
-          <p className="text-xs text-muted-foreground mb-4">(Beta user testimonials - early access participants)</p>
-          
           <motion.h2 
             className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
@@ -85,7 +82,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Artemis is transforming the way people approach cancer prevention. Here's what some of our users have to say about their experience.
+            ArtemisAI is transforming the way people approach cancer prevention. Here's what some of our users have to say about their experience.
           </motion.p>
         </motion.div>
       </div>

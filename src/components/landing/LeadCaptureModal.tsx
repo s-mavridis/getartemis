@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -79,20 +78,24 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
     try {
       const adSource = getAdSource();
       
-      // Upsert: if email exists, update consent fields; otherwise insert
-      const { error } = await supabase.from("leads").upsert(
-        {
-          email: data.email,
-          ad_source: adSource,
-          ehr_consent_given: true,
-          ehr_consent_timestamp: new Date().toISOString(),
-          email_only: false,
-        },
-        { onConflict: 'email' }
-      );
+      const { error } = await supabase.from("leads").insert({
+        email: data.email,
+        ad_source: adSource,
+        ehr_consent_given: true,
+        ehr_consent_timestamp: new Date().toISOString(),
+      });
 
       if (error) {
-        throw error;
+        if (error.code === "23505") {
+          toast({
+            title: "Already registered",
+            description: "This email is already registered.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+        return;
       }
 
       console.log('consent_given');
@@ -178,9 +181,9 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                         <div className="space-y-1 leading-tight py-1">
                           <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
                             I authorize Artemis to securely access my electronic health records for cancer risk assessment. I understand my data is encrypted and I can revoke access anytime.{" "}
-                            <Link to="/privacy" className="text-blue-600 underline hover:text-blue-700">
+                            <a href="#" className="text-blue-600 underline hover:text-blue-700">
                               View Privacy Policy
-                            </Link>
+                            </a>
                           </FormLabel>
                           <FormMessage />
                         </div>
@@ -203,9 +206,9 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
                         <div className="space-y-1 leading-tight py-1">
                           <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
                             I agree to the{" "}
-                            <Link to="/terms" className="text-blue-600 underline hover:text-blue-700">
+                            <a href="#" className="text-blue-600 underline hover:text-blue-700">
                               Terms of Service
-                            </Link>
+                            </a>
                           </FormLabel>
                           <FormMessage />
                         </div>
