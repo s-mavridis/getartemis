@@ -73,7 +73,7 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
 
 export function FeaturesSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-slate-900" id="services">
+    <section className="py-12 sm:py-16 lg:py-24 bg-dark-section" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
