@@ -42,7 +42,7 @@ const screeningModalities = [
 
 export function CancerStatsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-slate-950">
+    <section className="py-12 sm:py-16 lg:py-20 bg-dark-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.h2 
