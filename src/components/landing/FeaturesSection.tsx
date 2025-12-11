@@ -73,7 +73,7 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
 
 export function FeaturesSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-dark-section" id="services">
+    <section className="py-12 sm:py-16 lg:py-24 bg-cream" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -84,7 +84,7 @@ export function FeaturesSection() {
           transition={{ duration: 0.7 }}
         >
           <motion.h2 
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display text-white mb-4 sm:mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display text-foreground mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,7 +93,7 @@ export function FeaturesSection() {
             Everything You Need<br className="hidden sm:block" /><span className="sm:hidden"> </span>for Early Detection.
           </motion.h2>
           <motion.p 
-            className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

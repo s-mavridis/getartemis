@@ -42,11 +42,11 @@ const screeningModalities = [
 
 export function CancerStatsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-dark-section">
+    <section className="py-12 sm:py-16 lg:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.h2 
-          className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-center text-white mb-12 sm:mb-16"
+          className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-center text-foreground mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -79,7 +79,7 @@ export function CancerStatsSection() {
 
         {/* Screening modalities */}
         <motion.h3 
-          className="text-2xl sm:text-3xl font-bold text-center text-white mb-8 sm:mb-12"
+          className="text-2xl sm:text-3xl font-bold text-center text-foreground mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

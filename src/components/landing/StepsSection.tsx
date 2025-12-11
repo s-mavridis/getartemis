@@ -29,7 +29,7 @@ const steps = [
 
 export function StepsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-dark-section" id="how-it-works">
+    <section className="py-12 sm:py-16 lg:py-24 bg-cream" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -40,7 +40,7 @@ export function StepsSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.h2 
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display text-white mb-4 sm:mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display text-foreground mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -49,7 +49,7 @@ export function StepsSection() {
             Get started in<br />4 simple steps.
           </motion.h2>
           <motion.p 
-            className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -76,11 +76,11 @@ export function StepsSection() {
             >
               {/* Timeline */}
               <div className="flex flex-col items-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-slate-900 flex items-center justify-center text-lg sm:text-xl font-semibold z-10 flex-shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-white flex items-center justify-center text-lg sm:text-xl font-semibold z-10 flex-shrink-0">
                   {step.number}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="w-px flex-1 bg-slate-700 border-dashed border-l-2 border-slate-600 mt-4" />
+                  <div className="w-px flex-1 bg-muted border-dashed border-l-2 border-muted-foreground/30 mt-4" />
                 )}
               </div>
 
@@ -150,10 +150,10 @@ export function StepsSection() {
                       />
                       
                       {/* Floating badges - hidden on mobile */}
-                      <div className="hidden sm:block absolute -right-16 top-1/4 bg-dark-section text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                      <div className="hidden sm:block absolute -right-16 top-1/4 bg-foreground text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                         App Store
                       </div>
-                      <div className="hidden sm:block absolute -left-16 top-1/2 bg-dark-section text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                      <div className="hidden sm:block absolute -left-16 top-1/2 bg-foreground text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                         Play Store
                       </div>
                     </div>
