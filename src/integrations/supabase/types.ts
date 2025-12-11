@@ -22,6 +22,7 @@ export type Database = {
           ehr_consent_given: boolean | null
           ehr_consent_timestamp: string | null
           email: string
+          email_only: boolean | null
           id: string
           phone: string | null
         }
@@ -32,6 +33,7 @@ export type Database = {
           ehr_consent_given?: boolean | null
           ehr_consent_timestamp?: string | null
           email: string
+          email_only?: boolean | null
           id?: string
           phone?: string | null
         }
@@ -42,6 +44,7 @@ export type Database = {
           ehr_consent_given?: boolean | null
           ehr_consent_timestamp?: string | null
           email?: string
+          email_only?: boolean | null
           id?: string
           phone?: string | null
         }
