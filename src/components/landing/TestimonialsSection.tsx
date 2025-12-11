@@ -104,6 +104,10 @@ export function TestimonialsSection() {
   const handleWheel = (e: React.WheelEvent) => {
     if (isMobile) return;
     
+    // Prevent page scrolling when over testimonials
+    e.preventDefault();
+    e.stopPropagation();
+    
     // Allow horizontal scrolling with mouse wheel
     const delta = e.deltaY || e.deltaX;
     const newX = x.get() - delta;
