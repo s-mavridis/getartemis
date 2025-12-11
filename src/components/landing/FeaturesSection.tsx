@@ -160,21 +160,21 @@ export function FeaturesSection() {
                 )}
                 
                 {feature.visual === "detection" && (
-                  <div className="flex flex-col items-center justify-center h-full">
+                  <div className="flex flex-col items-center justify-end h-full">
                     <img 
-                      src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=500&h=600&fit=crop" 
+                      src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=500&h=700&fit=crop" 
                       alt="Blood test for cancer screening" 
-                      className="rounded-xl h-48 sm:h-56 lg:h-52 w-auto object-cover shadow-lg"
+                      className="rounded-xl h-64 sm:h-72 lg:h-[280px] w-auto object-cover shadow-lg"
                     />
                   </div>
                 )}
                 
                 {feature.visual === "experts" && (
-                  <div className="flex flex-col items-center justify-center h-full">
+                  <div className="flex flex-col items-center justify-end h-full">
                     <img 
-                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=600&fit=crop&crop=face" 
+                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=700&fit=crop&crop=face" 
                       alt="Stanford physician" 
-                      className="rounded-xl h-48 sm:h-56 lg:h-52 w-auto object-cover shadow-lg"
+                      className="rounded-xl h-64 sm:h-72 lg:h-[280px] w-auto object-cover shadow-lg"
                     />
                   </div>
                 )}
