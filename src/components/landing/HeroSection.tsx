@@ -109,12 +109,13 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6 drop-shadow-lg"
+            className="font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Know your cancer risk
+            <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk,</span>
+            <span className="text-3xl sm:text-4xl lg:text-5xl block mt-1">get screened</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -124,7 +125,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We identify your risks based on YOUR health data—not generic guidelines—and connect you to ALL available screening options.
+            We identify your risk based on your health data. Give you concierge access to Stanford physicians, to guide you through next steps and get screened.
           </motion.p>
 
           {/* Email input with button */}
