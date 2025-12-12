@@ -28,9 +28,14 @@ const Privacy = () => {
             </p>
           </div>
           
-          <p className="text-muted-foreground mt-8">
-            <strong className="text-foreground">Data security:</strong> End-to-end encryption, secure storage, regular audits
-          </p>
+          <div className="text-muted-foreground mt-8 space-y-2">
+            <p>
+              <strong className="text-foreground">Data security:</strong> End-to-end encryption, secure storage, regular audits
+            </p>
+            <p>
+              <strong className="text-foreground">Data retention:</strong> We delete your data within 30 days of access revocation
+            </p>
+          </div>
           
           <p className="text-muted-foreground mt-8">
             Contact: <a href="mailto:hello@artemisai.health" className="text-blue-600 hover:underline">hello@artemisai.health</a>
