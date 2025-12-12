@@ -55,7 +55,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      upsert_lead: {
+        Args: {
+          p_ad_source?: string
+          p_ehr_consent_given?: boolean
+          p_ehr_consent_timestamp?: string
+          p_email: string
+          p_email_only?: boolean
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

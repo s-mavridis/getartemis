@@ -78,17 +78,14 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
     try {
       const adSource = getAdSource();
       
-      // Upsert: update if email exists, insert if not
-      const { error } = await supabase.from("leads").upsert(
-        {
-          email: data.email,
-          ad_source: adSource,
-          ehr_consent_given: true,
-          ehr_consent_timestamp: new Date().toISOString(),
-          email_only: false,
-        },
-        { onConflict: 'email' }
-      );
+      // Use secure RPC function to upsert lead (bypasses RLS safely)
+      const { error } = await supabase.rpc("upsert_lead", {
+        p_email: data.email,
+        p_ad_source: adSource,
+        p_ehr_consent_given: true,
+        p_ehr_consent_timestamp: new Date().toISOString(),
+        p_email_only: false,
+      });
 
       if (error) {
         throw error;

@@ -47,15 +47,14 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
     try {
       const adSource = getAdSource();
       
-      // Upsert with email_only = true (will be updated to false when modal is completed)
-      await supabase.from("leads").upsert(
-        {
-          email: email,
-          ad_source: adSource,
-          email_only: true,
-        },
-        { onConflict: 'email' }
-      );
+      // Use secure RPC function to upsert lead (bypasses RLS safely)
+      await supabase.rpc("upsert_lead", {
+        p_email: email,
+        p_ad_source: adSource,
+        p_ehr_consent_given: false,
+        p_ehr_consent_timestamp: null,
+        p_email_only: true,
+      });
       
       console.log('hero_email_captured', { email_only: true });
     } catch (error) {
