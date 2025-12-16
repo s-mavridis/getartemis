@@ -38,9 +38,10 @@ interface LeadCaptureModalProps {
   open: boolean;
   onOpenChange: (completed: boolean) => void;
   prefilledEmail?: string;
+  landingPageSource?: string;
 }
 
-export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: LeadCaptureModalProps) {
+export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", landingPageSource = "home" }: LeadCaptureModalProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -85,6 +86,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "" }: Le
         p_ehr_consent_given: true,
         p_ehr_consent_timestamp: new Date().toISOString(),
         p_email_only: false,
+        p_landing_page_source: landingPageSource,
       });
 
       if (error) {

@@ -1,7 +1,14 @@
 import { motion, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
-const testimonials = [
+export type TestimonialItem = {
+  quote: string;
+  name: string;
+  role: string;
+  avatar: string;
+};
+
+const defaultTestimonials: TestimonialItem[] = [
   {
     quote: "I always felt anxious about cancer screening, yet ArtemisAI gave me clarity and peace of mind. Truly life-changing!",
     name: "Sarah Chen",
@@ -52,7 +59,18 @@ const testimonials = [
   }
 ];
 
-export function TestimonialsSection() {
+interface TestimonialsSectionProps {
+  customTestimonials?: TestimonialItem[];
+  headerTitle?: string;
+  headerSubtitle?: string;
+}
+
+export function TestimonialsSection({ 
+  customTestimonials,
+  headerTitle = "What our beta clients are saying",
+  headerSubtitle = "ArtemisAI is transforming the way people approach cancer prevention. Here's what some of our users have to say about their experience."
+}: TestimonialsSectionProps) {
+  const testimonials = customTestimonials || defaultTestimonials;
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -135,7 +153,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            What our beta<br />clients are saying
+            {headerTitle.split(' ').slice(0, 3).join(' ')}<br />{headerTitle.split(' ').slice(3).join(' ')}
           </motion.h2>
           <motion.p 
             className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
@@ -144,7 +162,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            ArtemisAI is transforming the way people approach cancer prevention. Here's what some of our users have to say about their experience.
+            {headerSubtitle}
           </motion.p>
         </motion.div>
       </div>
@@ -197,7 +215,7 @@ export function TestimonialsSection() {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+function TestimonialCard({ testimonial }: { testimonial: TestimonialItem }) {
   return (
     <motion.div
       className="flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm select-none"

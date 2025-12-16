@@ -24,6 +24,7 @@ export type Database = {
           email: string
           email_only: boolean | null
           id: string
+          landing_page_source: string | null
           phone: string | null
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           email: string
           email_only?: boolean | null
           id?: string
+          landing_page_source?: string | null
           phone?: string | null
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           email?: string
           email_only?: boolean | null
           id?: string
+          landing_page_source?: string | null
           phone?: string | null
         }
         Relationships: []
@@ -55,16 +58,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      upsert_lead: {
-        Args: {
-          p_ad_source?: string
-          p_ehr_consent_given?: boolean
-          p_ehr_consent_timestamp?: string
-          p_email: string
-          p_email_only?: boolean
-        }
-        Returns: undefined
-      }
+      upsert_lead:
+        | {
+            Args: {
+              p_ad_source?: string
+              p_ehr_consent_given?: boolean
+              p_ehr_consent_timestamp?: string
+              p_email: string
+              p_email_only?: boolean
+              p_landing_page_source?: string
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              p_ad_source?: string
+              p_ehr_consent_given?: boolean
+              p_ehr_consent_timestamp?: string
+              p_email: string
+              p_email_only?: boolean
+            }
+            Returns: undefined
+          }
     }
     Enums: {
       [_ in never]: never
