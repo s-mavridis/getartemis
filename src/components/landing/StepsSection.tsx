@@ -1,7 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const steps = [
+export type StepItem = {
+  number: number;
+  title: string;
+  description: string;
+  visual: string;
+};
+
+const defaultSteps: StepItem[] = [
   {
     number: 1,
     title: "Share Your Records",
@@ -28,7 +35,18 @@ const steps = [
   }
 ];
 
-export function StepsSection() {
+interface StepsSectionProps {
+  customSteps?: StepItem[];
+  headerTitle?: string;
+  headerSubtitle?: string;
+}
+
+export function StepsSection({ 
+  customSteps,
+  headerTitle = "Get started in 4 simple steps.",
+  headerSubtitle = "Explore the features designed to keep you healthy and on track."
+}: StepsSectionProps) {
+  const steps = customSteps || defaultSteps;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -55,7 +73,7 @@ export function StepsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Get started in<br />4 simple steps.
+              {headerTitle.split(' ').slice(0, 3).join(' ')}<br />{headerTitle.split(' ').slice(3).join(' ')}
             </motion.h2>
             <motion.p 
               className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
@@ -64,7 +82,7 @@ export function StepsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Explore the features designed to keep you healthy and on track.
+              {headerSubtitle}
             </motion.p>
           </motion.div>
 
@@ -123,10 +141,10 @@ export function StepsSection() {
                 transition={{ duration: 0.7 }}
               >
                 <h2 className="text-5xl xl:text-6xl font-display text-foreground mb-6">
-                  Get started in<br />4 simple steps.
+                  {headerTitle.split(' ').slice(0, 3).join(' ')}<br />{headerTitle.split(' ').slice(3).join(' ')}
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-md">
-                  Explore the features designed to keep you healthy and on track.
+                  {headerSubtitle}
                 </p>
               </motion.div>
             </div>

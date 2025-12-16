@@ -3,9 +3,19 @@ import { Button } from "@/components/ui/button";
 
 interface FinalCTASectionProps {
   onOpenModal: () => void;
+  headline?: string;
+  subheadline?: string;
+  ctaText?: string;
+  helperText?: string;
 }
 
-export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
+export function FinalCTASection({ 
+  onOpenModal,
+  headline = "Don't Wait for Symptoms",
+  subheadline = "86% of cancers are found by accident. Join 500+ people taking control with personalized screening.",
+  ctaText = "Get Early Access",
+  helperText = "Takes 2 minutes • Results in 24-48 hours"
+}: FinalCTASectionProps) {
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +33,7 @@ export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Don't Wait for Symptoms
+            {headline}
           </motion.h2>
           
           <motion.p 
@@ -33,7 +43,7 @@ export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            86% of cancers are found by accident. Join 500+ people taking control with personalized screening.
+            {subheadline}
           </motion.p>
           
           <motion.div
@@ -48,7 +58,7 @@ export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
               size="lg"
               className="mt-6 w-full sm:w-auto sm:min-w-[200px] h-12 px-8 text-sm sm:text-base font-semibold bg-white text-slate-900 hover:bg-gray-100"
             >
-              Get Early Access
+              {ctaText}
             </Button>
           </motion.div>
           
@@ -59,7 +69,7 @@ export function FinalCTASection({ onOpenModal }: FinalCTASectionProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Takes 2 minutes • Results in 24-48 hours
+            {helperText}
           </motion.p>
         </motion.div>
       </div>

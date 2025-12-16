@@ -40,7 +40,11 @@ const screeningModalities = [
   }
 ];
 
-export function CancerStatsSection() {
+interface CancerStatsSectionProps {
+  headerText?: string;
+}
+
+export function CancerStatsSection({ headerText = "The Cancer Screening Gap" }: CancerStatsSectionProps) {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +56,7 @@ export function CancerStatsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          The Cancer Screening Gap
+          {headerText}
         </motion.h2>
 
         {/* Stats grid */}

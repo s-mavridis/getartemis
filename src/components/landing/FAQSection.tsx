@@ -6,7 +6,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+const defaultFaqs: FAQItem[] = [
   {
     question: "How is this different from asking ChatGPT about my health?",
     answer: "ChatGPT doesn't have your medical records. We analyze YOUR actual health data—not generic population statistics. Plus, we connect you directly to screening providers, not just information.",
@@ -29,7 +34,12 @@ const faqs = [
   },
 ];
 
-export function FAQSection() {
+interface FAQSectionProps {
+  customFaqs?: FAQItem[];
+}
+
+export function FAQSection({ customFaqs }: FAQSectionProps) {
+  const faqs = customFaqs || defaultFaqs;
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-cream" id="faq">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

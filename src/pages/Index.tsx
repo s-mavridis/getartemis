@@ -50,6 +50,7 @@ const Index = () => {
           onOpenModal={() => handleOpenModal('hero')} 
           heroEmail={heroEmail}
           onHeroEmailChange={handleHeroEmailChange}
+          landingPageSource="home"
         />
         <CancerStatsSection />
         <FeaturesSection />
@@ -65,6 +66,7 @@ const Index = () => {
         open={isModalOpen} 
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
+        landingPageSource="home"
       />
     </div>
   );

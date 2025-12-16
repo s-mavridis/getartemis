@@ -1,0 +1,233 @@
+import { useEffect, useState } from "react";
+import { Header } from "@/components/landing/Header";
+import { HeroSection } from "@/components/landing/HeroSection";
+import { CancerStatsSection } from "@/components/landing/CancerStatsSection";
+import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { StepsSection, StepItem } from "@/components/landing/StepsSection";
+import { TestimonialsSection, TestimonialItem } from "@/components/landing/TestimonialsSection";
+import { FinalCTASection } from "@/components/landing/FinalCTASection";
+import { FAQSection, FAQItem } from "@/components/landing/FAQSection";
+import { Footer } from "@/components/landing/Footer";
+import { LeadCaptureModal } from "@/components/landing/LeadCaptureModal";
+import { captureUTMParams, getAdSource } from "@/lib/utm";
+import { Shield, Clock, Users, Target } from "lucide-react";
+
+const LANDING_PAGE_SOURCE = "optimize";
+
+// Health Optimizer specific features
+const optimizerFeatures = [
+  {
+    icon: Shield,
+    title: "Complete Risk Stratification",
+    description: "Add cancer risk to your health metrics. Our AI analyzes genetic markers, biomarkers, and lifestyle data to fill the blind spot in your health protocol.",
+    visual: "risk"
+  },
+  {
+    icon: Clock,
+    title: "All Screening Modalities",
+    description: "Blood-based multi-cancer tests, whole body MRI, colonoscopy, and more. We're test-agnostic—you see every protocol option available.",
+    visual: "detection"
+  },
+  {
+    icon: Users,
+    title: "Stanford-Validated Algorithms",
+    description: "Risk models validated by 70+ oncologists and screening specialists. Precision medicine meets comprehensive data analysis.",
+    visual: "experts"
+  },
+  {
+    icon: Target,
+    title: "Personalized Protocol",
+    description: "Custom screening schedules based on YOUR data—not population averages. Direct physician consultation included for protocol optimization.",
+    visual: "plans"
+  }
+];
+
+// Health Optimizer specific steps
+const optimizerSteps: StepItem[] = [
+  {
+    number: 1,
+    title: "Connect Your Data",
+    description: "Securely link your EHR, wearables, and lab results. We integrate with major health platforms.",
+    visual: "signup"
+  },
+  {
+    number: 2,
+    title: "AI Risk Stratification",
+    description: "Our algorithms analyze your complete health profile to identify unmeasured cancer risk factors.",
+    visual: "connect"
+  },
+  {
+    number: 3,
+    title: "Stanford Physician Review",
+    description: "15-minute protocol consultation with a Stanford-trained physician to review your risk profile and screening options.",
+    visual: "physician"
+  },
+  {
+    number: 4,
+    title: "Execute Your Protocol",
+    description: "Schedule recommended screenings with our partner providers. Track completion and results in one place.",
+    visual: "assessment"
+  }
+];
+
+// Health Optimizer specific testimonials
+const optimizerTestimonials: TestimonialItem[] = [
+  {
+    quote: "I track everything—sleep, HRV, glucose. Artemis filled the one gap I couldn't measure: cancer risk. Finally, my health protocol is complete.",
+    name: "Sarah Chen",
+    role: "Biohacker & Founder",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "The data-driven approach sold me. Real risk stratification based on my actual biomarkers, not generic guidelines. This is how health optimization should work.",
+    name: "Michael Roberts",
+    role: "WHOOP User",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "As a physician who uses CGM and tracks my own metrics, I was missing cancer risk data. Artemis integrates seamlessly into my health stack.",
+    name: "Emily Johnson",
+    role: "Healthcare Professional",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "Precision and completeness matter. The Stanford-validated algorithms gave me confidence in the risk assessment methodology.",
+    name: "David Park",
+    role: "Longevity Enthusiast",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "I've optimized nutrition, sleep, and fitness. Cancer screening was the protocol gap I hadn't addressed. Now my baseline is truly comprehensive.",
+    name: "Lisa Martinez",
+    role: "Oura Ring User",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "Clean data, clear recommendations, no fear-mongering. Just the facts I needed to complete my annual health protocol.",
+    name: "James Wilson",
+    role: "Data-Driven Health Optimizer",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "The screening protocol they recommended was exactly what I'd expect from a rigorous, evidence-based system. Impressed by the precision.",
+    name: "Dr. Amanda Foster",
+    role: "Oncologist",
+    avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    quote: "Finally, a cancer screening solution that matches the sophistication of my other health tracking. No blind spots in my protocol anymore.",
+    name: "Robert Kim",
+    role: "Quantified Self Practitioner",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
+  }
+];
+
+// Health Optimizer specific FAQs
+const optimizerFaqs: FAQItem[] = [
+  {
+    question: "How is this different from asking ChatGPT about my health?",
+    answer: "ChatGPT doesn't have access to your biomarkers, genetic data, or medical history. We analyze YOUR actual health data to provide precise risk stratification—not generic population statistics. Plus, we connect you directly to screening providers.",
+  },
+  {
+    question: "Is my health data secure?",
+    answer: "Yes. Your data is encrypted end-to-end and we follow all HIPAA regulations. We integrate with your existing health platforms securely. You maintain full control and can revoke access anytime.",
+  },
+  {
+    question: "Will insurance cover the recommended tests?",
+    answer: "Many tests are covered when you have documented risk factors. We help navigate insurance pre-authorization and provide transparent pricing for out-of-pocket options when needed.",
+  },
+  {
+    question: "How does this integrate with my existing health tracking?",
+    answer: "We complement your existing health stack. Connect your EHR, wearable data, and lab results. Our risk assessment becomes another data point in your comprehensive health protocol.",
+  },
+  {
+    question: "What happens after I sign up?",
+    answer: "You'll receive secure instructions to connect your health data within 24 hours. Our AI analyzes your complete profile (24-48 hours), then you'll receive your risk stratification report and personalized screening protocol.",
+  },
+];
+
+const Optimize = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [heroEmail, setHeroEmail] = useState("");
+
+  useEffect(() => {
+    captureUTMParams();
+    const adSource = getAdSource();
+    console.log('page_view', { ad_source: adSource, landing_page: LANDING_PAGE_SOURCE, timestamp: new Date().toISOString() });
+  }, []);
+
+  const handleOpenModal = (location: 'hero' | 'nav' | 'final_cta') => {
+    console.log('cta_clicked', { location, landing_page: LANDING_PAGE_SOURCE });
+    setIsModalOpen(true);
+  };
+
+  const handleHeroEmailChange = (email: string) => {
+    if (email && !heroEmail) {
+      console.log('hero_email_entered', { landing_page: LANDING_PAGE_SOURCE });
+    }
+    setHeroEmail(email);
+  };
+
+  const handleModalClose = (completed: boolean) => {
+    console.log('modal_closed', { completed, landing_page: LANDING_PAGE_SOURCE });
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header onOpenModal={() => handleOpenModal('nav')} />
+      
+      <main>
+        <HeroSection 
+          onOpenModal={() => handleOpenModal('hero')} 
+          heroEmail={heroEmail}
+          onHeroEmailChange={handleHeroEmailChange}
+          landingPageSource={LANDING_PAGE_SOURCE}
+          headline={
+            <>
+              <span className="text-5xl sm:text-6xl lg:text-7xl block">Cancer risk is unmeasured</span>
+              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">in your health protocol</span>
+            </>
+          }
+          subheadline="You track sleep, HRV, glucose, and fitness—but cancer risk remains a blind spot. Complete your health protocol with AI-powered risk stratification and Stanford physician guidance."
+          ctaText="Complete My Protocol"
+        />
+        <CancerStatsSection headerText="The Unmeasured Risk in Your Protocol" />
+        <FeaturesSection 
+          customFeatures={optimizerFeatures}
+          headerTitle="Complete Your Health Protocol"
+          headerSubtitle="Precision risk stratification to fill the gap in your optimized health system."
+        />
+        <StepsSection 
+          customSteps={optimizerSteps}
+          headerTitle="Integrate in 4 simple steps."
+          headerSubtitle="Add comprehensive cancer screening to your existing health protocol."
+        />
+        <TestimonialsSection 
+          customTestimonials={optimizerTestimonials}
+          headerTitle="What health optimizers are saying"
+          headerSubtitle="Data-driven individuals trust Artemis to complete their health protocols."
+        />
+        <FinalCTASection 
+          onOpenModal={() => handleOpenModal('final_cta')}
+          headline="Complete Your Protocol"
+          subheadline="Join 500+ health optimizers who've added cancer risk to their measured metrics."
+          ctaText="Get Risk Stratification"
+          helperText="Takes 15 minutes • Comprehensive risk report in 48 hours"
+        />
+        <FAQSection customFaqs={optimizerFaqs} />
+      </main>
+      
+      <Footer />
+      
+      <LeadCaptureModal 
+        open={isModalOpen} 
+        onOpenChange={handleModalClose}
+        prefilledEmail={heroEmail}
+        landingPageSource={LANDING_PAGE_SOURCE}
+      />
+    </div>
+  );
+};
+
+export default Optimize;

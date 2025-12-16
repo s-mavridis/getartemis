@@ -9,9 +9,21 @@ interface HeroSectionProps {
   onOpenModal: () => void;
   heroEmail: string;
   onHeroEmailChange: (email: string) => void;
+  landingPageSource?: string;
+  headline?: React.ReactNode;
+  subheadline?: string;
+  ctaText?: string;
 }
 
-export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroSectionProps) {
+export function HeroSection({ 
+  onOpenModal, 
+  heroEmail, 
+  onHeroEmailChange,
+  landingPageSource = 'home',
+  headline,
+  subheadline = "We identify your risk based on your health data. Give you concierge access to Stanford physicians, to guide you through next steps and get screened.",
+  ctaText = "Join Waitlist"
+}: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoOpacity, setVideoOpacity] = useState(1);
 
@@ -54,6 +66,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
         p_ehr_consent_given: false,
         p_ehr_consent_timestamp: null,
         p_email_only: true,
+        p_landing_page_source: landingPageSource,
       });
       
       console.log('hero_email_captured', { email_only: true });
@@ -114,8 +127,12 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk,</span>
-            <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">get screened</span>
+            {headline || (
+              <>
+                <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk,</span>
+                <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">get screened</span>
+              </>
+            )}
           </motion.h1>
 
           {/* Subheadline */}
@@ -125,7 +142,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We identify your risk based on your health data. Give you concierge access to Stanford physicians, to guide you through next steps and get screened.
+            {subheadline}
           </motion.p>
 
           {/* Email input with button */}
@@ -150,7 +167,7 @@ export function HeroSection({ onOpenModal, heroEmail, onHeroEmailChange }: HeroS
                 size="lg"
                 className="w-full sm:w-auto h-12 uppercase tracking-wider text-xs font-semibold rounded-xl sm:rounded-full"
               >
-                Join Waitlist
+                {ctaText}
               </Button>
             </div>
           </motion.form>

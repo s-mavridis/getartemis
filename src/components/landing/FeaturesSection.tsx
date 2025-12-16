@@ -71,7 +71,18 @@ function RealisticPhone({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function FeaturesSection() {
+interface FeaturesSectionProps {
+  customFeatures?: typeof features;
+  headerTitle?: string;
+  headerSubtitle?: string;
+}
+
+export function FeaturesSection({ 
+  customFeatures, 
+  headerTitle = "Everything You Need for Early Detection.",
+  headerSubtitle = "Explore the features designed to keep you healthy and on track."
+}: FeaturesSectionProps) {
+  const displayFeatures = customFeatures || features;
   return (
     <section className="py-12 sm:py-16 lg:py-24 bg-cream" id="services">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,7 +101,7 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Everything You Need<br className="hidden sm:block" /><span className="sm:hidden"> </span>for Early Detection.
+            {headerTitle.split(' ').slice(0, 3).join(' ')}<br className="hidden sm:block" /><span className="sm:hidden"> </span>{headerTitle.split(' ').slice(3).join(' ')}
           </motion.h2>
           <motion.p 
             className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto"
@@ -99,13 +110,13 @@ export function FeaturesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore the features designed to keep you healthy and on track.
+            {headerSubtitle}
           </motion.p>
         </motion.div>
 
         {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {features.map((feature, index) => (
+          {displayFeatures.map((feature, index) => (
             <motion.div
               key={feature.title}
               className="group bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300"
