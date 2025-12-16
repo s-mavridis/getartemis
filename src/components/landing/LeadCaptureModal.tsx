@@ -126,7 +126,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
 
   return (
     <Dialog open={open} onOpenChange={() => handleClose(false)}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] p-4 sm:p-6 lg:p-8 rounded-2xl mx-auto">
+      <DialogContent id="lead-capture-modal" className="w-[calc(100%-2rem)] max-w-[500px] p-4 sm:p-6 lg:p-8 rounded-2xl mx-auto">
         {!isSuccess ? (
           <>
             <div className="space-y-2">
@@ -139,7 +139,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
             </div>
             
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+              <form id="lead-capture-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
                 <FormField
                   control={form.control}
                   name="email"
@@ -149,6 +149,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                       <FormControl>
                         <Input 
                           {...field}
+                          id="lead-email-input"
                           ref={emailInputRef}
                           placeholder="you@example.com" 
                           type="email"
@@ -213,6 +214,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                 </div>
                 
                 <Button 
+                  id="lead-submit-button"
                   type="submit" 
                   className="w-full rounded-full px-8 h-12 text-sm sm:text-base font-semibold"
                   variant="hero"
