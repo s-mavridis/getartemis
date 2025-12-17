@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { CancerStatsSection } from "@/components/landing/CancerStatsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { StepsSection, StepItem } from "@/components/landing/StepsSection";
-import { TestimonialsSection, TestimonialItem } from "@/components/landing/TestimonialsSection";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { FinalCTASection } from "@/components/landing/FinalCTASection";
 import { FAQSection, FAQItem } from "@/components/landing/FAQSection";
 import { Footer } from "@/components/landing/Footer";
@@ -70,57 +70,6 @@ const riskSteps: StepItem[] = [
   }
 ];
 
-// Self-Concerned specific testimonials
-const riskTestimonials: TestimonialItem[] = [
-  {
-    quote: "After my aunt's diagnosis, I couldn't stop worrying. Artemis gave me clarity about my actual risk and a clear plan. I finally feel in control instead of anxious.",
-    name: "Sarah Chen",
-    role: "Family History Concerned",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I knew something felt off but didn't know where to start. The personalized assessment showed me I wasn't overreacting—and what to do about it.",
-    name: "Michael Roberts",
-    role: "Early Access User",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "When my friend was diagnosed, I realized I had no idea about my own risk. Artemis helped me understand where I stand and gave me peace of mind.",
-    name: "Emily Johnson",
-    role: "Proactive Screener",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I'd been putting off thinking about this for years. The calm, supportive approach helped me finally take action without panic.",
-    name: "David Park",
-    role: "Early Access User",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "With cancer in my family, I always worried but didn't know what to do. Now I have clarity and a plan. That's worth everything.",
-    name: "Lisa Martinez",
-    role: "Family History Concerned",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "The physician consultation was incredibly reassuring. She listened to my concerns and explained everything calmly. I didn't feel rushed or dismissed.",
-    name: "James Wilson",
-    role: "Early Access User",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "Many of my patients come in worried after a family member's diagnosis. Artemis gives them the clarity and guidance they need before their anxiety spirals.",
-    name: "Dr. Amanda Foster",
-    role: "Oncologist",
-    avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I finally stopped googling symptoms at 2am. Having a real assessment and plan changed everything for my peace of mind.",
-    name: "Robert Kim",
-    role: "Early Access User",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
-  }
-];
 
 // Self-Concerned specific FAQs
 const riskFaqs: FAQItem[] = [
@@ -203,11 +152,7 @@ const Risk = () => {
           headerTitle="From worry to clarity in 4 steps."
           headerSubtitle="A calm, supportive process to understand your risk and take appropriate action."
         />
-        <TestimonialsSection 
-          customTestimonials={riskTestimonials}
-          headerTitle="You're not alone in this"
-          headerSubtitle="Many people with similar concerns have found peace of mind through personalized risk assessment."
-        />
+        <TestimonialsSection />
         <FinalCTASection 
           onOpenModal={() => handleOpenModal('final_cta')}
           headline="Get the Clarity You Deserve"
