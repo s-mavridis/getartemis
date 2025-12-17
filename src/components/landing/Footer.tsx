@@ -12,7 +12,7 @@ export function Footer() {
           </div>
           
           <p className="text-xs sm:text-sm text-card/60">
-            © 2025 ArtemisAI. HIPAA Compliant.
+            © 2025 Artemis. HIPAA Compliant.
           </p>
         </div>
       </div>

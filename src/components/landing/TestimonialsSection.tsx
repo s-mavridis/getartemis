@@ -1,5 +1,6 @@
 import { motion, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { Quote } from "lucide-react";
 
 export type TestimonialItem = {
   quote: string;
@@ -50,11 +51,12 @@ interface TestimonialsSectionProps {
 export function TestimonialsSection({ 
   customTestimonials,
   headerTitle = "Voices from the Field",
-  headerSubtitle = "Insights from patients, physicians, and researchers highlighting the critical gaps in cancer screening today—the problems ArtemisAI is built to solve."
+  headerSubtitle = "Insights from patients, physicians, and researchers highlighting the critical gaps in cancer screening today—the problems Artemis is built to solve."
 }: TestimonialsSectionProps) {
   const testimonials = customTestimonials || defaultTestimonials;
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const x = useMotionValue(0);
 
   // Check if mobile
@@ -84,17 +86,19 @@ export function TestimonialsSection({
         ease: "linear",
         onComplete: () => {
           x.set(0);
-          startAnimation();
+          if (!isHovered) startAnimation();
         }
       });
     };
 
-    startAnimation();
+    if (!isHovered) {
+      startAnimation();
+    }
 
     return () => {
       controls?.stop();
     };
-  }, [isMobile, x, testimonials.length]);
+  }, [isMobile, x, testimonials.length, isHovered]);
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 overflow-hidden bg-background">
@@ -139,6 +143,8 @@ export function TestimonialsSection({
         <div 
           className="relative overflow-hidden"
           ref={containerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <motion.div
             className="flex gap-6"
@@ -163,9 +169,10 @@ function TestimonialCard({ testimonial, index }: { testimonial: TestimonialItem;
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.02 }}
-      className="flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[440px] bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow duration-300"
+      className="relative flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[440px] bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow duration-300"
     >
-      <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6">
+      <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/20" />
+      <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6 pr-8">
         "{testimonial.quote}"
       </blockquote>
       <div className="pt-4 border-t border-border/30">
