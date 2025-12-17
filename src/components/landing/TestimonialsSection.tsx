@@ -17,9 +17,9 @@ const defaultTestimonials: TestimonialItem[] = [
     category: "patient"
   },
   {
-    quote: "Only 14% of cancers are screen-detected right now in the U.S. When you look at lung cancer, less than 10% of eligible patients actually get screened. There's definitely a huge gap.",
-    attribution: "Oncologist, Academic Medical Center",
-    category: "medical"
+    quote: "It's not just the fear of disease, but the fear of how much your life changes. The thinking required to reorganize everything plus the fear combined—that's what stops people.",
+    attribution: "High-Risk Individual",
+    category: "patient"
   },
   {
     quote: "Even cancers with screening protocols have terrible uptake. Lung cancer: 17% for smokers. Breast cancer: 60%. There's a lot of work to be done in people's heads.",
@@ -27,29 +27,29 @@ const defaultTestimonials: TestimonialItem[] = [
     category: "patient"
   },
   {
-    quote: "It's not just the fear of disease, but the fear of how much your life changes. The thinking required to reorganize everything plus the fear combined—that's what stops people.",
-    attribution: "High-Risk Individual",
-    category: "patient"
+    quote: "Only 14% of cancers are screen-detected right now in the U.S. When you look at lung cancer, less than 10% of eligible patients actually get screened. There's definitely a huge gap.",
+    attribution: "Oncologist, Academic Medical Center",
+    category: "medical"
   },
   {
-    quote: "For broad adoption of screening tests, coverage requires literally an act of Congress. The perfect is the enemy of the good—frustrating for the whole field and for patients.",
-    attribution: "VP Medical Affairs, Cancer Detection Company",
+    quote: "Risk stratification is the key. It has to be a combination of things—symptoms, lab tests, imaging, EHR data. Out of the top 1,000 patients identified by the model, 113 developed pancreatic cancer within 24 months. There's a clear signal that it has validity.",
+    attribution: "Healthcare Technology Executive",
     category: "industry"
   },
   {
-    quote: "The payer space is super complicated in preventative medicine. It's a really heavy, expensive lift to navigate legislative efforts, regulatory pathways, and private payers.",
-    attribution: "Industry Executive, Leading Cancer Detection Company",
-    category: "industry"
-  },
-  {
-    quote: "Even if it's non-invasive, there are barriers: 'What if it's positive? What do I do after? It's expensive. If my doctor doesn't mention it, why would I?' People lean toward 'no.'",
-    attribution: "Patient Discussing Screening Decisions",
-    category: "patient"
-  },
-  {
-    quote: "What's mysterious is how we act—the behavioral side. The medical science is covered. The real question is understanding what motivates people to screen.",
-    attribution: "Behavioral Science Researcher",
+    quote: "If your risk prediction model shows one in 125 people have pancreatic cancer versus the population average of one in 200, that's enough to justify screening. You don't even need a blood test—the risk stratification itself becomes the signal.",
+    attribution: "Cancer Researcher, Academic Medical Center",
     category: "researcher"
+  },
+  {
+    quote: "USPSTF guidelines aren't based on individual risk—they just go by age. For lung cancer, you need 20 pack-years of smoking, which is ridiculous because never-smoker lung cancer is the sixth most prevalent cancer. We're ignoring a substantial population.",
+    attribution: "Proteomics Researcher, Stanford",
+    category: "researcher"
+  },
+  {
+    quote: "Risk stratification is smart. It helps physicians identify patients who will benefit most from screening. Hospital systems with strong disease programs already use homegrown risk models. The question is how to scale this across broader populations and cancer types.",
+    attribution: "Director of Clinical Science, Cancer Detection Company",
+    category: "industry"
   }
 ];
 
@@ -219,13 +219,10 @@ function TestimonialCard({ testimonial, index }: { testimonial: TestimonialItem;
       <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6 pr-12">
         "{testimonial.quote}"
       </blockquote>
-      <div className="pt-4 border-t border-border/30 flex items-center justify-between">
+      <div className="pt-4 border-t border-border/30">
         <p className="text-sm sm:text-base font-medium text-muted-foreground italic">
           — {testimonial.attribution}
         </p>
-        <span className={`text-xs px-2 py-1 rounded-full ${config.bgColor} ${config.iconColor} font-medium`}>
-          {config.label}
-        </span>
       </div>
     </motion.div>
   );
