@@ -1,46 +1,84 @@
 import { motion, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Quote } from "lucide-react";
+import { User, Stethoscope, Briefcase, FlaskConical } from "lucide-react";
+
+export type TestimonialCategory = "patient" | "medical" | "industry" | "researcher";
 
 export type TestimonialItem = {
   quote: string;
   attribution: string;
+  category?: TestimonialCategory;
 };
 
 const defaultTestimonials: TestimonialItem[] = [
   {
     quote: "I know I have to do it, but I don't really want to find out the answer. There's stress and anxiety from even getting the question answered. People just procrastinate until something physically shows.",
-    attribution: "Individual with Family History"
+    attribution: "Individual with Family History",
+    category: "patient"
   },
   {
     quote: "Only 14% of cancers are screen-detected right now in the U.S. When you look at lung cancer, less than 10% of eligible patients actually get screened. There's definitely a huge gap.",
-    attribution: "Oncologist, Academic Medical Center"
+    attribution: "Oncologist, Academic Medical Center",
+    category: "medical"
   },
   {
     quote: "Even cancers with screening protocols have terrible uptake. Lung cancer: 17% for smokers. Breast cancer: 60%. There's a lot of work to be done in people's heads.",
-    attribution: "Patient Discussing Screening Barriers"
+    attribution: "Patient Discussing Screening Barriers",
+    category: "patient"
   },
   {
     quote: "It's not just the fear of disease, but the fear of how much your life changes. The thinking required to reorganize everything plus the fear combined—that's what stops people.",
-    attribution: "High-Risk Individual"
+    attribution: "High-Risk Individual",
+    category: "patient"
   },
   {
     quote: "For broad adoption of screening tests, coverage requires literally an act of Congress. The perfect is the enemy of the good—frustrating for the whole field and for patients.",
-    attribution: "VP Medical Affairs, Cancer Detection Company"
+    attribution: "VP Medical Affairs, Cancer Detection Company",
+    category: "industry"
   },
   {
     quote: "The payer space is super complicated in preventative medicine. It's a really heavy, expensive lift to navigate legislative efforts, regulatory pathways, and private payers.",
-    attribution: "Industry Executive, Leading Cancer Detection Company"
+    attribution: "Industry Executive, Leading Cancer Detection Company",
+    category: "industry"
   },
   {
     quote: "Even if it's non-invasive, there are barriers: 'What if it's positive? What do I do after? It's expensive. If my doctor doesn't mention it, why would I?' People lean toward 'no.'",
-    attribution: "Patient Discussing Screening Decisions"
+    attribution: "Patient Discussing Screening Decisions",
+    category: "patient"
   },
   {
     quote: "What's mysterious is how we act—the behavioral side. The medical science is covered. The real question is understanding what motivates people to screen.",
-    attribution: "Behavioral Science Researcher"
+    attribution: "Behavioral Science Researcher",
+    category: "researcher"
   }
 ];
+
+const categoryConfig = {
+  patient: {
+    icon: User,
+    bgColor: "bg-amber-500/10",
+    iconColor: "text-amber-600",
+    label: "Patient"
+  },
+  medical: {
+    icon: Stethoscope,
+    bgColor: "bg-blue-500/10",
+    iconColor: "text-blue-600",
+    label: "Physician"
+  },
+  industry: {
+    icon: Briefcase,
+    bgColor: "bg-emerald-500/10",
+    iconColor: "text-emerald-600",
+    label: "Industry"
+  },
+  researcher: {
+    icon: FlaskConical,
+    bgColor: "bg-purple-500/10",
+    iconColor: "text-purple-600",
+    label: "Researcher"
+  }
+};
 
 interface TestimonialsSectionProps {
   customTestimonials?: TestimonialItem[];
@@ -162,6 +200,10 @@ export function TestimonialsSection({
 }
 
 function TestimonialCard({ testimonial, index }: { testimonial: TestimonialItem; index: number }) {
+  const category = testimonial.category || "patient";
+  const config = categoryConfig[category];
+  const Icon = config.icon;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -171,16 +213,19 @@ function TestimonialCard({ testimonial, index }: { testimonial: TestimonialItem;
       whileHover={{ scale: 1.02 }}
       className="relative flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[440px] bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow duration-300"
     >
-      <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-        <Quote className="w-5 h-5 text-primary" />
+      <div className={`absolute top-4 right-4 w-10 h-10 rounded-full ${config.bgColor} flex items-center justify-center`}>
+        <Icon className={`w-5 h-5 ${config.iconColor}`} />
       </div>
       <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6 pr-12">
         "{testimonial.quote}"
       </blockquote>
-      <div className="pt-4 border-t border-border/30">
+      <div className="pt-4 border-t border-border/30 flex items-center justify-between">
         <p className="text-sm sm:text-base font-medium text-muted-foreground italic">
           — {testimonial.attribution}
         </p>
+        <span className={`text-xs px-2 py-1 rounded-full ${config.bgColor} ${config.iconColor} font-medium`}>
+          {config.label}
+        </span>
       </div>
     </motion.div>
   );
