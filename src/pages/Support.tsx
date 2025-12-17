@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { CancerStatsSection } from "@/components/landing/CancerStatsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { StepsSection, StepItem } from "@/components/landing/StepsSection";
-import { TestimonialsSection, TestimonialItem } from "@/components/landing/TestimonialsSection";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { FinalCTASection } from "@/components/landing/FinalCTASection";
 import { FAQSection, FAQItem } from "@/components/landing/FAQSection";
 import { Footer } from "@/components/landing/Footer";
@@ -70,57 +70,6 @@ const supportSteps: StepItem[] = [
   }
 ];
 
-// Spouse specific testimonials
-const supportTestimonials: TestimonialItem[] = [
-  {
-    quote: "My husband avoided doctors for years. When a Stanford physician called him directly, he actually listened. I didn't have to be the nag anymore.",
-    name: "Sarah Chen",
-    role: "Concerned Spouse",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I'd been trying to get my wife to do a colonoscopy for 3 years. Artemis handled the conversation—gently, professionally. She scheduled it herself.",
-    name: "Michael Roberts",
-    role: "Concerned Husband",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "The relief I felt when someone else could have the health conversation with my partner... I finally wasn't carrying that burden alone.",
-    name: "Emily Johnson",
-    role: "Concerned Spouse",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "My partner didn't want to worry me, so he avoided talking about health. Having a neutral third party made all the difference.",
-    name: "David Park",
-    role: "Concerned Partner",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I was so tired of fighting about doctor visits. Artemis took that conflict out of our relationship. He made the appointment on his own.",
-    name: "Lisa Martinez",
-    role: "Concerned Wife",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "The physician was so compassionate with my wife. No judgment, just clear information. She felt respected, not pressured.",
-    name: "James Wilson",
-    role: "Concerned Husband",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "I see this dynamic constantly—one partner worried, the other avoidant. Having neutral medical authority often breaks the stalemate.",
-    name: "Dr. Amanda Foster",
-    role: "Oncologist",
-    avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
-  },
-  {
-    quote: "My partner finally understood I wasn't being paranoid. Hearing it from a doctor changed everything. We're both calmer now.",
-    name: "Robert Kim",
-    role: "Concerned Spouse",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
-  }
-];
 
 // Spouse specific FAQs
 const supportFaqs: FAQItem[] = [
@@ -203,11 +152,7 @@ const Support = () => {
           headerTitle="Trusted support in 4 gentle steps."
           headerSubtitle="A compassionate approach that respects your partner's autonomy while providing professional guidance."
         />
-        <TestimonialsSection 
-          customTestimonials={supportTestimonials}
-          headerTitle="Spouses found relief"
-          headerSubtitle="You're not alone in this struggle. Others have found that neutral medical guidance makes all the difference."
-        />
+        <TestimonialsSection />
         <FinalCTASection 
           onOpenModal={() => handleOpenModal('final_cta')}
           headline="Let Us Help You Both"
