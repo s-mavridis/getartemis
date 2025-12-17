@@ -251,7 +251,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
             </div>
             
             <p className="text-xs sm:text-sm text-muted-foreground">
-              You're one of 523 people getting early access to personalized cancer prevention.
+              You're one of 500+ people getting early access to personalized cancer prevention.
             </p>
             
             <Button 
