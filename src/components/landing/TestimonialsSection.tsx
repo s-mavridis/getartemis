@@ -171,8 +171,10 @@ function TestimonialCard({ testimonial, index }: { testimonial: TestimonialItem;
       whileHover={{ scale: 1.02 }}
       className="relative flex-shrink-0 w-[320px] sm:w-[380px] lg:w-[440px] bg-card rounded-2xl p-6 sm:p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow duration-300"
     >
-      <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/20" />
-      <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6 pr-8">
+      <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+        <Quote className="w-5 h-5 text-primary" />
+      </div>
+      <blockquote className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-6 pr-12">
         "{testimonial.quote}"
       </blockquote>
       <div className="pt-4 border-t border-border/30">
