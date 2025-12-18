@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2, Info } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +22,8 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getAdSource } from "@/lib/utm";
 
-const formSchema = z.object({
+// Standard form schema (requires EHR consent)
+const standardFormSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
   ehrConsent: z.boolean().refine((val) => val === true, {
     message: "Please accept both agreements",
@@ -30,9 +31,21 @@ const formSchema = z.object({
   termsConsent: z.boolean().refine((val) => val === true, {
     message: "Please accept both agreements",
   }),
+  ehrConsentWilling: z.boolean().optional(),
 });
 
-type FormData = z.infer<typeof formSchema>;
+// Support page form schema (EHR consent optional)
+const supportFormSchema = z.object({
+  email: z.string().trim().email({ message: "Please enter a valid email" }).max(255),
+  termsConsent: z.boolean().refine((val) => val === true, {
+    message: "Please accept the Terms of Service",
+  }),
+  ehrConsentWilling: z.boolean().optional(),
+});
+
+type StandardFormData = z.infer<typeof standardFormSchema>;
+type SupportFormData = z.infer<typeof supportFormSchema>;
+type FormData = StandardFormData | SupportFormData;
 
 interface LeadCaptureModalProps {
   open: boolean;
@@ -48,13 +61,22 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
   const { toast } = useToast();
   const emailInputRef = useRef<HTMLInputElement>(null);
 
+  const isSupportPage = landingPageSource === "support";
+
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: prefilledEmail,
-      ehrConsent: false,
-      termsConsent: false,
-    },
+    resolver: zodResolver(isSupportPage ? supportFormSchema : standardFormSchema),
+    defaultValues: isSupportPage
+      ? {
+          email: prefilledEmail,
+          termsConsent: false,
+          ehrConsentWilling: false,
+        }
+      : {
+          email: prefilledEmail,
+          ehrConsent: false,
+          termsConsent: false,
+          ehrConsentWilling: false,
+        },
   });
 
   // Update email field when prefilledEmail changes or modal opens
@@ -79,18 +101,38 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
     try {
       const adSource = getAdSource();
       
-      // Use secure RPC function to upsert lead (bypasses RLS safely)
-      const { error } = await supabase.rpc("upsert_lead", {
-        p_email: data.email,
-        p_ad_source: adSource,
-        p_ehr_consent_given: true,
-        p_ehr_consent_timestamp: new Date().toISOString(),
-        p_email_only: false,
-        p_landing_page_source: landingPageSource,
-      });
+      if (isSupportPage) {
+        // Support page: no direct EHR consent, just willingness
+        const supportData = data as SupportFormData;
+        const { error } = await supabase.rpc("upsert_lead", {
+          p_email: supportData.email,
+          p_ad_source: adSource,
+          p_ehr_consent_given: false,
+          p_ehr_consent_timestamp: null,
+          p_email_only: true,
+          p_landing_page_source: landingPageSource,
+          p_ehr_consent_willing: supportData.ehrConsentWilling || null,
+        });
 
-      if (error) {
-        throw error;
+        if (error) {
+          throw error;
+        }
+      } else {
+        // Standard flow with direct EHR consent
+        const standardData = data as StandardFormData;
+        const { error } = await supabase.rpc("upsert_lead", {
+          p_email: standardData.email,
+          p_ad_source: adSource,
+          p_ehr_consent_given: true,
+          p_ehr_consent_timestamp: new Date().toISOString(),
+          p_email_only: false,
+          p_landing_page_source: landingPageSource,
+          p_ehr_consent_willing: null,
+        });
+
+        if (error) {
+          throw error;
+        }
       }
 
       console.log('consent_given');
@@ -114,15 +156,26 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
     setTimeout(() => {
       setIsSuccess(false);
       setSubmittedEmail("");
-      form.reset({
-        email: "",
-        ehrConsent: false,
-        termsConsent: false,
-      });
+      form.reset(
+        isSupportPage
+          ? {
+              email: "",
+              termsConsent: false,
+              ehrConsentWilling: false,
+            }
+          : {
+              email: "",
+              ehrConsent: false,
+              termsConsent: false,
+              ehrConsentWilling: false,
+            }
+      );
     }, 200);
   };
 
-  const isFormValid = form.watch("email") && form.watch("ehrConsent") && form.watch("termsConsent");
+  const isFormValid = isSupportPage
+    ? form.watch("email") && form.watch("termsConsent")
+    : form.watch("email") && (form.watch as any)("ehrConsent") && form.watch("termsConsent");
 
   return (
     <Dialog open={open} onOpenChange={() => handleClose(false)}>
@@ -131,10 +184,12 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
           <>
             <div className="space-y-2">
               <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                Get Your Personalized Risk Assessment
+                {isSupportPage ? "Help Your Family Member Get Started" : "Get Your Personalized Risk Assessment"}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours.
+                {isSupportPage
+                  ? "We'll reach out with a gentle, informative approach. Enter your email to get started—we'll send next steps within 24 hours."
+                  : "We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours."}
               </p>
             </div>
             
@@ -162,30 +217,67 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                 />
                 
                 <div className="space-y-3">
-                  <FormField
-                    control={form.control}
-                    name="ehrConsent"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                            className="h-5 w-5 rounded border-border mt-0.5"
-                          />
-                        </FormControl>
-                        <div className="space-y-1 leading-tight py-1">
-                          <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
-                            I authorize Artemis to securely access my electronic health records for cancer risk assessment. I understand my data is encrypted and I can revoke access anytime.{" "}
-                            <a href="/privacy" target="_blank" className="text-blue-600 underline hover:text-blue-700">
-                              View Privacy Policy
-                            </a>
-                          </FormLabel>
-                          <FormMessage />
-                        </div>
-                      </FormItem>
-                    )}
-                  />
+                  {isSupportPage ? (
+                    <>
+                      {/* Info box for support page */}
+                      <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
+                        <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <p className="text-xs sm:text-sm text-blue-800 leading-snug">
+                          <span className="font-medium">Important:</span> To provide a complete risk assessment, your family member will need to authorize access to their electronic health records in a future step.
+                        </p>
+                      </div>
+
+                      {/* Optional EHR consent willing checkbox */}
+                      <FormField
+                        control={form.control}
+                        name="ehrConsentWilling"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                                className="h-5 w-5 rounded border-muted-foreground/30 mt-0.5"
+                              />
+                            </FormControl>
+                            <div className="space-y-1 leading-tight py-1">
+                              <FormLabel className="text-xs sm:text-sm font-normal text-muted-foreground leading-snug">
+                                I understand that my family member will need to authorize access to their electronic health records for a complete cancer risk assessment. I'm interested in facilitating this in the future.
+                              </FormLabel>
+                              <p className="text-xs text-muted-foreground/70 italic">
+                                (Optional - helps us provide more accurate recommendations)
+                              </p>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  ) : (
+                    <FormField
+                      control={form.control}
+                      name="ehrConsent"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              className="h-5 w-5 rounded border-border mt-0.5"
+                            />
+                          </FormControl>
+                          <div className="space-y-1 leading-tight py-1">
+                            <FormLabel className="text-xs sm:text-sm font-normal text-foreground leading-snug">
+                              I authorize Artemis to securely access my electronic health records for cancer risk assessment. I understand my data is encrypted and I can revoke access anytime.{" "}
+                              <a href="/privacy" target="_blank" className="text-blue-600 underline hover:text-blue-700">
+                                View Privacy Policy
+                              </a>
+                            </FormLabel>
+                            <FormMessage />
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                  )}
                   
                   <FormField
                     control={form.control}
@@ -227,7 +319,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                       Processing...
                     </>
                   ) : (
-                    "Authorize Access"
+                    isSupportPage ? "Get Started" : "Authorize Access"
                   )}
                 </Button>
                 
@@ -246,7 +338,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                 You're on the list!
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mt-2">
-                Check your email ({submittedEmail}) for next steps. We'll send EHR connection instructions within 24 hours.
+                Check your email ({submittedEmail}) for next steps. We'll send {isSupportPage ? "guidance on next steps" : "EHR connection instructions"} within 24 hours.
               </p>
             </div>
             
