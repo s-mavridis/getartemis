@@ -21,6 +21,7 @@ export type Database = {
           created_at: string
           ehr_consent_given: boolean | null
           ehr_consent_timestamp: string | null
+          ehr_consent_willing: boolean | null
           email: string
           email_only: boolean | null
           id: string
@@ -33,6 +34,7 @@ export type Database = {
           created_at?: string
           ehr_consent_given?: boolean | null
           ehr_consent_timestamp?: string | null
+          ehr_consent_willing?: boolean | null
           email: string
           email_only?: boolean | null
           id?: string
@@ -45,6 +47,7 @@ export type Database = {
           created_at?: string
           ehr_consent_given?: boolean | null
           ehr_consent_timestamp?: string | null
+          ehr_consent_willing?: boolean | null
           email?: string
           email_only?: boolean | null
           id?: string
@@ -58,28 +61,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      upsert_lead:
-        | {
-            Args: {
-              p_ad_source?: string
-              p_ehr_consent_given?: boolean
-              p_ehr_consent_timestamp?: string
-              p_email: string
-              p_email_only?: boolean
-              p_landing_page_source?: string
-            }
-            Returns: undefined
-          }
-        | {
-            Args: {
-              p_ad_source?: string
-              p_ehr_consent_given?: boolean
-              p_ehr_consent_timestamp?: string
-              p_email: string
-              p_email_only?: boolean
-            }
-            Returns: undefined
-          }
+      upsert_lead: {
+        Args: {
+          p_ad_source?: string
+          p_ehr_consent_given?: boolean
+          p_ehr_consent_timestamp?: string
+          p_ehr_consent_willing?: boolean
+          p_email: string
+          p_email_only?: boolean
+          p_landing_page_source?: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
