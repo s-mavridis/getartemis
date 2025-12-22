@@ -141,7 +141,7 @@ export function Support5HeroSection({
                 className="absolute inset-0 w-full h-full object-cover"
                 poster="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?w=1200&fit=crop&q=80"
               >
-                <source src="/videos/doctor-consultation.mp4" type="video/mp4" />
+                <source src="/videos/hero-pexels-8878321.mp4" type="video/mp4" />
               </video>
               
               {/* Floating audio/call indicator */}
