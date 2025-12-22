@@ -69,24 +69,24 @@ export function Support5HeroSection({
               You don't have to carry this alone
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-muted-foreground mb-6 max-w-lg">
-              Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
-            </p>
-
-            {/* Service highlight */}
-            <div className="flex items-start gap-3 bg-primary/5 border border-primary/20 rounded-xl p-4 mb-8 max-w-lg">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Service highlight - Primary value prop */}
+            <div className="flex items-center gap-3 bg-accent/10 border border-accent/30 rounded-2xl p-5 mb-6 max-w-lg">
+              <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M9 12l2 2 4-4" />
                   <circle cx="12" cy="12" r="10" />
                 </svg>
               </div>
               <div>
-                <p className="font-semibold text-foreground text-sm">What we provide:</p>
-                <p className="text-muted-foreground text-sm">A personalized cancer risk score and expert screening navigation—so your loved one knows exactly what steps to take.</p>
+                <p className="font-display font-bold text-foreground text-lg">Personalized Cancer Risk Score</p>
+                <p className="text-foreground/80 text-base">+ Expert screening navigation for your loved one</p>
               </div>
             </div>
+
+            {/* Subheadline */}
+            <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-lg">
+              Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
+            </p>
 
             {/* CTA Button + Rating */}
             <div className="flex flex-wrap items-center gap-4 mb-12">
