@@ -82,7 +82,7 @@ export function Support5HeroSection({
           style={{ opacity: videoOpacity }}
         >
           <source 
-            src="https://videos.pexels.com/video-files/8375490/8375490-uhd_2560_1440_25fps.mp4" 
+            src="https://videos.pexels.com/video-files/7579840/7579840-uhd_2560_1440_25fps.mp4" 
             type="video/mp4" 
           />
         </video>
