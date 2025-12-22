@@ -60,11 +60,6 @@ export function Support5HeroSection({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-accent rounded-full" />
-              Stanford Healthcare Support
-            </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
