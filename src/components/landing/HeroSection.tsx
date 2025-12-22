@@ -13,6 +13,7 @@ interface HeroSectionProps {
   headline?: React.ReactNode;
   subheadline?: string;
   ctaText?: string;
+  promoText?: string;
 }
 
 export function HeroSection({ 
@@ -22,7 +23,8 @@ export function HeroSection({
   landingPageSource = 'home',
   headline,
   subheadline = "We identify your risk based on your health data. Give you concierge access to Stanford physicians, to guide you through next steps and get screened.",
-  ctaText = "Join Waitlist"
+  ctaText = "Join Waitlist",
+  promoText
 }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoOpacity, setVideoOpacity] = useState(1);
@@ -137,13 +139,25 @@ export function HeroSection({
 
           {/* Subheadline */}
           <motion.p 
-            className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-6 sm:mb-10 drop-shadow-md leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-4 sm:mb-6 drop-shadow-md leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {subheadline}
           </motion.p>
+
+          {/* Promo text */}
+          {promoText && (
+            <motion.p 
+              className="text-sm sm:text-base lg:text-lg text-amber-300 font-semibold max-w-2xl mb-6 sm:mb-10 drop-shadow-md"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            >
+              ✨ {promoText}
+            </motion.p>
+          )}
 
           {/* Email input with button */}
           <motion.form 
