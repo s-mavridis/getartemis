@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Star, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getAdSource } from "@/lib/utm";
-import { useRef, useState, useEffect } from "react";
 
 interface Support5HeroSectionProps {
   onOpenModal: () => void;
@@ -18,25 +17,6 @@ export function Support5HeroSection({
   onHeroEmailChange,
   landingPageSource = 'support5'
 }: Support5HeroSectionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoOpacity, setVideoOpacity] = useState(0.4);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      const currentTime = video.currentTime;
-      if (currentTime <= 2) {
-        setVideoOpacity(0.2 + (currentTime / 2) * 0.2);
-      } else {
-        setVideoOpacity(0.4);
-      }
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
-  }, []);
   
   const saveEmailOnly = async (email: string) => {
     if (!email) return;
@@ -69,122 +49,112 @@ export function Support5HeroSection({
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: videoOpacity }}
-          poster="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80"
-        >
-          <source 
-            src="https://cdn.coverr.co/videos/coverr-doctor-talking-to-a-patient-1573/1080p.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/90" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
+    <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 bg-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6"
           >
-            <span className="w-2 h-2 bg-accent rounded-full" />
-            Stanford Healthcare Support
-          </motion.div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span className="w-2 h-2 bg-accent rounded-full" />
+              Stanford Healthcare Support
+            </div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground leading-tight mb-6"
-          >
-            You don't have to carry this alone
-          </motion.h1>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
+              You don't have to carry this alone
+            </h1>
 
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
-          >
-            Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
-          </motion.p>
+            {/* Subheadline */}
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-lg">
+              Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
+            </p>
 
-          {/* Email form */}
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            onSubmit={handleSubmit}
-            className="mb-8 max-w-md mx-auto"
-          >
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={heroEmail}
-                onChange={(e) => onHeroEmailChange(e.target.value)}
-                className="flex-1 px-5 py-4 bg-card/80 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
-              />
+            {/* CTA Button + Rating */}
+            <div className="flex flex-wrap items-center gap-4 mb-12">
               <Button 
-                type="submit"
-                className="h-auto py-4 px-8 bg-foreground text-background hover:bg-foreground/90 rounded-xl font-semibold"
+                onClick={onOpenModal}
+                className="h-auto py-4 px-8 bg-accent hover:bg-accent/90 text-white rounded-xl font-semibold"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                Get Support
+                Book a call
               </Button>
+              
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="text-foreground font-semibold">5/5</span>
+                <span className="text-muted-foreground">(500+)</span>
+              </div>
             </div>
-          </motion.form>
 
-          {/* Rating */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center justify-center gap-3"
-          >
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-              ))}
+            {/* Stats row */}
+            <div className="flex items-center gap-8 sm:gap-12">
+              <div>
+                <div className="flex items-center gap-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">500+</p>
+                  <span className="w-2 h-2 bg-accent rounded-full" />
+                </div>
+                <p className="text-sm text-muted-foreground">Families helped</p>
+              </div>
+              <div className="w-px h-10 bg-border" />
+              <div>
+                <div className="flex items-center gap-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">24hr</p>
+                  <span className="w-2 h-2 bg-red-500 rounded-full" />
+                </div>
+                <p className="text-sm text-muted-foreground">Response time</p>
+              </div>
+              <div className="w-px h-10 bg-border" />
+              <div>
+                <div className="flex items-center gap-1">
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">100%</p>
+                  <span className="w-2 h-2 bg-green-500 rounded-full" />
+                </div>
+                <p className="text-sm text-muted-foreground">HIPAA Secure</p>
+              </div>
             </div>
-            <span className="text-foreground font-semibold">5/5</span>
-            <span className="text-muted-foreground">(500+ families helped)</span>
           </motion.div>
 
-          {/* Stats row */}
+          {/* Right content - Video */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto"
+            className="relative"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-card/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-border/50">
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">500+</p>
-              <p className="text-sm text-muted-foreground">Families helped</p>
-            </div>
-            <div className="bg-card/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-border/50">
-              <p className="text-2xl sm:text-3xl font-bold text-accent">24hr</p>
-              <p className="text-sm text-muted-foreground">Response time</p>
-            </div>
-            <div className="bg-card/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-border/50">
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">100%</p>
-              <p className="text-sm text-muted-foreground">HIPAA Secure</p>
+            {/* Video container */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-muted">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-[400px] sm:h-[500px] lg:h-[560px] object-cover"
+                poster="https://images.pexels.com/videos/5794025/pexels-photo-5794025.jpeg?auto=compress&cs=tinysrgb&w=800"
+              >
+                <source 
+                  src="https://videos.pexels.com/video-files/5794025/5794025-hd_1080_1920_25fps.mp4" 
+                  type="video/mp4" 
+                />
+              </video>
+              
+              {/* Floating audio/call indicator */}
+              <div className="absolute bottom-6 right-6 w-14 h-14 bg-accent rounded-full flex items-center justify-center shadow-lg">
+                <div className="flex gap-0.5">
+                  <div className="w-1 h-4 bg-white rounded-full animate-pulse" />
+                  <div className="w-1 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.1s' }} />
+                  <div className="w-1 h-3 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+                  <div className="w-1 h-5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
