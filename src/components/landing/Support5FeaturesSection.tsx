@@ -2,32 +2,32 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&h=500&fit=crop&q=80",
     title: "Neutral Medical Guidance",
     description: "When it comes from a doctor, it's different. Our Stanford physicians provide the medical authority that helps reluctant partners take action.",
   },
   {
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=500&fit=crop&q=80",
     title: "Every Screening Option",
     description: "Blood tests, imaging, colonoscopy—we present all options clearly and objectively. Your partner can choose what feels right for them.",
   },
   {
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800&h=500&fit=crop&q=80",
     title: "Stanford Physician Support",
     description: "A compassionate Stanford-trained physician talks directly to your partner. You don't have to be the one delivering medical advice anymore.",
   },
   {
-    image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80",
     title: "Clear, Gentle Path Forward",
     description: "We provide a clear screening plan without pressure. Your partner gets the information they need to make their own informed decision.",
   },
   {
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=500&fit=crop&q=80",
     title: "Relationship Preservation",
     description: "You're no longer the one pushing—we are. Many couples find it reduces conflict around health conversations.",
   },
   {
-    image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=400&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=500&fit=crop&q=80",
     title: "Compassionate Approach",
     description: "Our physicians are trained to work with avoidant patients using a no-pressure approach that respects autonomy.",
   }
@@ -59,22 +59,24 @@ export function Support5FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="bg-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-border hover:shadow-xl transition-shadow duration-300"
+              className="bg-card rounded-2xl sm:rounded-3xl overflow-hidden border border-border hover:shadow-xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <div className="w-16 h-16 rounded-full overflow-hidden mb-5 ring-2 ring-primary/20">
+              <div className="aspect-[16/10] overflow-hidden">
                 <img 
                   src={feature.image} 
                   alt={feature.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
-              <h3 className="text-xl font-display font-semibold text-foreground mb-3">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+              <div className="p-6 sm:p-8">
+                <h3 className="text-xl font-display font-semibold text-foreground mb-3">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>
