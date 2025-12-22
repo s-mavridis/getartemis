@@ -132,14 +132,17 @@ export function Support5HeroSection({
           >
             {/* Video container */}
             <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-muted aspect-[3/4]">
-              <iframe
-                src="https://player.vimeo.com/video/434751243?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 'none' }}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                title="Doctor consultation"
-              />
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                poster="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?w=1200&fit=crop&q=80"
+              >
+                <source src="/videos/doctor-consultation.mp4" type="video/mp4" />
+              </video>
               
               {/* Floating audio/call indicator */}
               <div className="absolute bottom-6 right-6 w-14 h-14 bg-accent rounded-full flex items-center justify-center shadow-lg">
