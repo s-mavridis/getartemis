@@ -60,6 +60,19 @@ export function Support5HeroSection({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
+            {/* Rating badge */}
+            <div className="flex items-center gap-2 mb-6">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className={`w-5 h-5 ${i < 4 ? 'fill-amber-400 text-amber-400' : 'fill-amber-400/70 text-amber-400/70'}`} 
+                  />
+                ))}
+              </div>
+              <span className="text-foreground font-semibold">4.7/5</span>
+              <span className="text-muted-foreground">(127 reviews)</span>
+            </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
@@ -104,15 +117,6 @@ export function Support5HeroSection({
                 Book a call
               </Button>
               
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span className="text-foreground font-semibold">5/5</span>
-                <span className="text-muted-foreground">(500+)</span>
-              </div>
             </div>
 
             {/* Stats row */}
