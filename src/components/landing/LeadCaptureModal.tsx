@@ -62,10 +62,12 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   const isSupportPage = landingPageSource === "support";
+  const isSupport2Page = landingPageSource === "support2";
+  const useSupportSchema = isSupportPage || isSupport2Page;
 
   const form = useForm<FormData>({
-    resolver: zodResolver(isSupportPage ? supportFormSchema : standardFormSchema),
-    defaultValues: isSupportPage
+    resolver: zodResolver(useSupportSchema ? supportFormSchema : standardFormSchema),
+    defaultValues: useSupportSchema
       ? {
           email: prefilledEmail,
           termsConsent: false,
@@ -101,7 +103,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
     try {
       const adSource = getAdSource();
       
-      if (isSupportPage) {
+      if (useSupportSchema) {
         // Support page: no direct EHR consent, just willingness
         const supportData = data as SupportFormData;
         const { error } = await supabase.rpc("upsert_lead", {
@@ -157,7 +159,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
       setIsSuccess(false);
       setSubmittedEmail("");
       form.reset(
-        isSupportPage
+        useSupportSchema
           ? {
               email: "",
               termsConsent: false,
@@ -173,7 +175,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
     }, 200);
   };
 
-  const isFormValid = isSupportPage
+  const isFormValid = useSupportSchema
     ? form.watch("email") && form.watch("termsConsent")
     : form.watch("email") && (form.watch as any)("ehrConsent") && form.watch("termsConsent");
 
@@ -184,10 +186,10 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
           <>
             <div className="space-y-2">
               <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                {isSupportPage ? "Help Your Family Member Get Started" : "Get Your Personalized Risk Assessment"}
+                {useSupportSchema ? "Help Your Family Member Get Started" : "Get Your Personalized Risk Assessment"}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                {isSupportPage
+                {useSupportSchema
                   ? "We'll reach out with a gentle, informative approach. Enter your email to get started—we'll send next steps within 24 hours."
                   : "We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours."}
               </p>
@@ -252,7 +254,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                         )}
                       />
                     </>
-                  ) : (
+                  ) : !useSupportSchema ? (
                     <FormField
                       control={form.control}
                       name="ehrConsent"
@@ -277,7 +279,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                         </FormItem>
                       )}
                     />
-                  )}
+                  ) : null}
                   
                   <FormField
                     control={form.control}
@@ -319,7 +321,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                       Processing...
                     </>
                   ) : (
-                    isSupportPage ? "Get Started" : "Authorize Access"
+                    useSupportSchema ? "Get Started" : "Authorize Access"
                   )}
                 </Button>
                 
@@ -338,7 +340,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                 You're on the list!
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mt-2">
-                Check your email ({submittedEmail}) for next steps. We'll send {isSupportPage ? "guidance on next steps" : "EHR connection instructions"} within 24 hours.
+                Check your email ({submittedEmail}) for next steps. We'll send {useSupportSchema ? "guidance on next steps" : "EHR connection instructions"} within 24 hours.
               </p>
             </div>
             
