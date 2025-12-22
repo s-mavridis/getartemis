@@ -61,8 +61,8 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
   const { toast } = useToast();
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-  const isSupportPage = landingPageSource === "support" || landingPageSource === "support3";
-  const isSupport2Page = landingPageSource === "support2" || landingPageSource === "support4";
+  const isSupportPage = landingPageSource === "support" || landingPageSource === "support3" || landingPageSource === "support5" || landingPageSource === "support7";
+  const isSupport2Page = landingPageSource === "support2" || landingPageSource === "support4" || landingPageSource === "support6" || landingPageSource === "support8";
   const useSupportSchema = isSupportPage || isSupport2Page;
 
   const form = useForm<FormData>({
