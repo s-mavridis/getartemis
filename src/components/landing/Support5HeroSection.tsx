@@ -76,7 +76,7 @@ export function Support5HeroSection({
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
-              You don't have to carry this alone
+              We coordinate their cancer screening for you
             </h1>
 
             {/* Service highlight - Primary value prop */}
