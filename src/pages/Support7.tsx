@@ -10,6 +10,7 @@ import { Support5CTASection } from "@/components/landing/Support5CTASection";
 import { Footer } from "@/components/landing/Footer";
 import { LeadCaptureModal } from "@/components/landing/LeadCaptureModal";
 import { captureUTMParams, getAdSource } from "@/lib/utm";
+import { trackPageView, trackCTAClick, trackHeroEmailEntered, trackModalClosed } from "@/lib/analytics";
 
 const LANDING_PAGE_SOURCE = "support7";
 
@@ -20,23 +21,23 @@ const Support7 = () => {
   useEffect(() => {
     captureUTMParams();
     const adSource = getAdSource();
-    console.log('page_view', { ad_source: adSource, landing_page: LANDING_PAGE_SOURCE, timestamp: new Date().toISOString() });
+    trackPageView(LANDING_PAGE_SOURCE, adSource);
   }, []);
 
   const handleOpenModal = (location: 'hero' | 'nav' | 'final_cta') => {
-    console.log('cta_clicked', { location, landing_page: LANDING_PAGE_SOURCE });
+    trackCTAClick(location, LANDING_PAGE_SOURCE);
     setIsModalOpen(true);
   };
 
   const handleHeroEmailChange = (email: string) => {
     if (email && !heroEmail) {
-      console.log('hero_email_entered', { landing_page: LANDING_PAGE_SOURCE });
+      trackHeroEmailEntered(LANDING_PAGE_SOURCE);
     }
     setHeroEmail(email);
   };
 
   const handleModalClose = (completed: boolean) => {
-    console.log('modal_closed', { completed, landing_page: LANDING_PAGE_SOURCE });
+    trackModalClosed(completed, LANDING_PAGE_SOURCE);
     setIsModalOpen(false);
   };
 
