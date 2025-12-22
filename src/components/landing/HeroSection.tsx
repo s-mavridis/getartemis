@@ -137,12 +137,31 @@ export function HeroSection({
             )}
           </motion.h1>
 
+          {/* Service highlight - Primary value prop */}
+          <motion.div 
+            className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6 max-w-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <p className="font-display font-bold text-white text-base sm:text-lg drop-shadow-md">Personalized Cancer Risk Score</p>
+              <p className="text-white/80 text-sm sm:text-base">+ Expert screening navigation for your loved one</p>
+            </div>
+          </motion.div>
+
           {/* Subheadline */}
           <motion.p 
             className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-4 sm:mb-6 drop-shadow-md leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
           >
             {subheadline}
           </motion.p>
