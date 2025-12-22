@@ -137,12 +137,13 @@ export function Support5HeroSection({
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-[400px] sm:h-[500px] lg:h-[560px] object-cover"
-                poster="https://images.pexels.com/videos/5794025/pexels-photo-5794025.jpeg?auto=compress&cs=tinysrgb&w=800"
+                poster="https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&fit=crop&q=80"
               >
-                <source 
-                  src="https://videos.pexels.com/video-files/5794025/5794025-hd_1080_1920_25fps.mp4" 
-                  type="video/mp4" 
+                <source
+                  src="https://cdn.coverr.co/videos/coverr-doctor-talking-to-a-patient-1573/1080p.mp4"
+                  type="video/mp4"
                 />
               </video>
               
