@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getAdSource } from "@/lib/utm";
+import { trackFormSubmission, trackEvent } from "@/lib/analytics";
 
 // Standard form schema (requires EHR consent)
 const standardFormSchema = z.object({
@@ -137,7 +138,8 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
         }
       }
 
-      console.log('consent_given');
+      trackFormSubmission(landingPageSource, useSupportSchema ? 'support' : 'standard');
+      trackEvent('consent_given', { landing_page: landingPageSource });
       setSubmittedEmail(data.email);
       setIsSuccess(true);
     } catch (error) {
