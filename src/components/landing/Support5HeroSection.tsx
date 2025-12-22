@@ -80,9 +80,10 @@ export function Support5HeroSection({
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: videoOpacity }}
+          poster="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1920&q=80"
         >
           <source 
-            src="https://videos.pexels.com/video-files/7579840/7579840-uhd_2560_1440_25fps.mp4" 
+            src="https://cdn.coverr.co/videos/coverr-doctor-talking-to-a-patient-1573/1080p.mp4" 
             type="video/mp4" 
           />
         </video>
