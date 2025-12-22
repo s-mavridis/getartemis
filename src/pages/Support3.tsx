@@ -135,8 +135,8 @@ const Support3 = () => {
           landingPageSource={LANDING_PAGE_SOURCE}
           headline={
             <>
-              <span className="text-5xl sm:text-6xl lg:text-7xl block">You don't have to</span>
-              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">carry this alone</span>
+              <span className="text-5xl sm:text-6xl lg:text-7xl block">We coordinate their</span>
+              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">cancer screening for you</span>
             </>
           }
           subheadline="Worried about a partner who avoids health conversations? We take the pressure off you. Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action."
