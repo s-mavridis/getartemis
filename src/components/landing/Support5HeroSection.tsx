@@ -9,13 +9,15 @@ interface Support5HeroSectionProps {
   heroEmail: string;
   onHeroEmailChange: (email: string) => void;
   landingPageSource?: string;
+  promoText?: string;
 }
 
 export function Support5HeroSection({ 
   onOpenModal, 
   heroEmail, 
   onHeroEmailChange,
-  landingPageSource = 'support5'
+  landingPageSource = 'support5',
+  promoText
 }: Support5HeroSectionProps) {
   
   const saveEmailOnly = async (email: string) => {
@@ -84,9 +86,18 @@ export function Support5HeroSection({
             </div>
 
             {/* Subheadline */}
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-lg">
+            <p className="text-base sm:text-lg text-muted-foreground mb-4 max-w-lg">
               Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
             </p>
+
+            {/* Promo text */}
+            {promoText && (
+              <p className="text-sm sm:text-base text-accent font-medium mb-8 max-w-lg">
+                {promoText}
+              </p>
+            )}
+
+            {!promoText && <div className="mb-4" />}
 
             {/* CTA Button + Rating */}
             <div className="flex flex-wrap items-center gap-4 mb-12">
