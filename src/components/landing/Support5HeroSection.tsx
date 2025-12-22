@@ -131,21 +131,15 @@ export function Support5HeroSection({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Video container */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-muted">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className="w-full h-[400px] sm:h-[500px] lg:h-[560px] object-cover"
-                poster="https://images.unsplash.com/photo-1580281658223-9b93f18ae9ae?w=1200&fit=crop&q=80"
-              >
-                <source
-                  src="https://cdn.coverr.co/videos/coverr-doctor-talking-to-a-patient-1573/1080p.mp4"
-                  type="video/mp4"
-                />
-              </video>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-muted aspect-[3/4]">
+              <iframe
+                src="https://player.vimeo.com/video/434751243?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 'none' }}
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                title="Doctor consultation"
+              />
               
               {/* Floating audio/call indicator */}
               <div className="absolute bottom-6 right-6 w-14 h-14 bg-accent rounded-full flex items-center justify-center shadow-lg">
