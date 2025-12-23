@@ -134,8 +134,8 @@ const Risk = () => {
           landingPageSource={LANDING_PAGE_SOURCE}
           headline={
             <>
-              <span className="text-5xl sm:text-6xl lg:text-7xl block">You're not overreacting.</span>
-              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">Get clarity, not fear.</span>
+              <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk.</span>
+              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">Catch cancer early</span>
             </>
           }
           subheadline="Whether it's family history or a friend's recent diagnosis—your concern is valid. We help you understand your actual risk and take calm, early action with Stanford physician guidance."
