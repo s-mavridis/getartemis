@@ -88,7 +88,7 @@ export function Support5HeroSection({
                 </svg>
               </div>
               <div>
-                <p className="font-display font-bold text-foreground text-lg">Personalized Cancer Risk Score</p>
+                <p className="font-display font-bold text-foreground text-lg">Personalized Cancer Risk Score + Screening Navigation</p>
                 <p className="text-foreground/80 text-base">Based on medical history, family history & lifestyle</p>
               </div>
             </div>
