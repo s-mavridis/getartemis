@@ -75,7 +75,7 @@ export function Support5HeroSection({
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
               We coordinate their cancer screening for you
             </h1>
 
