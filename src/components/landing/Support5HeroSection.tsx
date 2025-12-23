@@ -93,11 +93,6 @@ export function Support5HeroSection({
               </div>
             </div>
 
-            {/* Subheadline */}
-            <p className="text-base sm:text-lg text-muted-foreground mb-4 max-w-lg">
-              Worried about a partner who avoids health conversations? Stanford physicians provide the neutral medical guidance that helps reluctant loved ones take action.
-            </p>
-
             {/* Promo text */}
             {promoText && (
               <p className="text-sm sm:text-base text-accent font-medium mb-8 max-w-lg">
