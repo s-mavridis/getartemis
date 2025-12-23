@@ -134,8 +134,8 @@ const Optimize = () => {
           landingPageSource={LANDING_PAGE_SOURCE}
           headline={
             <>
-              <span className="text-5xl sm:text-6xl lg:text-7xl block">Cancer risk is unmeasured</span>
-              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">in your health protocol</span>
+              <span className="text-5xl sm:text-6xl lg:text-7xl block">Know your cancer risk.</span>
+              <span className="text-3xl sm:text-4xl lg:text-5xl block mt-3 sm:mt-4">Complete your health protocol</span>
             </>
           }
           subheadline="You track sleep, HRV, glucose, and fitness—but cancer risk remains a blind spot. Complete your health protocol with AI-powered risk stratification and Stanford physician guidance."
