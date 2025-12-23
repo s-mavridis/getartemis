@@ -152,7 +152,7 @@ export function HeroSection({
             </div>
             <div className="text-left">
               <p className="font-display font-bold text-white text-base sm:text-lg drop-shadow-md">Personalized Cancer Risk Score</p>
-              <p className="text-white/80 text-sm sm:text-base">+ Expert screening navigation for your loved one</p>
+              <p className="text-white/80 text-sm sm:text-base">Based on medical history, family history & lifestyle</p>
             </div>
           </motion.div>
 
