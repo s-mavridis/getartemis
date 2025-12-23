@@ -54,9 +54,23 @@ interface LeadCaptureModalProps {
   prefilledEmail?: string;
   landingPageSource?: string;
   showEhrConsent?: boolean;
+  title?: string;
+  description?: string;
+  submitButtonText?: string;
+  successDescription?: string;
 }
 
-export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", landingPageSource = "home", showEhrConsent = false }: LeadCaptureModalProps) {
+export function LeadCaptureModal({ 
+  open, 
+  onOpenChange, 
+  prefilledEmail = "", 
+  landingPageSource = "home", 
+  showEhrConsent = false,
+  title,
+  description,
+  submitButtonText,
+  successDescription,
+}: LeadCaptureModalProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -188,12 +202,12 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
           <>
             <div className="space-y-2">
               <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                {useSupportSchema ? "Help Your Family Member Get Started" : "Get Your Personalized Risk Assessment"}
+                {title || (useSupportSchema ? "Help Your Family Member Get Started" : "Get Your Personalized Risk Assessment")}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                {useSupportSchema
+                {description || (useSupportSchema
                   ? "We'll reach out with a gentle, informative approach. Enter your email to get started—we'll send next steps within 24 hours."
-                  : "We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours."}
+                  : "We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours.")}
               </p>
             </div>
             
@@ -323,7 +337,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                       Processing...
                     </>
                   ) : (
-                    useSupportSchema ? "Get Started" : "Authorize Access"
+                    submitButtonText || (useSupportSchema ? "Get Started" : "Authorize Access")
                   )}
                 </Button>
                 
@@ -342,7 +356,7 @@ export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", land
                 You're on the list!
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mt-2">
-                Check your email ({submittedEmail}) for next steps. We'll send {useSupportSchema ? "guidance on next steps" : "EHR connection instructions"} within 24 hours.
+                {successDescription || `Check your email (${submittedEmail}) for next steps. We'll send ${useSupportSchema ? "guidance on next steps" : "EHR connection instructions"} within 24 hours.`}
               </p>
             </div>
             

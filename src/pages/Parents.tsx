@@ -170,6 +170,9 @@ const Parents = () => {
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
         landingPageSource={LANDING_PAGE_SOURCE}
+        title="Get Your Parents Started"
+        description="We'll handle the coordination so you don't have to. Enter your email and we'll send you simple instructions to help your parents connect their health records within 24 hours."
+        submitButtonText="Get Them Started"
       />
     </div>
   );
