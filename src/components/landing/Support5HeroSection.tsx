@@ -61,7 +61,7 @@ export function Support5HeroSection({
             transition={{ duration: 0.6 }}
           >
             {/* Rating badge */}
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-8">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star 
@@ -75,12 +75,12 @@ export function Support5HeroSection({
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
-              We coordinate their cancer screening for you
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-8">
+              We help you get them screened
             </h1>
 
             {/* Service highlight - Primary value prop */}
-            <div className="flex items-center gap-3 bg-accent/10 border border-accent/30 rounded-2xl p-5 mb-6 max-w-lg">
+            <div className="flex items-center gap-3 bg-accent/10 border border-accent/30 rounded-2xl p-5 mb-8 max-w-lg">
               <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
                 <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M9 12l2 2 4-4" />
@@ -95,15 +95,15 @@ export function Support5HeroSection({
 
             {/* Promo text */}
             {promoText && (
-              <p className="text-sm sm:text-base text-accent font-medium mb-8 max-w-lg">
+              <p className="text-sm sm:text-base text-accent font-medium mb-10 max-w-lg">
                 {promoText}
               </p>
             )}
 
-            {!promoText && <div className="mb-4" />}
+            {!promoText && <div className="mb-6" />}
 
             {/* CTA Button + Rating */}
-            <div className="flex flex-wrap items-center gap-4 mb-12">
+            <div className="flex flex-wrap items-center gap-4 mb-14">
               <Button 
                 onClick={onOpenModal}
                 className="h-auto py-4 px-8 bg-accent hover:bg-accent/90 text-white rounded-xl font-semibold"

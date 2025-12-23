@@ -134,8 +134,8 @@ const Parents = () => {
           landingPageSource={LANDING_PAGE_SOURCE}
           headline={
             <>
-              <span className="text-4xl sm:text-6xl lg:text-7xl block">We coordinate their</span>
-              <span className="text-2xl sm:text-4xl lg:text-5xl block mt-2 sm:mt-4">cancer screening for you</span>
+              <span className="text-4xl sm:text-6xl lg:text-7xl block">We help you</span>
+              <span className="text-2xl sm:text-4xl lg:text-5xl block mt-2 sm:mt-4">get them screened</span>
             </>
           }
           subheadline="Worried about your parents' cancer screenings? We analyze their health data, coordinate with Stanford physicians, and schedule appropriate screenings. Done for you in 15 minutes."

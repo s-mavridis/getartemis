@@ -124,7 +124,7 @@ export function HeroSection({
         <div className="flex flex-col items-center text-center">
           {/* Main headline */}
           <motion.h1 
-            className="font-display font-bold leading-tight tracking-tight text-white text-center mb-4 sm:mb-6 drop-shadow-lg"
+            className="font-display font-bold leading-tight tracking-tight text-white text-center mb-6 sm:mb-8 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -139,7 +139,7 @@ export function HeroSection({
 
           {/* Service highlight - Primary value prop */}
           <motion.div 
-            className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6 max-w-lg"
+            className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 max-w-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -171,7 +171,7 @@ export function HeroSection({
           {/* Email input with button */}
           <motion.form 
             onSubmit={handleSubmit}
-            className="w-full max-w-lg mb-4"
+            className="w-full max-w-lg mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -197,7 +197,7 @@ export function HeroSection({
 
           {/* Trust badges */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 sm:gap-x-6 text-xs sm:text-sm text-white/90 mb-8 sm:mb-12 lg:mb-16 drop-shadow-md"
+            className="flex flex-wrap items-center justify-center gap-y-2 gap-x-4 sm:gap-x-6 text-xs sm:text-sm text-white/90 mb-10 sm:mb-14 lg:mb-18 drop-shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
