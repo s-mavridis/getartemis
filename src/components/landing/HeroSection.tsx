@@ -156,16 +156,6 @@ export function HeroSection({
             </div>
           </motion.div>
 
-          {/* Subheadline */}
-          <motion.p 
-            className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mb-4 sm:mb-6 drop-shadow-md leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
-            {subheadline}
-          </motion.p>
-
           {/* Promo text */}
           {promoText && (
             <motion.p 
