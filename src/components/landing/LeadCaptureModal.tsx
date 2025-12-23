@@ -53,18 +53,18 @@ interface LeadCaptureModalProps {
   onOpenChange: (completed: boolean) => void;
   prefilledEmail?: string;
   landingPageSource?: string;
+  showEhrConsent?: boolean;
 }
 
-export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", landingPageSource = "home" }: LeadCaptureModalProps) {
+export function LeadCaptureModal({ open, onOpenChange, prefilledEmail = "", landingPageSource = "home", showEhrConsent = false }: LeadCaptureModalProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
   const { toast } = useToast();
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-  const isSupportPage = landingPageSource === "support" || landingPageSource === "support3" || landingPageSource === "support5" || landingPageSource === "support7";
-  const isSupport2Page = landingPageSource === "support2" || landingPageSource === "support4" || landingPageSource === "support6" || landingPageSource === "support8";
-  const useSupportSchema = isSupportPage || isSupport2Page;
+  const isSupportPage = landingPageSource?.startsWith("support");
+  const useSupportSchema = !showEhrConsent;
 
   const form = useForm<FormData>({
     resolver: zodResolver(useSupportSchema ? supportFormSchema : standardFormSchema),

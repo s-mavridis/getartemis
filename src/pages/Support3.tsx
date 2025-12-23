@@ -172,6 +172,7 @@ const Support3 = () => {
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
         landingPageSource={LANDING_PAGE_SOURCE}
+        showEhrConsent={true}
       />
     </div>
   );
