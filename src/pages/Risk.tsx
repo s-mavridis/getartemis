@@ -170,6 +170,9 @@ const Risk = () => {
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
         landingPageSource={LANDING_PAGE_SOURCE}
+        title="Get Clarity About Your Risk"
+        description="Your concerns are valid. We'll analyze your health data to give you clarity—not fear. Join our early access program and we'll email you secure connection instructions within 24 hours."
+        submitButtonText="Get Clarity Now"
       />
     </div>
   );

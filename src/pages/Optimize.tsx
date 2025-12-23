@@ -170,6 +170,9 @@ const Optimize = () => {
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
         landingPageSource={LANDING_PAGE_SOURCE}
+        title="Complete Your Health Protocol"
+        description="Add cancer risk to your measured metrics. We'll email you secure instructions to connect your health data within 24 hours. Your personalized risk stratification report follows in 48 hours."
+        submitButtonText="Complete My Protocol"
       />
     </div>
   );

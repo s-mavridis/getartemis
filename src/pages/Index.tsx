@@ -67,6 +67,9 @@ const Index = () => {
         onOpenChange={handleModalClose}
         prefilledEmail={heroEmail}
         landingPageSource="home"
+        title="Get Your Personalized Risk Assessment"
+        description="We'll analyze your health records to identify cancer screening opportunities you might be missing. Join our early access program—we'll email you connection instructions within 24 hours."
+        submitButtonText="Authorize Access"
       />
     </div>
   );
