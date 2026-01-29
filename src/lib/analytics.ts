@@ -1,72 +1,33 @@
 /**
- * Analytics utility for GTM dataLayer event tracking
+ * Analytics utility - stub functions (GTM removed)
  */
 
-type EventData = Record<string, unknown>;
-
-/**
- * Push an event to the GTM dataLayer
- */
-export function trackEvent(eventName: string, eventData: EventData = {}): void {
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: eventName,
-      ...eventData
-    });
-  }
-  
-  // Also log to console in development for debugging
-  if (import.meta.env.DEV) {
-    console.log(`[Analytics] ${eventName}`, eventData);
-  }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackEvent(_eventName: string, _eventData: Record<string, unknown> = {}): void {
+  // No-op: GTM removed
 }
 
-/**
- * Track page view event
- */
-export function trackPageView(landingPage: string, adSource: string | null): void {
-  trackEvent('page_view', {
-    ad_source: adSource,
-    landing_page: landingPage,
-    timestamp: new Date().toISOString()
-  });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackPageView(_landingPage: string, _adSource: string | null): void {
+  // No-op: GTM removed
 }
 
-/**
- * Track CTA click event
- */
-export function trackCTAClick(location: 'hero' | 'nav' | 'final_cta', landingPage: string): void {
-  trackEvent('cta_clicked', {
-    location,
-    landing_page: landingPage
-  });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackCTAClick(_location: 'hero' | 'nav' | 'final_cta', _landingPage: string): void {
+  // No-op: GTM removed
 }
 
-/**
- * Track hero email entry event
- */
-export function trackHeroEmailEntered(landingPage: string): void {
-  trackEvent('hero_email_entered', {
-    landing_page: landingPage
-  });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackHeroEmailEntered(_landingPage: string): void {
+  // No-op: GTM removed
 }
 
-/**
- * Track modal close event
- */
-export function trackModalClosed(completed: boolean, landingPage: string): void {
-  trackEvent('modal_closed', {
-    completed,
-    landing_page: landingPage
-  });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackModalClosed(_completed: boolean, _landingPage: string): void {
+  // No-op: GTM removed
 }
 
-/**
- * Track form submission event
- */
-export function trackFormSubmission(landingPage: string, formType: 'standard' | 'support'): void {
-  trackEvent('form_submitted', {
-    landing_page: landingPage,
-    form_type: formType
-  });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function trackFormSubmission(_landingPage: string, _formType: 'standard' | 'support'): void {
+  // No-op: GTM removed
 }
